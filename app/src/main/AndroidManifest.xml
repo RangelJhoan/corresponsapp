@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CorresponsApp">
         <activity
+            android:name=".interfaces.CorresponsalActivity"
+            android:exported="true" />
+        <activity
             android:name=".interfaces.RegistroCuentaActivity"
             android:exported="false" />
         <activity
