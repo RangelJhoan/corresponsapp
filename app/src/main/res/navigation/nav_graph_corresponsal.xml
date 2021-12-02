@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_corresponsal"
+    app:startDestination="@id/corresponsalMenuFragment">
+
+    <fragment
+        android:id="@+id/corresponsalMenuFragment"
+        android:name="com.example.corresponsapp.interfaces.corresponsal.CorresponsalMenuFragment"
+        android:label="fragment_corresponsal_menu"
+        tools:layout="@layout/fragment_corresponsal_menu" />
+</navigation>

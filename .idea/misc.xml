@@ -7,8 +7,12 @@
         <entry key="..\:/Android/CorresponsApp/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Android/CorresponsApp/app/src/main/res/layout/activity_main.xml" value="0.11614583333333334" />
         <entry key="..\:/Android/CorresponsApp/app/src/main/res/layout/activity_registro_cuenta.xml" value="0.33" />
+        <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/drawable/design_degradadoazul.xml" value="0.22135416666666666" />
+        <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/drawable/ic_baseline_power_settings_new_24.xml" value="0.22135416666666666" />
         <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/layout/activity_corresponsal.xml" value="0.20520833333333333" />
         <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/layout/activity_registro_cuenta.xml" value="0.20520833333333333" />
+        <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/layout/fragment_corresponsal_menu.xml" value="0.264" />
         <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22135416666666666" />
       </map>
     </option>
