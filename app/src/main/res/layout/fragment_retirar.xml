@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".interfacesgraficas.corresponsal.RetirarFragment">
+    tools:context=".interfacesgraficas.corresponsal.retirar.RetirarFragment">
 
     <include
         android:id="@+id/menu_toolbar"

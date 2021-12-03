@@ -19,6 +19,7 @@ import com.example.corresponsapp.databinding.FragmentCorresponsalMenuBinding;
 import com.example.corresponsapp.entidades.Menu;
 import com.example.corresponsapp.interfaces.MenuCallback;
 import com.example.corresponsapp.interfacesgraficas.adaptadores.MenuAdapter;
+import com.example.corresponsapp.utilidades.Constantes;
 
 
 import java.util.ArrayList;
@@ -53,11 +54,11 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
         this.view = view;
 
         listaMenu = new ArrayList<>();
-        listaMenu.add(new Menu("Pagar con tarjeta", R.drawable.pagotarjeta_128));
-        listaMenu.add(new Menu("Retirar", R.drawable.retirar_128));
-        listaMenu.add(new Menu("Depositar", R.drawable.depositar_128));
-        listaMenu.add(new Menu("Transferir", R.drawable.transferir_128));
-        listaMenu.add(new Menu("Crear cuenta", R.drawable.anadir_128));
+        listaMenu.add(new Menu(Constantes.PAGOTARJETA, R.drawable.pagotarjeta_128));
+        listaMenu.add(new Menu(Constantes.RETIRAR, R.drawable.retirar_128));
+        listaMenu.add(new Menu(Constantes.DEPOSITAR, R.drawable.depositar_128));
+        listaMenu.add(new Menu(Constantes.TRANSFERIR, R.drawable.transferir_128));
+        listaMenu.add(new Menu(Constantes.CREAR_CUENTA, R.drawable.anadir_128));
 
         binding.rvBotonesMenu.setLayoutManager(new GridLayoutManager(getContext(),3));
         adapter = new MenuAdapter(listaMenu, this);
@@ -69,19 +70,19 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
     public void navegarFragment(Menu menu) {
         final NavController navController = Navigation.findNavController(view);
         switch (menu.getNombre()){
-            case "Pagar con Tarjeta":
+            case Constantes.PAGOTARJETA:
                 navController.navigate(R.id.pagoTarjetaFragment);
                 break;
-            case "Retirar":
+            case Constantes.RETIRAR:
                 navController.navigate(R.id.retirarFragment);
                 break;
-            case "Depositar":
+            case Constantes.DEPOSITAR:
                 navController.navigate(R.id.depositarFragment);
                 break;
-            case "Transferir":
+            case Constantes.TRANSFERIR:
                 navController.navigate(R.id.transferirFragment);
                 break;
-            case "Crear cuenta":
+            case Constantes.CREAR_CUENTA:
                 navController.navigate(R.id.crearCuentaFragment);
                 break;
             default:

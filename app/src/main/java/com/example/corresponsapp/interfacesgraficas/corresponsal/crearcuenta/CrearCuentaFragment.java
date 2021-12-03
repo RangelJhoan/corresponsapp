@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.corresponsapp.R;
 import com.example.corresponsapp.databinding.FragmentCrearCuentaBinding;
@@ -21,6 +23,7 @@ import com.example.corresponsapp.validaciones.Validaciones;
 public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View {
     private FragmentCrearCuentaBinding binding;
     private CrearCuentaMVP.Presenter presenter;
+    private NavController navController;
 
     public CrearCuentaFragment() {
 
@@ -46,6 +49,7 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
         presenter = new CrearCuentaPresenterImpl(this);
 
         binding.menuToolbar.ivPantalla.setImageResource(R.drawable.anadir_128);
@@ -60,7 +64,7 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
     private void crearCuenta() {
         EditText[] editTexts = {binding.etNombreCompleto,binding.etDocumento,binding.etPIN,binding.etConfirmarPIN, binding.etSaldoInicial};
         if(Validaciones.validarCampos(editTexts)){
-            if (binding.etPIN.getText().equals(binding.etConfirmarPIN.getText())) {
+            if (binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())) {
 
                 CuentaBancaria cuentaBancaria = new CuentaBancaria();
                 Cliente cliente = new Cliente();
@@ -83,6 +87,8 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
                 cuentaBancaria.setTarjeta(tarjeta);
 
                 presenter.crearCuenta(getContext(), cuentaBancaria);
+            }else{
+                Toast.makeText(getContext(), "El código PIN no coincide", Toast.LENGTH_SHORT).show();
             }
         }else{
             Toast.makeText(getContext(),"Por favor llene todos los datos",Toast.LENGTH_LONG).show();
@@ -100,11 +106,12 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
 
     @Override
     public void mostrarResultado(String resultado) {
-
+        Toast.makeText(getContext(),resultado, Toast.LENGTH_SHORT).show();
+        navController.navigate(R.id.corresponsalMenuFragment);
     }
 
     @Override
     public void mostrarError(String error) {
-
+        Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
     }
 }

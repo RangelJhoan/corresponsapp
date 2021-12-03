@@ -40,8 +40,7 @@
                 android:id="@+id/etNombreCompleto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
-                android:inputType="textPersonName|textCapCharacters"
+                android:inputType="textCapCharacters"
                 android:textAllCaps="true"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -89,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberPassword"
                 android:maxLength="4"
-                android:paddingHorizontal="30dp" />
+                android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout

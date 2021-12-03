@@ -30,15 +30,16 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Documento"
+            android:hint="Documento a depositar"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDocumentoDeposito"
+                android:id="@+id/etDocumentoRecibe"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,15 +51,16 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Documento"
+            android:hint="Documento que deposita"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDocumentoDepositar"
+                android:id="@+id/etDocumentoEnvia"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,7 +81,7 @@
                 android:id="@+id/etMonto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textEmailAddress"
+                android:inputType="number"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 

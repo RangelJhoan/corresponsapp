@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/retirarFragment"
-        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.RetirarFragment"
+        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.retirar.RetirarFragment"
         android:label="fragment_retirar"
         tools:layout="@layout/fragment_retirar" >
         <action
