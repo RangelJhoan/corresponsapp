@@ -1,37 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".interfacesgraficas.RegistroCuentaActivity">
+    tools:context=".interfacesgraficas.corresponsal.TransferirFragment">
+
+    <include
+        android:id="@+id/menu_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        layout="@layout/menu_toolbar"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@drawable/design_degradadoazul"
+        android:layout_weight="7"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Registrar cuenta"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="26sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
-        android:gravity="center"
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -40,63 +28,22 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Nombre"
+            android:hint="Documento cliente que transfiere"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNombre"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAllCaps="true"
-                android:paddingStart="30dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="Apellido"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etClave"
+                android:id="@+id/etDocumentoTransfiere"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout3"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:hint="Documento"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
-            app:errorEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDocumento"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingStart="30dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout4"
+            android:id="@+id/textInputLayout2"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -118,6 +65,48 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout3"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:hint="Confirmar PIN"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
+            app:endIconMode="password_toggle"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfirmarPIN"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:paddingStart="30dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout4"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:hint="Documento cliente que recibe"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDocumentoRecibe"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="30dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout5"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -125,13 +114,13 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Saldo"
+            android:hint="Monto a transferir"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etCorreo"
+                android:id="@+id/etMonto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textEmailAddress"
@@ -139,13 +128,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/btnTransferir"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="20dp"
+            android:paddingHorizontal="40dp"
             android:layout_weight="1"
             android:backgroundTint="#0100C1"
-            android:text="Registrar Cuenta" />
+            android:text="Transferir" />
 
     </LinearLayout>
 

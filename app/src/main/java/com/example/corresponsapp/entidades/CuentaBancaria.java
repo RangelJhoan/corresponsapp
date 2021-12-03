@@ -5,6 +5,8 @@ public class CuentaBancaria{
     private String numero_cuenta;
     private String PIN;
     private double saldo;
+    private Cliente cliente;
+    private Tarjeta tarjeta;
 
     public CuentaBancaria() {
     }
@@ -39,5 +41,21 @@ public class CuentaBancaria{
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Tarjeta getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(Tarjeta tarjeta) {
+        this.tarjeta = tarjeta;
     }
 }

@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".interfaces.corresponsal.CorresponsalMenuFragment">
+    tools:context=".interfacesgraficas.corresponsal.CorresponsalMenuFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
+        android:padding="20dp"
         android:background="@drawable/design_degradadoazul"
         android:orientation="vertical">
 
@@ -18,7 +19,6 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:paddingHorizontal="30dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -26,7 +26,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="8"
-                android:text="Hola, cliente"
+                android:text="Hola, corresponsal"
                 android:maxLines="1"
                 android:textColor="@color/white"
                 android:textSize="26sp"
@@ -38,7 +38,7 @@
                 android:layout_weight="2"
                 app:borderWidth="0dp"
                 android:adjustViewBounds="true"
-                android:padding="20dp"
+                android:padding="5dp"
                 android:scaleType="fitCenter"
                 android:background="@null"
                 android:src="@drawable/ic_baseline_power_settings_new_24"/>
@@ -82,18 +82,28 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
+        android:padding="20dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Registrar cuenta"
+            android:layout_height="wrap_content"
+            android:text="Menú Principal"
             android:textAlignment="center"
-            android:textColor="@color/white"
             android:textSize="26sp"
             android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBotonesMenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"/>
 
     </LinearLayout>
 

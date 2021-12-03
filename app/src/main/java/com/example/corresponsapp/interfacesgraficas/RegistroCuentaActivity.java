@@ -1,4 +1,4 @@
-package com.example.corresponsapp.interfaces;
+package com.example.corresponsapp.interfacesgraficas;
 
 import androidx.appcompat.app.AppCompatActivity;
 

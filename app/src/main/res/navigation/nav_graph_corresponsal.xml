@@ -7,7 +7,68 @@
 
     <fragment
         android:id="@+id/corresponsalMenuFragment"
-        android:name="com.example.corresponsapp.interfaces.corresponsal.CorresponsalMenuFragment"
+        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.CorresponsalMenuFragment"
         android:label="fragment_corresponsal_menu"
-        tools:layout="@layout/fragment_corresponsal_menu" />
+        tools:layout="@layout/fragment_corresponsal_menu" >
+        <action
+            android:id="@+id/action_corresponsalMenuFragment_to_retirarFragment"
+            app:destination="@id/retirarFragment" />
+        <action
+            android:id="@+id/action_corresponsalMenuFragment_to_depositarFragment"
+            app:destination="@id/depositarFragment" />
+        <action
+            android:id="@+id/action_corresponsalMenuFragment_to_transferirFragment"
+            app:destination="@id/transferirFragment" />
+        <action
+            android:id="@+id/action_corresponsalMenuFragment_to_crearCuentaFragment"
+            app:destination="@id/crearCuentaFragment" />
+        <action
+            android:id="@+id/action_corresponsalMenuFragment_to_pagoTarjetaFragment"
+            app:destination="@id/pagoTarjetaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/retirarFragment"
+        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.RetirarFragment"
+        android:label="fragment_retirar"
+        tools:layout="@layout/fragment_retirar" >
+        <action
+            android:id="@+id/action_retirarFragment_to_corresponsalMenuFragment"
+            app:destination="@id/corresponsalMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/depositarFragment"
+        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.depositar.DepositarFragment"
+        android:label="fragment_depositar"
+        tools:layout="@layout/fragment_depositar" >
+        <action
+            android:id="@+id/action_depositarFragment_to_corresponsalMenuFragment"
+            app:destination="@id/corresponsalMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transferirFragment"
+        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.TransferirFragment"
+        android:label="fragment_transferir"
+        tools:layout="@layout/fragment_transferir" >
+        <action
+            android:id="@+id/action_transferirFragment_to_corresponsalMenuFragment"
+            app:destination="@id/corresponsalMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/crearCuentaFragment"
+        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.crearcuenta.CrearCuentaFragment"
+        android:label="fragment_crear_cuenta"
+        tools:layout="@layout/fragment_crear_cuenta" >
+        <action
+            android:id="@+id/action_crearCuentaFragment_to_corresponsalMenuFragment"
+            app:destination="@id/corresponsalMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pagoTarjetaFragment"
+        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.PagoTarjetaFragment"
+        android:label="fragment_pago_tarjeta"
+        tools:layout="@layout/fragment_pago_tarjeta" >
+        <action
+            android:id="@+id/action_pagoTarjetaFragment_to_corresponsalMenuFragment"
+            app:destination="@id/corresponsalMenuFragment" />
+    </fragment>
 </navigation>

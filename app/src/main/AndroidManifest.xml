@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CorresponsApp">
         <activity
-            android:name=".interfaces.corresponsal.CorresponsalActivity"
+            android:name=".interfacesgraficas.corresponsal.CorresponsalActivity"
             android:exported="true" />
         <activity
-            android:name=".interfaces.RegistroCuentaActivity"
+            android:name=".interfacesgraficas.RegistroCuentaActivity"
             android:exported="false" />
         <activity
-            android:name=".interfaces.LoginActivity"
+            android:name=".interfacesgraficas.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

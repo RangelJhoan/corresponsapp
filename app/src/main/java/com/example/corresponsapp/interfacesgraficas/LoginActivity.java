@@ -1,13 +1,12 @@
-package com.example.corresponsapp.interfaces;
+package com.example.corresponsapp.interfacesgraficas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.corresponsapp.R;
 import com.example.corresponsapp.databinding.ActivityLoginBinding;
-import com.example.corresponsapp.interfaces.corresponsal.CorresponsalActivity;
+import com.example.corresponsapp.interfacesgraficas.corresponsal.CorresponsalActivity;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
