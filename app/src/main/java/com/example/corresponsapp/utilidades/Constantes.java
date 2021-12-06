@@ -9,4 +9,5 @@ public class Constantes {
 
     public static final double COMISION_RETIRAR = 2000;
     public static final double COMISION_DEPOSITAR = 1000;
+    public static final double COMISION_CUENTA_NUEVA = 10000;
 }

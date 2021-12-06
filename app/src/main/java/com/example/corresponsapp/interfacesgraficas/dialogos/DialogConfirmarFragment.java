@@ -67,6 +67,19 @@ public class DialogConfirmarFragment extends DialogFragment {
             binding.llCuotas.setVisibility(View.GONE);
             binding.llFechaExpiracion.setVisibility(View.GONE);
             binding.llNombre.setVisibility(View.GONE);
+        } else if (informacion.get("accion").equals(Constantes.PAGOTARJETA)) {
+            //Cargar información de retirar
+            binding.tvSetAccion.setText(informacion.get("accion"));
+            binding.tvSetTarjeta.setText(informacion.get("numero_tarjeta"));
+            binding.tvSetFecha.setText(informacion.get("fecha_expiracion"));
+            binding.tvSetNombre.setText(informacion.get("nombre"));
+            binding.tvSetValor.setText(informacion.get("valor"));
+            binding.tvSetCuotas.setText(informacion.get("cuotas"));
+
+            //Ocultar
+            binding.llDocumentoRecibe.setVisibility(View.GONE);
+            binding.llDocumentoAccion.setVisibility(View.GONE);
+            binding.llComision.setVisibility(View.GONE);
         }
 
         builder.setView(binding.getRoot());

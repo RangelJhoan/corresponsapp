@@ -12,6 +12,7 @@ import com.example.corresponsapp.entidades.Cliente;
 import com.example.corresponsapp.entidades.Corresponsal;
 import com.example.corresponsapp.entidades.CuentaBancaria;
 import com.example.corresponsapp.entidades.Deposito;
+import com.example.corresponsapp.entidades.PagoTarjeta;
 import com.example.corresponsapp.entidades.Retiro;
 import com.example.corresponsapp.entidades.Tarjeta;
 import com.example.corresponsapp.utilidades.Constantes;
@@ -47,6 +48,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         db.execSQL(UtilidadesBD.CREAR_DEPOSITO_TABLA);
         db.execSQL(UtilidadesBD.CREAR_CORRESPONSAL_TABLA);
         db.execSQL(UtilidadesBD.CREAR_TABLA_RETIRO);
+        db.execSQL(UtilidadesBD.CREAR_TABLA_PAGO_TARJETA);
         db.execSQL("INSERT INTO " + UtilidadesBD.CORRESPONSAL_TABLA + " (nombre_completo, saldo, correo, clave) VALUES ('Jhoan Rangel',10000, 'jhoan', '123')");
     }
 
@@ -58,6 +60,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + UtilidadesBD.DEPOSITO_TABLA);
         db.execSQL("DROP TABLE IF EXISTS " + UtilidadesBD.CORRESPONSAL_TABLA);
         db.execSQL("DROP TABLE IF EXISTS " + UtilidadesBD.RETIRO_TABLA);
+        db.execSQL("DROP TABLE IF EXISTS " + UtilidadesBD.PAGO_TARJETA_TABLA);
         onCreate(db);
     }
 
@@ -82,7 +85,14 @@ public class BaseDatos extends SQLiteOpenHelper {
                     long respuestaCuenta = db.insert(UtilidadesBD.CUENTA_BANCARIA_TABLA, UtilidadesBD.CUENTA_BANCARIA_ID, valuesCuenta);
 
                     if (respuestaCuenta > 0) {
-                        return respuestaCuenta;
+                        //Cuando se registre el cliente se le debe sumar 10000 al corresponsal
+                        long respuestaComision = registrarComision(Sesion.corresponsalSesion.getId(), Constantes.COMISION_CUENTA_NUEVA);
+                        if(respuestaComision > 0){
+                            return respuestaComision;
+                        }else{
+                            //RETORNAR -5: Comisión no registrada
+                            return -5;
+                        }
                     } else {
                         //RETORNAR -1: Error al crear la cuenta
                         return -1;
@@ -231,7 +241,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
         double saldoDisponible = consultarSaldoCuenta(idCuenta) - (retiro + Constantes.COMISION_RETIRAR);
 
-        if (saldoDisponible > 0) {
+        if (saldoDisponible >= 0) {
 
             long respuestaComision = registrarComision(Sesion.corresponsalSesion.getId(), Constantes.COMISION_RETIRAR);
 
@@ -253,6 +263,30 @@ public class BaseDatos extends SQLiteOpenHelper {
         } else {
             //Retornar -3; Saldo insuficiente para el retiro
             return -3;
+        }
+    }
+
+    public long crearPagoTarjeta(PagoTarjeta pagoTarjeta) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valuesPagoTarjeta = new ContentValues();
+
+        int idCuenta = consultarIdCuentaNumero(pagoTarjeta.getCuentaBancaria().getNumero_cuenta());
+        if (idCuenta > 0) {
+            valuesPagoTarjeta.put(UtilidadesBD.PAGO_TARJETA_FK_CUENTA, idCuenta);
+            valuesPagoTarjeta.put(UtilidadesBD.PAGO_TARJETA_VALOR, pagoTarjeta.getValor());
+            valuesPagoTarjeta.put(UtilidadesBD.PAGO_TARJETA_COUTAS, pagoTarjeta.getNumeroCuotas());
+
+            long resultadoPagoTarjeta = db.insert(UtilidadesBD.PAGO_TARJETA_TABLA, UtilidadesBD.PAGO_TARJETA_ID, valuesPagoTarjeta);
+
+            if (resultadoPagoTarjeta > 0) {
+                return resultadoPagoTarjeta;
+            } else {
+                //Retornar -2: No se creó el pago con tarjeta
+                return -2;
+            }
+        }else{
+            //RETORNAR -1: No se encontró la cuenta bancaria
+            return -1;
         }
 
     }
@@ -306,6 +340,22 @@ public class BaseDatos extends SQLiteOpenHelper {
                 "FROM " + UtilidadesBD.CUENTA_BANCARIA_TABLA + " cu " +
                 "JOIN " + UtilidadesBD.CLIENTE_TABLA + " c ON c.id = cu.id_cliente " +
                 "WHERE c.documento = ?", new String[]{documento});
+
+        if (cursor.moveToFirst()) {
+            return cursor.getInt(0);
+        } else {
+            //Retornar -1: No se encontró la cuenta
+            return -1;
+        }
+    }
+
+    //CONSULTAR ID CUENTA POR NUMERO DE CUENTA
+    public int consultarIdCuentaNumero(String numeroCuenta) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT id " +
+                "FROM " + UtilidadesBD.CUENTA_BANCARIA_TABLA + " " +
+                "WHERE numero_cuenta = ?", new String[]{numeroCuenta});
 
         if (cursor.moveToFirst()) {
             return cursor.getInt(0);

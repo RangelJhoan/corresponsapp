@@ -32,6 +32,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View {
     private FragmentCrearCuentaBinding binding;
@@ -77,31 +78,51 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
 
     private void crearCuenta() {
         EditText[] editTexts = {binding.etNombreCompleto, binding.etDocumento, binding.etPIN, binding.etConfirmarPIN, binding.etSaldoInicial};
+        //Validar que los campos tengan texto
         if (Validaciones.validarCampos(editTexts)) {
-            if (binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())) {
+            //Nombre del cliente debe de estar en mayúscula
+            if (Utilidades.validarTextoMayuscula(binding.etNombreCompleto.getText().toString())) {
+                //PIN debe ser tipo numérico
+                if(Utilidades.validarSoloNumeros(binding.etPIN.getText().toString())){
+                    //Número de cédula debe ser tipo numérico
+                    if(Utilidades.validarSoloNumeros(binding.etDocumento.getText().toString())){
+                        if(Utilidades.validarSoloNumeros(binding.etSaldoInicial.getText().toString())){
+                            if (binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())) {
 
-                CuentaBancaria cuentaBancaria = new CuentaBancaria();
-                Cliente cliente = new Cliente();
-                Tarjeta tarjeta = new Tarjeta();
+                                CuentaBancaria cuentaBancaria = new CuentaBancaria();
+                                Cliente cliente = new Cliente();
+                                Tarjeta tarjeta = new Tarjeta();
 
-                //Crear cliente
-                cliente.setDocumento(binding.etDocumento.getText().toString());
-                cliente.setNombre_completo(binding.etNombreCompleto.getText().toString());
+                                //Crear cliente
+                                cliente.setDocumento(binding.etDocumento.getText().toString());
+                                cliente.setNombre_completo(binding.etNombreCompleto.getText().toString());
 
-                //Crear tarjeta
-                crearTarjeta(tarjeta);
+                                //Crear tarjeta
+                                crearTarjeta(tarjeta);
 
-                //Crear cuenta bancaria
-                String numeroTarjeta = crearNumeroTarjeta(binding.etDocumento.getText().toString()); //Generar el número de la cuenta/tarjeta
-                cuentaBancaria.setNumero_cuenta(numeroTarjeta);
-                cuentaBancaria.setPIN(binding.etPIN.getText().toString());
-                cuentaBancaria.setSaldo(Double.parseDouble(binding.etSaldoInicial.getText().toString()));
-                cuentaBancaria.setCliente(cliente);
-                cuentaBancaria.setTarjeta(tarjeta);
+                                //Crear cuenta bancaria
+                                String numeroTarjeta = crearNumeroTarjeta(binding.etDocumento.getText().toString()); //Generar el número de la cuenta/tarjeta
+                                cuentaBancaria.setNumero_cuenta(numeroTarjeta);
+                                cuentaBancaria.setPIN(binding.etPIN.getText().toString());
+                                cuentaBancaria.setSaldo(Double.parseDouble(binding.etSaldoInicial.getText().toString()));
+                                cuentaBancaria.setCliente(cliente);
+                                cuentaBancaria.setTarjeta(tarjeta);
 
-                presenter.crearCuenta(getContext(), cuentaBancaria);
-            } else {
-                Toast.makeText(getContext(), "El código PIN no coincide", Toast.LENGTH_SHORT).show();
+                                presenter.crearCuenta(getContext(), cuentaBancaria);
+                            } else {
+                                Toast.makeText(getContext(), "El código PIN no coincide", Toast.LENGTH_SHORT).show();
+                            }
+                        }else{
+                            Toast.makeText(getContext(), "Digite el saldo sólo números", Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        Toast.makeText(getContext(), "Digite documento sólo números", Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Digite PIN sólo números", Toast.LENGTH_LONG).show();
+                }
+            }else{
+                Toast.makeText(getContext(), "Digite el nombre en mayúsculas", Toast.LENGTH_LONG).show();
             }
         } else {
             Toast.makeText(getContext(), "Por favor llene todos los datos", Toast.LENGTH_LONG).show();

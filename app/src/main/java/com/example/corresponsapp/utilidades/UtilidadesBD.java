@@ -65,5 +65,15 @@ public class UtilidadesBD {
     public static final String CREAR_TABLA_RETIRO = "CREATE TABLE " + RETIRO_TABLA + " (" + RETIRO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             RETIRO_FK_CLIENTE + " INTEGER," + RETIRO_MONTO + " REAL, " + RETIRO_FECHA + " DEFAULT CURRENT_TIMESTAMP)";
 
+    //CAMPOS ENTIDAD: pago tarjeta
+    public static final String PAGO_TARJETA_TABLA = "pago_tarjeta";
+    public static final String PAGO_TARJETA_ID = "id";
+    public static final String PAGO_TARJETA_FK_CUENTA = "id_cuenta";
+    public static final String PAGO_TARJETA_VALOR = "valor";
+    public static final String PAGO_TARJETA_COUTAS = "cuotas";
+
+    public static final String CREAR_TABLA_PAGO_TARJETA = "CREATE TABLE " + PAGO_TARJETA_TABLA + " (" + PAGO_TARJETA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            PAGO_TARJETA_FK_CUENTA + " INTEGER," + PAGO_TARJETA_VALOR + " REAL, " + PAGO_TARJETA_COUTAS + " INTEGER)";
+
 
 }

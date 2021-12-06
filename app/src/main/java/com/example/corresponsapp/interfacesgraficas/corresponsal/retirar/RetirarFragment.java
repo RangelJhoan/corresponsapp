@@ -23,6 +23,7 @@ import com.example.corresponsapp.entidades.Retiro;
 import com.example.corresponsapp.interfaces.ConfirmacionCallback;
 import com.example.corresponsapp.interfaces.IAbrirDialogo;
 import com.example.corresponsapp.utilidades.Constantes;
+import com.example.corresponsapp.utilidades.Utilidades;
 import com.example.corresponsapp.validaciones.Validaciones;
 
 import java.util.Hashtable;
@@ -65,20 +66,36 @@ public class RetirarFragment extends Fragment implements RetirarMVP.View, Confir
         binding.menuToolbar.tvTitulo.setText(Constantes.RETIRAR);
 
         binding.btnRetirar.setOnClickListener(v -> {
-            EditText[] editTexts = {binding.etDocumento, binding.etMonto};
-
-            if (Validaciones.validarCampos(editTexts)) {
-                Hashtable<String, String> informacion = new Hashtable<>();
-                informacion.put("accion", Constantes.RETIRAR);
-                informacion.put("documentoAccion", binding.etDocumento.getText().toString());
-                informacion.put("monto", binding.etMonto.getText().toString());
-                informacion.put("comision", String.valueOf(Constantes.COMISION_RETIRAR));
-                iAbrirDialogo.abrirDialogo(informacion, this);
-            }else{
-                Toast.makeText(getContext(), "Por favor llene todos los campos", Toast.LENGTH_LONG).show();
-            }
+            abrirDialogo();
         });
 
+    }
+
+    private void abrirDialogo() {
+        if (Utilidades.validarSoloNumeros(binding.etDocumento.getText().toString())) {
+            if (Utilidades.validarSoloNumeros(binding.etPIN.getText().toString())) {
+                if (Utilidades.validarSoloNumeros(binding.etMonto.getText().toString())) {
+                    EditText[] editTexts = {binding.etDocumento, binding.etMonto};
+                    if (Validaciones.validarCampos(editTexts)) {
+                        Hashtable<String, String> informacion = new Hashtable<>();
+                        informacion.put("accion", Constantes.RETIRAR);
+                        informacion.put("documentoAccion", binding.etDocumento.getText().toString());
+                        informacion.put("monto", binding.etMonto.getText().toString());
+                        informacion.put("comision", String.valueOf(Constantes.COMISION_RETIRAR));
+                        iAbrirDialogo.abrirDialogo(informacion, this);
+                    } else {
+                        Toast.makeText(getContext(), "Por favor llene todos los campos", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Digite PIN sólo números", Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Toast.makeText(getContext(), "Digite PIN sólo números", Toast.LENGTH_LONG).show();
+            }
+
+        } else {
+            Toast.makeText(getContext(), "Digite documento sólo números", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void retirarDinero() {
