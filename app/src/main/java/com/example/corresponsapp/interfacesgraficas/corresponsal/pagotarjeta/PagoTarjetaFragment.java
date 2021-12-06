@@ -1,4 +1,4 @@
-package com.example.corresponsapp.interfacesgraficas.corresponsal;
+package com.example.corresponsapp.interfacesgraficas.corresponsal.pagotarjeta;
 
 import android.os.Bundle;
 

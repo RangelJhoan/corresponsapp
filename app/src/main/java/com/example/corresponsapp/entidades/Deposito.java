@@ -3,7 +3,7 @@ package com.example.corresponsapp.entidades;
 public class Deposito {
     private int id;
     private String documento;
-    private Cliente cliente;
+    private CuentaBancaria cuentaBancaria;
     private double monto;
     private String fecha;
 
@@ -26,12 +26,12 @@ public class Deposito {
         this.documento = documento;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public CuentaBancaria getCuentaBancaria() {
+        return cuentaBancaria;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {
+        this.cuentaBancaria = cuentaBancaria;
     }
 
     public double getMonto() {

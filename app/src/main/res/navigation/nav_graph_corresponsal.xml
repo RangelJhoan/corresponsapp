@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/corresponsalMenuFragment"
-        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.CorresponsalMenuFragment"
+        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.corresponsalmenu.CorresponsalMenuFragment"
         android:label="fragment_corresponsal_menu"
         tools:layout="@layout/fragment_corresponsal_menu" >
         <action
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/pagoTarjetaFragment"
-        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.PagoTarjetaFragment"
+        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.pagotarjeta.PagoTarjetaFragment"
         android:label="fragment_pago_tarjeta"
         tools:layout="@layout/fragment_pago_tarjeta" >
         <action

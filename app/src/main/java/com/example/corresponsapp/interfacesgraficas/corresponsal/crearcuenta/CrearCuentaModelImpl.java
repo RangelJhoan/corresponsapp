@@ -20,8 +20,10 @@ public class CrearCuentaModelImpl implements CrearCuentaMVP.Model{
         long respuesta = baseDatos.crearCuenta(cuentaBancaria);
         if(respuesta > 0){
             presenter.mostrarResultado("Cuenta creada correctamente");
+        }else if(respuesta == -4){
+            presenter.mostrarError("¡ERROR! Documento ya registrado");
         }else{
-            presenter.mostrarError("Error al crear la cuenta");
+            presenter.mostrarError("¡ERROR! Cuenta no creada");
         }
     }
 }

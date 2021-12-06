@@ -16,7 +16,7 @@
             android:name=".interfacesgraficas.RegistroCuentaActivity"
             android:exported="false" />
         <activity
-            android:name=".interfacesgraficas.LoginActivity"
+            android:name=".interfacesgraficas.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -33,6 +33,17 @@ public class UtilidadesBD {
     public static final String CREAR_CUENTA_BANCARIA_TABLA = "CREATE TABLE " + CUENTA_BANCARIA_TABLA + " (" + CUENTA_BANCARIA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             CUENTA_BANCARIA_NUMERO_CUENTA + " TEXT, " + CUENTA_BANCARIA_PIN + " TEXT, " + CUENTA_BANCARIA_SALDO + " REAL, " + CUENTA_BANCARIA_FK_CLIENTE + " INTEGER, "  + CUENTA_BANCARIA_FK_TARJETA + " INTEGER)";
 
+    //CAMPOS ENTIDAD: corresponsal
+    public static final String CORRESPONSAL_TABLA = "corresponsal";
+    public static final String CORRESPONSAL_ID = "id";
+    public static final String CORRESPONSAL_NOMBRE_COMPLETO = "nombre_completo";
+    public static final String CORRESPONSAL_CORREO = "correo";
+    public static final String CORRESPONSAL_CLAVE = "clave";
+    public static final String CORRESPONSAL_SALDO = "saldo";
+
+    public static final String CREAR_CORRESPONSAL_TABLA = "CREATE TABLE " + CORRESPONSAL_TABLA + " (" + CORRESPONSAL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " + CORRESPONSAL_NOMBRE_COMPLETO +
+            " TEXT, " + CORRESPONSAL_CORREO + " TEXT, " + CORRESPONSAL_CLAVE + " TEXT, " + CORRESPONSAL_SALDO + " REAL)";
+
     //CAMPOS ENTIDAD: deposito
     public static final String DEPOSITO_TABLA = "deposito";
     public static final String DEPOSITO_ID = "id";

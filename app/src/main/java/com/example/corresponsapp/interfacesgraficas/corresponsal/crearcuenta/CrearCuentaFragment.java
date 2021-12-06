@@ -1,6 +1,9 @@
 package com.example.corresponsapp.interfacesgraficas.corresponsal.crearcuenta;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +21,17 @@ import com.example.corresponsapp.databinding.FragmentCrearCuentaBinding;
 import com.example.corresponsapp.entidades.Cliente;
 import com.example.corresponsapp.entidades.CuentaBancaria;
 import com.example.corresponsapp.entidades.Tarjeta;
+import com.example.corresponsapp.utilidades.Constantes;
+import com.example.corresponsapp.utilidades.Utilidades;
 import com.example.corresponsapp.validaciones.Validaciones;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View {
     private FragmentCrearCuentaBinding binding;
@@ -46,6 +59,7 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
         return binding.getRoot();
     }
 
+    @SuppressLint("SimpleDateFormat")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -53,7 +67,7 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
         presenter = new CrearCuentaPresenterImpl(this);
 
         binding.menuToolbar.ivPantalla.setImageResource(R.drawable.anadir_128);
-        binding.menuToolbar.tvTitulo.setText("Crear Cuenta");
+        binding.menuToolbar.tvTitulo.setText(Constantes.CREAR_CUENTA);
 
         binding.btnCrearCuenta.setOnClickListener(view1 -> {
             crearCuenta();
@@ -62,8 +76,8 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
     }
 
     private void crearCuenta() {
-        EditText[] editTexts = {binding.etNombreCompleto,binding.etDocumento,binding.etPIN,binding.etConfirmarPIN, binding.etSaldoInicial};
-        if(Validaciones.validarCampos(editTexts)){
+        EditText[] editTexts = {binding.etNombreCompleto, binding.etDocumento, binding.etPIN, binding.etConfirmarPIN, binding.etSaldoInicial};
+        if (Validaciones.validarCampos(editTexts)) {
             if (binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())) {
 
                 CuentaBancaria cuentaBancaria = new CuentaBancaria();
@@ -75,8 +89,7 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
                 cliente.setNombre_completo(binding.etNombreCompleto.getText().toString());
 
                 //Crear tarjeta
-                tarjeta.setFecha_expiracion("mañana");
-                tarjeta.setCvv("1234");
+                crearTarjeta(tarjeta);
 
                 //Crear cuenta bancaria
                 String numeroTarjeta = crearNumeroTarjeta(binding.etDocumento.getText().toString()); //Generar el número de la cuenta/tarjeta
@@ -87,13 +100,27 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
                 cuentaBancaria.setTarjeta(tarjeta);
 
                 presenter.crearCuenta(getContext(), cuentaBancaria);
-            }else{
+            } else {
                 Toast.makeText(getContext(), "El código PIN no coincide", Toast.LENGTH_SHORT).show();
             }
-        }else{
-            Toast.makeText(getContext(),"Por favor llene todos los datos",Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getContext(), "Por favor llene todos los datos", Toast.LENGTH_LONG).show();
         }
     }
+
+    private void crearTarjeta(Tarjeta tarjeta) {
+        tarjeta.setFecha_expiracion(Utilidades.obtenerFechaExpiracion());
+        tarjeta.setCvv(crearCVV());
+    }
+
+    private String crearCVV() {
+        StringBuilder cvv = new StringBuilder();
+        for (int i = 0; i < 4; i++) {
+            cvv.append(String.valueOf((int) (Math.random() * 10)));
+        }
+        return cvv.toString();
+    }
+
 
     private String crearNumeroTarjeta(String documento) {
         int longitudDocumento = documento.length();
@@ -106,7 +133,7 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
 
     @Override
     public void mostrarResultado(String resultado) {
-        Toast.makeText(getContext(),resultado, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), resultado, Toast.LENGTH_SHORT).show();
         navController.navigate(R.id.corresponsalMenuFragment);
     }
 

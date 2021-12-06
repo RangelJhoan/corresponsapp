@@ -39,6 +39,7 @@
                 android:id="@+id/etDocumentoTransfiere"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,7 +61,8 @@
                 android:id="@+id/etPIN"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
+                android:maxLength="4"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,7 +84,8 @@
                 android:id="@+id/etConfirmarPIN"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
+                android:maxLength="4"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,6 +106,7 @@
                 android:id="@+id/etDocumentoRecibe"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,7 +127,7 @@
                 android:id="@+id/etMonto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textEmailAddress"
+                android:inputType="number"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 

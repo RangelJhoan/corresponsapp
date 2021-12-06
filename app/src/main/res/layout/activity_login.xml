@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".interfacesgraficas.LoginActivity">
+    tools:context=".interfacesgraficas.login.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textEmailAddress"
+                android:text="jhoan"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,6 +94,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginVertical="40dp"
                 android:inputType="textPassword"
+                android:text="123"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 

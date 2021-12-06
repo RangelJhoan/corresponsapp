@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".interfacesgraficas.corresponsal.PagoTarjetaFragment">
+    tools:context=".interfacesgraficas.corresponsal.pagotarjeta.PagoTarjetaFragment">
 
     <include
         android:id="@+id/menu_toolbar"
@@ -39,6 +39,7 @@
                 android:id="@+id/etDocumento"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,11 +68,12 @@
                     android:id="@+id/etFechaExpiracion"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="date"
                     android:paddingStart="30dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout3"
+                android:id="@+id/tilCVV"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -84,10 +86,11 @@
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPIN"
+                    android:id="@+id/etCVV"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
+                    android:maxLength="4"
                     android:paddingStart="30dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,7 +113,7 @@
                 android:id="@+id/etNombre"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textEmailAddress"
+                android:inputType="textPersonName"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,7 +134,7 @@
                 android:id="@+id/etValor"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textEmailAddress"
+                android:inputType="number"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -152,7 +155,7 @@
                 android:id="@+id/etCuotas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textEmailAddress"
+                android:inputType="number"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 

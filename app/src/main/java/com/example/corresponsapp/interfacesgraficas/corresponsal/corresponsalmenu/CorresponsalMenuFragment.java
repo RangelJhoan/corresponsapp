@@ -1,5 +1,6 @@
-package com.example.corresponsapp.interfacesgraficas.corresponsal;
+package com.example.corresponsapp.interfacesgraficas.corresponsal.corresponsalmenu;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.example.corresponsapp.entidades.Menu;
 import com.example.corresponsapp.interfaces.MenuCallback;
 import com.example.corresponsapp.interfacesgraficas.adaptadores.MenuAdapter;
 import com.example.corresponsapp.utilidades.Constantes;
+import com.example.corresponsapp.utilidades.Sesion;
 
 
 import java.util.ArrayList;
@@ -48,10 +50,15 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
         return binding.getRoot();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.view = view;
+
+        String[] nombre = Sesion.corresponsalSesion.getNombre_completo().split(" ");
+        binding.tvSaludo.setText("Hola, " + nombre[0]);
+        binding.tvSaldo.setText("$"+Sesion.corresponsalSesion.getSaldo());
 
         listaMenu = new ArrayList<>();
         listaMenu.add(new Menu(Constantes.PAGOTARJETA, R.drawable.pagotarjeta_128));
