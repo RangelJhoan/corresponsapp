@@ -1,0 +1,17 @@
+
+h
+java:S3776E"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(¢¿Š´
+n
+java:S3776Ì"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(¿†Âþûÿÿÿÿ
+h
+java:S3776µ"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(ðä‹!
+C
+java:S1068"(Remove this unused "mCxt" private field.(ˆ¯é—ÿÿÿÿÿ
+q
+java:S11929"VDefine a constant instead of duplicating this literal "DROP TABLE IF EXISTS " 7 times.(Ï½Ó”þÿÿÿÿ
+]
+java:S1192ã"FDefine a constant instead of duplicating this literal "FROM " 5 times.(Ü×©œ
+ƒ
+java:S1488~"hImmediately return this expression instead of assigning it to the temporary variable "resultadoCliente".(µÚ„µÿÿÿÿÿ
+„
+java:S1488Š"hImmediately return this expression instead of assigning it to the temporary variable "resultadoTarjeta".(“û³‘úÿÿÿÿ

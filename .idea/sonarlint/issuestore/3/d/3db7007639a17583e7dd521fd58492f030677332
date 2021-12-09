@@ -1,0 +1,17 @@
+
+s
+java:S1450)"XRemove the "actividad" field and declare it as a local variable in the relevant methods.(äß‰³øÿÿÿÿ
+q
+java:S1149|"VReplace the synchronized class "Hashtable" by an unsynchronized one such as "HashMap".(Ö–İøÿÿÿÿ
+>
+java:S11858"(Remove this method to simply inherit it.(ßìê¯
+c
+java:S1874O"HRemove this use of "Theme_Holo_Light_Dialog_MinWidth"; it is deprecated.(‚Èœúÿÿÿÿ
+B
+java:S1602m",Remove useless curly braces around statement(¡Ø÷¶
+m
+java:S3776s"RRefactor this method to reduce its Cognitive Complexity from 37 to the 15 allowed.(çÈŠûÿÿÿÿ
+>
+java:S1604T"(Make this anonymous inner class a lambda(“½û
+E
+java:S1604_"(Make this anonymous inner class a lambda(ğ«˜Ì8Ê¡ÕÙ/
