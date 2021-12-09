@@ -77,14 +77,18 @@ public class DepositarFragment extends Fragment implements DepositarMVP.View, Co
             if (Utilidades.validarSoloNumeros(binding.etDocumentoEnvia.getText().toString())) {
                 if (Utilidades.validarSoloNumeros(binding.etDocumentoRecibe.getText().toString())) {
                     if (Utilidades.validarSoloNumeros(binding.etMonto.getText().toString())) {
-                        Hashtable<String, String> informacion = new Hashtable<>();
-                        informacion.put("accion", Constantes.DEPOSITAR);
-                        informacion.put("documentoAccion", binding.etDocumentoEnvia.getText().toString());
-                        informacion.put("documentoRecibe", binding.etDocumentoRecibe.getText().toString());
-                        informacion.put("monto", binding.etMonto.getText().toString());
-                        informacion.put("comision", String.valueOf(Constantes.COMISION_DEPOSITAR));
+                        if(Double.parseDouble(binding.etMonto.getText().toString()) >= 1000){
+                            Hashtable<String, String> informacion = new Hashtable<>();
+                            informacion.put("accion", Constantes.DEPOSITAR);
+                            informacion.put("documentoAccion", binding.etDocumentoEnvia.getText().toString());
+                            informacion.put("documentoRecibe", binding.etDocumentoRecibe.getText().toString());
+                            informacion.put("monto", binding.etMonto.getText().toString());
+                            informacion.put("comision", String.valueOf(Constantes.COMISION_DEPOSITAR));
 
-                        iAbrirDialogo.abrirDialogo(informacion, this);
+                            iAbrirDialogo.abrirDialogo(informacion, this);
+                        }else{
+                            Toast.makeText(getContext(), "Depósito mínimo: 1000", Toast.LENGTH_LONG).show();
+                        }
                     } else {
                         Toast.makeText(getContext(), "El monto a depositar debe ser de tipo numérico", Toast.LENGTH_LONG).show();
                     }

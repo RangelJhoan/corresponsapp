@@ -22,7 +22,7 @@ public class Utilidades {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fechaActual);
         calendar.add(Calendar.YEAR, 5);
-        return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(calendar.getTime());
+        return new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
     }
 
     public static boolean validarTextoMayuscula(String texto){

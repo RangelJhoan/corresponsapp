@@ -22,7 +22,7 @@ public class LoginModelImpl implements LoginMVP.Model{
         Corresponsal corresponsal = baseDatos.iniciarSesion(correo, clave);
 
         if (corresponsal != null){
-            Sesion.corresponsalSesion = baseDatos.iniciarSesion(correo, clave);
+            Sesion.corresponsalSesion = corresponsal;
             presenter.mostrarResultado("¡Bienvenido!");
         }else{
             presenter.mostrarError("¡ERROR! Correo o clave incorrecta");

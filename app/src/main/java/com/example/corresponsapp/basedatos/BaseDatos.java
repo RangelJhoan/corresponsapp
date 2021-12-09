@@ -141,47 +141,26 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     //DEPOSITAR DINERO
     public long crearDeposito(Deposito deposito) {
-        int idCliente = consultarIdCliente(deposito.getCuentaBancaria().getCliente().getDocumento());
-        //Verificamos que el cliente esté registrado
-        if (idCliente > 0) {
-            //Verificamos que el cliente tenga asignada una cuenta bancaria
-            int idCuenta = consultarIdCuentaDocumento(deposito.getCuentaBancaria().getCliente().getDocumento());
-            if (idCuenta > 0) {
-                //Verificamos que se haya actualizado la cuenta bancaria del cliente
-                long resultadoDepositoCliente = depositarDinero(idCuenta, deposito.getMonto());
-                if (resultadoDepositoCliente > 0) {
-                    SQLiteDatabase db = this.getWritableDatabase();
-                    ContentValues valuesDeposito = new ContentValues();
-                    valuesDeposito.put(UtilidadesBD.DEPOSITO_DOCUMENTO, deposito.getDocumento());
-                    valuesDeposito.put(UtilidadesBD.DEPOSITO_FK_CLIENTE, idCliente);
-                    valuesDeposito.put(UtilidadesBD.DEPOSITO_MONTO, deposito.getMonto());
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valuesDeposito = new ContentValues();
+        valuesDeposito.put(UtilidadesBD.DEPOSITO_DOCUMENTO, deposito.getDocumento());
+        valuesDeposito.put(UtilidadesBD.DEPOSITO_FK_CLIENTE, deposito.getCuentaBancaria().getCliente().getId());
+        valuesDeposito.put(UtilidadesBD.DEPOSITO_MONTO, deposito.getMonto());
 
-                    //Verificamos que se haya registrado el depósito en el sistema
-                    long resultadoDeposito = db.insert(UtilidadesBD.DEPOSITO_TABLA, UtilidadesBD.DEPOSITO_ID, valuesDeposito);
-                    if (resultadoDeposito > 0) {
-                        return resultadoDeposito;
-                    } else {
-                        //Retornar -4: No se creó el depósito
-                        return -4;
-                    }
-                } else {
-                    //Retornar -3: No se pudo depositar
-                    return -3;
-                }
-            } else {
-                //Retornar -2: No se encontró la cuenta
-                return -2;
-            }
+        //Verificamos que se haya registrado el depósito en el sistema
+        long resultadoDeposito = db.insert(UtilidadesBD.DEPOSITO_TABLA, UtilidadesBD.DEPOSITO_ID, valuesDeposito);
+        if (resultadoDeposito > 0) {
+            return resultadoDeposito;
         } else {
-            //Retornar -1: No se encontró el cliente
+            //No se creó el depósito
             return -1;
         }
     }
 
-    private long depositarDinero(int idCuenta, double deposito) {
+    public long depositarDinero(int idCuenta, double deposito) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues valuesDeposito = new ContentValues();
-        double nuevoSaldo = consultarSaldoCuenta(idCuenta) + deposito;
+        double nuevoSaldo = consultarSaldoCuenta(idCuenta) + (deposito - Constantes.COMISION_DEPOSITAR);
         valuesDeposito.put(UtilidadesBD.CUENTA_BANCARIA_SALDO, nuevoSaldo);
         //Se le suma al corresponsal el valor del depósito
         long respuestaComision = registrarComision(Sesion.corresponsalSesion.getId(), Constantes.COMISION_DEPOSITAR);
@@ -202,78 +181,40 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     //RETIRAR DINERO
     public long crearRetiro(Retiro retiro) {
-        //Consultar que el PIN ingresado sea igual al del cliente
-        if (retiro.getCuentaBancaria().getPIN().equals(consultarPINCuenta(retiro.getCuentaBancaria().getCliente().getDocumento()))) {
-            //Consultar que el cliente exista
-            int idCliente = consultarIdCliente(retiro.getCuentaBancaria().getCliente().getDocumento());
-            if (idCliente > 0) {
-                //Consultar que el cliente tenga asignada una cuenta bancaria
-                int idCuenta = consultarIdCuentaDocumento(retiro.getCuentaBancaria().getCliente().getDocumento());
-                if (idCuenta > 0) {
-                    //Retirar el monto de la cuenta del cliente
-                    long resultadoRetiroCliente = retirarDinero(idCuenta, retiro.getMonto());
-                    if (resultadoRetiroCliente > 0) {
-                        SQLiteDatabase db = this.getWritableDatabase();
-                        ContentValues valuesRetiro = new ContentValues();
-                        valuesRetiro.put(UtilidadesBD.RETIRO_FK_CLIENTE, idCliente);
-                        valuesRetiro.put(UtilidadesBD.RETIRO_MONTO, retiro.getMonto());
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valuesRetiro = new ContentValues();
+        valuesRetiro.put(UtilidadesBD.RETIRO_FK_CLIENTE, retiro.getCuentaBancaria().getCliente().getId());
+        valuesRetiro.put(UtilidadesBD.RETIRO_MONTO, retiro.getMonto());
 
-                        long resultadoDeposito = db.insert(UtilidadesBD.RETIRO_TABLA, UtilidadesBD.RETIRO_ID, valuesRetiro);
+        long resultadoDeposito = db.insert(UtilidadesBD.RETIRO_TABLA, UtilidadesBD.RETIRO_ID, valuesRetiro);
 
-                        if (resultadoDeposito > 0) {
-                            return resultadoDeposito;
-                        } else {
-                            //Retornar -4: No se creó el retiro
-                            return -4;
-                        }
-                    } else if (resultadoRetiroCliente == -3) {
-                        //Retornar -6: Saldo insuficiente
-                        return -6;
-                    } else {
-                        //Retornar -3: No se pudo retirar
-                        return -3;
-                    }
-                } else {
-                    //Retornar -2: No se encontró la cuenta
-                    return -2;
-                }
-            } else {
-                //Retornar -1: No se encontró el cliente
-                return -1;
-            }
+        if (resultadoDeposito > 0) {
+            return resultadoDeposito;
         } else {
-            //Retornar -5: PIN incorrecto
-            return -5;
+            //No se creó el retiro
+            return -1;
         }
     }
 
-    private long retirarDinero(int idCuenta, double retiro) {
+    public long retirarDinero(int idCuenta, double retiro, double comision) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         //Validar que al saldo del cliente se le pueda retirar el dinero y la comisión
-        double saldoDisponible = consultarSaldoCuenta(idCuenta) - (retiro + Constantes.COMISION_RETIRAR);
+        double saldoDisponible = consultarSaldoCuenta(idCuenta) - (retiro + comision);
 
         if (saldoDisponible >= 0) {
 
-            //Registrar la comisión en la cuenta del corresponsal
-            long respuestaComision = registrarComision(Sesion.corresponsalSesion.getId(), Constantes.COMISION_RETIRAR);
+            ContentValues valuesRetiro = new ContentValues();
+            valuesRetiro.put(UtilidadesBD.CUENTA_BANCARIA_SALDO, saldoDisponible);
 
-            if (respuestaComision > 0) {
-                ContentValues valuesRetiro = new ContentValues();
-                valuesRetiro.put(UtilidadesBD.CUENTA_BANCARIA_SALDO, saldoDisponible);
+            //Retirar el monto y la comisión de la cuenta bancaria del cliente
+            long resultadoRetiro = db.update(UtilidadesBD.CUENTA_BANCARIA_TABLA, valuesRetiro, UtilidadesBD.CUENTA_BANCARIA_ID + "= ?", new String[]{String.valueOf(idCuenta)});
 
-                //Retirar el monto y la comisión de la cuenta bancaria del cliente
-                long resultadoRetiro = db.update(UtilidadesBD.CUENTA_BANCARIA_TABLA, valuesRetiro, UtilidadesBD.CUENTA_BANCARIA_ID + "= ?", new String[]{String.valueOf(idCuenta)});
-
-                if (resultadoRetiro > 0) {
-                    return resultadoRetiro;
-                } else {
-                    //Retornar -1: No se depositó
-                    return -1;
-                }
+            if (resultadoRetiro > 0) {
+                return resultadoRetiro;
             } else {
-                //Retornar -2: No se registró la comisión
-                return -2;
+                //Retornar -1: No se depositó
+                return -1;
             }
         } else {
             //Retornar -3; Saldo insuficiente para el retiro
@@ -285,28 +226,21 @@ public class BaseDatos extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues valuesPagoTarjeta = new ContentValues();
 
-        int idCuenta = consultarIdCuentaNumero(pagoTarjeta.getCuentaBancaria().getNumero_cuenta());
-        if (idCuenta > 0) {
-            valuesPagoTarjeta.put(UtilidadesBD.PAGO_TARJETA_FK_CUENTA, idCuenta);
-            valuesPagoTarjeta.put(UtilidadesBD.PAGO_TARJETA_VALOR, pagoTarjeta.getValor());
-            valuesPagoTarjeta.put(UtilidadesBD.PAGO_TARJETA_COUTAS, pagoTarjeta.getNumeroCuotas());
+        valuesPagoTarjeta.put(UtilidadesBD.PAGO_TARJETA_FK_CUENTA, pagoTarjeta.getCuentaBancaria().getId());
+        valuesPagoTarjeta.put(UtilidadesBD.PAGO_TARJETA_VALOR, pagoTarjeta.getValor());
+        valuesPagoTarjeta.put(UtilidadesBD.PAGO_TARJETA_COUTAS, pagoTarjeta.getNumeroCuotas());
 
-            long resultadoPagoTarjeta = db.insert(UtilidadesBD.PAGO_TARJETA_TABLA, UtilidadesBD.PAGO_TARJETA_ID, valuesPagoTarjeta);
+        long resultadoPagoTarjeta = db.insert(UtilidadesBD.PAGO_TARJETA_TABLA, UtilidadesBD.PAGO_TARJETA_ID, valuesPagoTarjeta);
 
-            if (resultadoPagoTarjeta > 0) {
-                return resultadoPagoTarjeta;
-            } else {
-                //Retornar -2: No se creó el pago con tarjeta
-                return -2;
-            }
+        if (resultadoPagoTarjeta > 0) {
+            return resultadoPagoTarjeta;
         } else {
-            //RETORNAR -1: No se encontró la cuenta bancaria
+            //No se creó el pago con tarjeta
             return -1;
         }
-
     }
 
-    private String consultarPINCuenta(String documento) {
+    public String consultarPINCuenta(String documento) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT cu.pin FROM " + UtilidadesBD.CUENTA_BANCARIA_TABLA + " cu " +
@@ -316,7 +250,23 @@ public class BaseDatos extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             return cursor.getString(0);
         } else {
-            //Retornar -1: No se encontró el PIN
+            //No se encontró el PIN
+            return null;
+        }
+    }
+
+    public String consultarCVVCuenta(String numeroCuenta) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT t.cvv " +
+                "FROM " + UtilidadesBD.CUENTA_BANCARIA_TABLA + " cu " +
+                "JOIN tarjeta t ON t.id = cu.id_tarjeta " +
+                "WHERE cu.numero_cuenta = ?", new String[]{numeroCuenta});
+
+        if (cursor.moveToFirst()) {
+            return cursor.getString(0);
+        } else {
+            //No se encontró el CVV
             return null;
         }
     }
@@ -401,7 +351,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     }
 
     //Agregarle al saldo del corresponsal el valor de la comisión de la acción a realizar
-    private long registrarComision(int idCorresponsal, double comision) {
+    public long registrarComision(int idCorresponsal, double comision) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues valuesRetiro = new ContentValues();
         //Sumarle al saldo del corresponsal el valor de la comisión
@@ -422,7 +372,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         }
     }
 
-    private double consultarSaldoCorresponsal(int idCorresponsal) {
+    public double consultarSaldoCorresponsal(int idCorresponsal) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT saldo " +
                 "FROM " + UtilidadesBD.CORRESPONSAL_TABLA + " " +
@@ -436,49 +386,16 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     public long consultarSaldoCliente(CuentaBancaria cuentaBancaria) {
         SQLiteDatabase db = this.getWritableDatabase();
-        //Validar que el cliente exista
-        int idCliente = consultarIdCliente(cuentaBancaria.getCliente().getDocumento());
-        if (idCliente > 0) {
-            //Validar que el PIN de la cuenta sea igual al ingresado
-            if (cuentaBancaria.getPIN().equals(consultarPINCuenta(cuentaBancaria.getCliente().getDocumento()))) {
-                //Validar que el cliente tenga asignada una cuenta bancaria
-                int idCuenta = consultarIdCuentaDocumento(cuentaBancaria.getCliente().getDocumento());
-                if (idCuenta > 0) {
-                    //Realizar el retiro de la comisión a la cuenta bancaria del cliente
-                    long respuestaRetiro = retirarDinero(idCuenta, Constantes.COMISION_CONSULTAR_SALDO);
-                    if (respuestaRetiro > 0) {
-                        //Validar que se registre la comisión al corresponsal
-                        if (registrarComision(Sesion.corresponsalSesion.getId(), Constantes.COMISION_CONSULTAR_SALDO) > 0) {
-                            Cursor cursor = db.rawQuery("SELECT cu.saldo " +
-                                    "FROM " + UtilidadesBD.CLIENTE_TABLA + " cl " +
-                                    "JOIN " + UtilidadesBD.CUENTA_BANCARIA_TABLA + " cu ON cu.id_cliente = cl.id " +
-                                    "WHERE cl.documento = ?", new String[]{String.valueOf(cuentaBancaria.getCliente().getDocumento())});
+        Cursor cursor = db.rawQuery("SELECT cu.saldo " +
+                "FROM " + UtilidadesBD.CLIENTE_TABLA + " cl " +
+                "JOIN " + UtilidadesBD.CUENTA_BANCARIA_TABLA + " cu ON cu.id_cliente = cl.id " +
+                "WHERE cl.documento = ?", new String[]{String.valueOf(cuentaBancaria.getCliente().getDocumento())});
 
-                            //Validar que se haya encontrado el saldo
-                            if (cursor.moveToFirst()) {
-                                return cursor.getLong(0);
-                            } else {
-                                //Consulta no realizada
-                                return -2;
-                            }
-                        } else {
-                            //Error al registrar la comisión
-                            return -4;
-                        }
-                    } else {
-                        //No se pudo relizar el retiro de la comisión
-                        return -6;
-                    }
-                } else {
-                    //Cuenta bancaria del cliente no registrada
-                    return -5;
-                }
-            } else {
-                //PIN no coincide
-                return -3;
-            }
+        //Validar que se haya encontrado el saldo
+        if (cursor.moveToFirst()) {
+            return cursor.getLong(0);
         } else {
-            //Cliente no registrado
+            //Consulta no realizada
             return -1;
         }
     }

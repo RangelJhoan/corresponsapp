@@ -1,9 +1,14 @@
 package com.example.corresponsapp.interfacesgraficas.corresponsal.depositar;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.example.corresponsapp.basedatos.BaseDatos;
+import com.example.corresponsapp.entidades.Cliente;
+import com.example.corresponsapp.entidades.CuentaBancaria;
 import com.example.corresponsapp.entidades.Deposito;
+import com.example.corresponsapp.utilidades.UtilidadesBD;
 
 public class DepositarModelImpl implements DepositarMVP.Model {
 
@@ -17,19 +22,26 @@ public class DepositarModelImpl implements DepositarMVP.Model {
     @Override
     public void depositarDinero(Context context, Deposito deposito) {
         baseDatos = BaseDatos.getInstance(context);
-        long resultadoDeposito = baseDatos.crearDeposito(deposito);
-        if (resultadoDeposito > 0) {
-            presenter.mostrarRespueta("Deposito realizado correctamente");
-        } else if (resultadoDeposito == -1) {
-            presenter.mostrarError("¡Error! No se encontró el cliente");
-        } else if (resultadoDeposito == -2) {
-            presenter.mostrarError("¡Error! Cuenta del cliente incorrecta");
-        } else if (resultadoDeposito == -3) {
-            presenter.mostrarError("¡Error! No se realizó el depósito");
-        } else if (resultadoDeposito == -4) {
-            presenter.mostrarError("¡Error! No se guardó el depósito");
+        int idCliente = baseDatos.consultarIdCliente(deposito.getCuentaBancaria().getCliente().getDocumento());
+        //Verificamos que el cliente esté registrado
+        if (idCliente > 0) {
+            //Verificamos que el cliente tenga asignada una cuenta bancaria
+            int idCuenta = baseDatos.consultarIdCuentaDocumento(deposito.getCuentaBancaria().getCliente().getDocumento());
+            if (idCuenta > 0) {
+                //Verificamos que se haya actualizado la cuenta bancaria del cliente
+                long resultadoDepositoCliente = baseDatos.depositarDinero(idCuenta, deposito.getMonto());
+                if (resultadoDepositoCliente > 0) {
+                    deposito.getCuentaBancaria().getCliente().setId(idCliente);
+                    baseDatos.crearDeposito(deposito);
+                    presenter.mostrarRespueta("Depósito realizado correctamente");
+                } else {
+                    presenter.mostrarError("¡Error! No se pudo depositar el dinero");
+                }
+            } else {
+                presenter.mostrarError("¡Error! Cuenta bancaria no registrada");
+            }
         } else {
-            presenter.mostrarError("¡Error!");
+            presenter.mostrarError("¡Error! Cliente no registrado");
         }
     }
 }
