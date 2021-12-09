@@ -72,29 +72,31 @@ public class RetirarFragment extends Fragment implements RetirarMVP.View, Confir
     }
 
     private void abrirDialogo() {
-        if (Utilidades.validarSoloNumeros(binding.etDocumento.getText().toString())) {
-            if (Utilidades.validarSoloNumeros(binding.etPIN.getText().toString())) {
-                if (Utilidades.validarSoloNumeros(binding.etMonto.getText().toString())) {
-                    EditText[] editTexts = {binding.etDocumento, binding.etMonto};
-                    if (Validaciones.validarCampos(editTexts)) {
+        EditText[] editTexts = {binding.etDocumento, binding.etPIN, binding.etConfirmarPIN, binding.etMonto};
+        if (Validaciones.validarCampos(editTexts)) {
+            if (Utilidades.validarSoloNumeros(binding.etDocumento.getText().toString())) {
+                if (Utilidades.validarSoloNumeros(binding.etPIN.getText().toString())) {
+                    if (Utilidades.validarSoloNumeros(binding.etMonto.getText().toString())) {
+
                         Hashtable<String, String> informacion = new Hashtable<>();
                         informacion.put("accion", Constantes.RETIRAR);
                         informacion.put("documentoAccion", binding.etDocumento.getText().toString());
                         informacion.put("monto", binding.etMonto.getText().toString());
                         informacion.put("comision", String.valueOf(Constantes.COMISION_RETIRAR));
                         iAbrirDialogo.abrirDialogo(informacion, this);
+
                     } else {
-                        Toast.makeText(getContext(), "Por favor llene todos los campos", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Digite el monto sólo números", Toast.LENGTH_LONG).show();
                     }
                 } else {
                     Toast.makeText(getContext(), "Digite PIN sólo números", Toast.LENGTH_LONG).show();
                 }
-            } else {
-                Toast.makeText(getContext(), "Digite PIN sólo números", Toast.LENGTH_LONG).show();
-            }
 
+            } else {
+                Toast.makeText(getContext(), "Digite documento sólo números", Toast.LENGTH_LONG).show();
+            }
         } else {
-            Toast.makeText(getContext(), "Digite documento sólo números", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Por favor llene todos los campos", Toast.LENGTH_LONG).show();
         }
     }
 

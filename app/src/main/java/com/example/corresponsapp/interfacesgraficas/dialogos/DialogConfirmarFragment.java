@@ -68,7 +68,7 @@ public class DialogConfirmarFragment extends DialogFragment {
             binding.llFechaExpiracion.setVisibility(View.GONE);
             binding.llNombre.setVisibility(View.GONE);
         } else if (informacion.get("accion").equals(Constantes.PAGOTARJETA)) {
-            //Cargar información de retirar
+            //Cargar información de pagar con tarjeta
             binding.tvSetAccion.setText(informacion.get("accion"));
             binding.tvSetTarjeta.setText(informacion.get("numero_tarjeta"));
             binding.tvSetFecha.setText(informacion.get("fecha_expiracion"));
@@ -80,6 +80,19 @@ public class DialogConfirmarFragment extends DialogFragment {
             binding.llDocumentoRecibe.setVisibility(View.GONE);
             binding.llDocumentoAccion.setVisibility(View.GONE);
             binding.llComision.setVisibility(View.GONE);
+        }else if (informacion.get("accion").equals(Constantes.CONSULTAR_SALDO)) {
+            //Cargar información de consultar saldo
+            binding.tvSetAccion.setText(informacion.get("accion"));
+            binding.tvSetDocumento.setText(informacion.get("documento"));
+            binding.tvSetComision.setText(informacion.get("comision"));
+
+            //Ocultar
+            binding.llCuotas.setVisibility(View.GONE);
+            binding.llValor.setVisibility(View.GONE);
+            binding.llNombre.setVisibility(View.GONE);
+            binding.llFechaExpiracion.setVisibility(View.GONE);
+            binding.llNumeroTarjeta.setVisibility(View.GONE);
+            binding.llDocumentoRecibe.setVisibility(View.GONE);
         }
 
         builder.setView(binding.getRoot());

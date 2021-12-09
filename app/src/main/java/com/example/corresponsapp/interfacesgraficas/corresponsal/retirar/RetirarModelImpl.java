@@ -17,7 +17,7 @@ public class RetirarModelImpl implements RetirarMVP.Model {
     @Override
     public void retirarDinero(Context context, Retiro retiro) {
         baseDatos = BaseDatos.getInstance(context);
-        long resultadoRetiro = baseDatos.creaRetiro(retiro);
+        long resultadoRetiro = baseDatos.crearRetiro(retiro);
         if (resultadoRetiro > 0) {
             presenter.mostrarResultado("Retiro realizado correctamente");
         } else if (resultadoRetiro == -1) {

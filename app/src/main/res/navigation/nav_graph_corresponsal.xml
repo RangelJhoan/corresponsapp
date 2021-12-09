@@ -25,6 +25,12 @@
         <action
             android:id="@+id/action_corresponsalMenuFragment_to_pagoTarjetaFragment"
             app:destination="@id/pagoTarjetaFragment" />
+        <action
+            android:id="@+id/action_corresponsalMenuFragment_to_consultarSaldoFragment"
+            app:destination="@id/consultarSaldoFragment" />
+        <action
+            android:id="@+id/action_corresponsalMenuFragment_to_historialTransaccionesFragment"
+            app:destination="@id/historialTransaccionesFragment" />
     </fragment>
     <fragment
         android:id="@+id/retirarFragment"
@@ -69,6 +75,24 @@
         tools:layout="@layout/fragment_pago_tarjeta" >
         <action
             android:id="@+id/action_pagoTarjetaFragment_to_corresponsalMenuFragment"
+            app:destination="@id/corresponsalMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/consultarSaldoFragment"
+        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.consultarsaldo.ConsultarSaldoFragment"
+        android:label="fragment_consultar_saldo"
+        tools:layout="@layout/fragment_consultar_saldo" >
+        <action
+            android:id="@+id/action_consultarSaldoFragment_to_corresponsalMenuFragment"
+            app:destination="@id/corresponsalMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/historialTransaccionesFragment"
+        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.HistorialTransaccionesFragment"
+        android:label="fragment_historial_transacciones"
+        tools:layout="@layout/fragment_historial_transacciones" >
+        <action
+            android:id="@+id/action_historialTransaccionesFragment_to_corresponsalMenuFragment"
             app:destination="@id/corresponsalMenuFragment" />
     </fragment>
 </navigation>

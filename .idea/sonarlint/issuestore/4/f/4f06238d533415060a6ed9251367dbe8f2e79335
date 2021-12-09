@@ -1,0 +1,20 @@
+
+l
+java:S1149"VReplace the synchronized class "Hashtable" by an unsynchronized one such as "HashMap".(‚èã™
+q
+java:S1149"VReplace the synchronized class "Hashtable" by an unsynchronized one such as "HashMap".(¦Ù¹øøÿÿÿÿ
+N
+java:S1128"3Remove this unused import 'android.graphics.Color'.(øãíòşÿÿÿÿ
+_
+java:S1128"DRemove this unused import 'android.graphics.drawable.ColorDrawable'.(ÖŸÂ«øÿÿÿÿ
+I
+java:S1128	"3Remove this unused import 'android.view.ViewGroup'.(‹îá
+M
+java:S1128
+"7Remove this unused import 'android.view.WindowManager'.(Ü³‹Å
+b
+java:S1192+"GDefine a constant instead of duplicating this literal "accion" 8 times.(¹®”èıÿÿÿÿ
+k
+java:S11921"IDefine a constant instead of duplicating this literal "comision" 3 times.(™š½àÿÿÿÿÿ8½°ô¬Ù/
+…
+java:S1319"jThe type of "informacion" should be an interface such as "Map" rather than the implementation "Hashtable".(¦Ù¹øøÿÿÿÿ

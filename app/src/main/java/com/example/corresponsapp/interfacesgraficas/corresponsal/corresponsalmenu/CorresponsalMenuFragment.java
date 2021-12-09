@@ -65,7 +65,9 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
         listaMenu.add(new Menu(Constantes.RETIRAR, R.drawable.retirar_128));
         listaMenu.add(new Menu(Constantes.DEPOSITAR, R.drawable.depositar_128));
         listaMenu.add(new Menu(Constantes.TRANSFERIR, R.drawable.transferir_128));
-        listaMenu.add(new Menu(Constantes.CREAR_CUENTA, R.drawable.anadir_128));
+        listaMenu.add(new Menu(Constantes.CONSULTAR_SALDO, R.drawable.consultar_saldo_128));
+        listaMenu.add(new Menu(Constantes.CREAR_CUENTA, R.drawable.usuario_128));
+        listaMenu.add(new Menu(Constantes.HISTORIAL_TRANSACCIONES, R.drawable.historial_128));
 
         binding.rvBotonesMenu.setLayoutManager(new GridLayoutManager(getContext(),3));
         adapter = new MenuAdapter(listaMenu, this);
@@ -89,11 +91,18 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
             case Constantes.TRANSFERIR:
                 navController.navigate(R.id.transferirFragment);
                 break;
+            case Constantes.CONSULTAR_SALDO:
+                navController.navigate(R.id.consultarSaldoFragment);
+                break;
             case Constantes.CREAR_CUENTA:
                 navController.navigate(R.id.crearCuentaFragment);
                 break;
+            case Constantes.HISTORIAL_TRANSACCIONES:
+                navController.navigate(R.id.historialTransaccionesFragment);
+                break;
             default:
                 Toast.makeText(getContext(), "Error en el menú.", Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 }

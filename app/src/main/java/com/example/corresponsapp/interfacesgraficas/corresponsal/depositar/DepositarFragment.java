@@ -23,6 +23,7 @@ import com.example.corresponsapp.entidades.Deposito;
 import com.example.corresponsapp.interfaces.ConfirmacionCallback;
 import com.example.corresponsapp.interfaces.IAbrirDialogo;
 import com.example.corresponsapp.utilidades.Constantes;
+import com.example.corresponsapp.utilidades.Utilidades;
 import com.example.corresponsapp.validaciones.Validaciones;
 
 import java.util.Hashtable;
@@ -65,26 +66,40 @@ public class DepositarFragment extends Fragment implements DepositarMVP.View, Co
         binding.menuToolbar.tvTitulo.setText(Constantes.DEPOSITAR);
 
         binding.btnDepositar.setOnClickListener(v -> {
-            EditText[] editTexts = {binding.etDocumentoEnvia, binding.etDocumentoRecibe, binding.etMonto};
-
-            if (Validaciones.validarCampos(editTexts)) {
-                Hashtable<String, String> informacion = new Hashtable<>();
-                informacion.put("accion",Constantes.DEPOSITAR);
-                informacion.put("documentoAccion",binding.etDocumentoEnvia.getText().toString());
-                informacion.put("documentoRecibe",binding.etDocumentoRecibe.getText().toString());
-                informacion.put("monto", binding.etMonto.getText().toString());
-                informacion.put("comision", String.valueOf(Constantes.COMISION_DEPOSITAR));
-
-                iAbrirDialogo.abrirDialogo(informacion, this);
-            } else {
-                Toast.makeText(getContext(), "Por favor llene todos los campos", Toast.LENGTH_LONG).show();
-            }
+            validarCampos();
         });
 
     }
 
-    private void depositarDinero() {
+    private void validarCampos() {
+        EditText[] editTexts = {binding.etDocumentoEnvia, binding.etDocumentoRecibe, binding.etMonto};
+        if (Validaciones.validarCampos(editTexts)) {
+            if (Utilidades.validarSoloNumeros(binding.etDocumentoEnvia.getText().toString())) {
+                if (Utilidades.validarSoloNumeros(binding.etDocumentoRecibe.getText().toString())) {
+                    if (Utilidades.validarSoloNumeros(binding.etMonto.getText().toString())) {
+                        Hashtable<String, String> informacion = new Hashtable<>();
+                        informacion.put("accion", Constantes.DEPOSITAR);
+                        informacion.put("documentoAccion", binding.etDocumentoEnvia.getText().toString());
+                        informacion.put("documentoRecibe", binding.etDocumentoRecibe.getText().toString());
+                        informacion.put("monto", binding.etMonto.getText().toString());
+                        informacion.put("comision", String.valueOf(Constantes.COMISION_DEPOSITAR));
 
+                        iAbrirDialogo.abrirDialogo(informacion, this);
+                    } else {
+                        Toast.makeText(getContext(), "El monto a depositar debe ser de tipo numérico", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "El documento recibe el depósito debe ser de tipo numérico", Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Toast.makeText(getContext(), "El documento que deposita debe ser de tipo numérico", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getContext(), "Por favor llene todos los campos", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void depositarDinero() {
         Deposito deposito = new Deposito();
         Cliente cliente = new Cliente();
         CuentaBancaria cuentaBancaria = new CuentaBancaria();
@@ -96,8 +111,6 @@ public class DepositarFragment extends Fragment implements DepositarMVP.View, Co
         deposito.setMonto(Double.parseDouble(binding.etMonto.getText().toString()));
 
         presenter.depositarDinero(getContext(), deposito);
-
-
     }
 
     @Override

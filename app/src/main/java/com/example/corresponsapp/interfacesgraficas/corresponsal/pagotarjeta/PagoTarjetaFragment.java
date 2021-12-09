@@ -1,20 +1,23 @@
 package com.example.corresponsapp.interfacesgraficas.corresponsal.pagotarjeta;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.corresponsapp.R;
 import com.example.corresponsapp.databinding.FragmentPagoTarjetaBinding;
@@ -28,6 +31,7 @@ import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Utilidades;
 import com.example.corresponsapp.validaciones.Validaciones;
 
+import java.util.Calendar;
 import java.util.Hashtable;
 
 public class PagoTarjetaFragment extends Fragment implements PagoTarjetaMVP.View, ConfirmacionCallback {
@@ -37,14 +41,15 @@ public class PagoTarjetaFragment extends Fragment implements PagoTarjetaMVP.View
     private Activity actividad;
     private PagoTarjetaMVP.Presenter presenter;
     private NavController navController;
+    private DatePickerDialog.OnDateSetListener dateSetListener;
+
 
     public PagoTarjetaFragment() {
-
+        //Constructor vacío para iniciar el fragmento
     }
 
-    public static PagoTarjetaFragment newInstance(String param1, String param2) {
-        PagoTarjetaFragment fragment = new PagoTarjetaFragment();
-        return fragment;
+    public static PagoTarjetaFragment newInstance() {
+        return new PagoTarjetaFragment();
     }
 
     @Override
@@ -65,6 +70,39 @@ public class PagoTarjetaFragment extends Fragment implements PagoTarjetaMVP.View
         navController = Navigation.findNavController(view);
         presenter = new PagoTarjetaPresenterImpl(this);
 
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int mes = calendar.get(Calendar.MONTH);
+        final int dia = calendar.get(Calendar.DAY_OF_MONTH);
+
+        binding.etFechaExpiracion.setOnClickListener(view1 -> {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), android.R.style.Theme_Holo_Light_Dialog_MinWidth, dateSetListener, year, mes, dia);
+            datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            datePickerDialog.show();
+        });
+
+        dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int mes, int dia) {
+                mes = mes + 1;
+                String fecha = dia + "/" + mes + "/" + year;
+                binding.etFechaExpiracion.setText(fecha);
+            }
+        };
+
+        binding.etFechaExpiracion.setOnClickListener(view1 -> {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    getContext(), new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker datePicker, int year, int mes, int dia) {
+                    mes = mes + 1;
+                    String fecha = dia + "/" + mes + "/" + year;
+                    binding.etFechaExpiracion.setText(fecha);
+                }
+            }, year, mes, dia);
+            datePickerDialog.show();
+        });
+
         binding.menuToolbar.ivPantalla.setImageResource(R.drawable.pagotarjeta_128);
         binding.menuToolbar.tvTitulo.setText(Constantes.PAGOTARJETA);
 
@@ -80,19 +118,24 @@ public class PagoTarjetaFragment extends Fragment implements PagoTarjetaMVP.View
                 if (Utilidades.validarTextoMayuscula(binding.etNombre.getText().toString())) {
                     if (Utilidades.validarSoloNumeros(binding.etValor.getText().toString())) {
                         if (Utilidades.validarSoloNumeros(binding.etCuotas.getText().toString())) {
-                            if (Integer.parseInt(binding.etCuotas.getText().toString()) >= 1 && Integer.parseInt(binding.etCuotas.getText().toString()) <= 12) {
-                                Hashtable<String, String> informacion = new Hashtable<>();
-                                informacion.put("accion", Constantes.PAGOTARJETA);
-                                informacion.put("numeroTarjeta", binding.etNumeroTarjeta.getText().toString());
-                                informacion.put("fechaExpiracion", binding.etFechaExpiracion.getText().toString());
-                                informacion.put("nombre", binding.etNombre.getText().toString());
-                                informacion.put("valor", binding.etValor.getText().toString());
-                                informacion.put("numeroCuotas", binding.etCuotas.getText().toString());
+                            if (Integer.parseInt(binding.etValor.getText().toString()) >= 10000 && Integer.parseInt(binding.etValor.getText().toString()) <= 1000000) {
+                                if (Integer.parseInt(binding.etCuotas.getText().toString()) >= 1 && Integer.parseInt(binding.etCuotas.getText().toString()) <= 12) {
 
-                                iAbrirDialogo.abrirDialogo(informacion, this);
+                                    Hashtable<String, String> informacion = new Hashtable<>();
+                                    informacion.put("accion", Constantes.PAGOTARJETA);
+                                    informacion.put("numeroTarjeta", binding.etNumeroTarjeta.getText().toString());
+                                    informacion.put("fechaExpiracion", binding.etFechaExpiracion.getText().toString());
+                                    informacion.put("nombre", binding.etNombre.getText().toString());
+                                    informacion.put("valor", binding.etValor.getText().toString());
+                                    informacion.put("numeroCuotas", binding.etCuotas.getText().toString());
 
+                                    iAbrirDialogo.abrirDialogo(informacion, this);
+
+                                } else {
+                                    Toast.makeText(getContext(), "Número mínimo de cuotas: 1.\nNúnmero máximo de cuotas: 12", Toast.LENGTH_LONG).show();
+                                }
                             } else {
-                                Toast.makeText(getContext(), "Número mínimo de cuotas: 1.\nNúnmero máximo de cuotas: 12", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(), "Valor mínimo a pagar 10000.\nValor máximo 1000000", Toast.LENGTH_LONG).show();
                             }
                         } else {
                             Toast.makeText(getContext(), "Digite Cuotas sólo números", Toast.LENGTH_LONG).show();

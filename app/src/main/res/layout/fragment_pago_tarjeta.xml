@@ -39,6 +39,7 @@
                 android:id="@+id/etNumeroTarjeta"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:maxLength="16"
                 android:inputType="number"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -68,7 +69,6 @@
                     android:id="@+id/etFechaExpiracion"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="date"
                     android:paddingStart="30dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,6 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAllCaps="true"
+                android:maxLength="50"
                 android:inputType="textPersonName"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
