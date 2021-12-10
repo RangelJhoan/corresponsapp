@@ -75,5 +75,15 @@ public class UtilidadesBD {
     public static final String CREAR_TABLA_PAGO_TARJETA = "CREATE TABLE " + PAGO_TARJETA_TABLA + " (" + PAGO_TARJETA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             PAGO_TARJETA_FK_CUENTA + " INTEGER," + PAGO_TARJETA_VALOR + " REAL, " + PAGO_TARJETA_COUTAS + " INTEGER)";
 
+    //CAMPOS ENTIDAD: transferencia
+    public static final String TRANSFERENCIA_TABLA = "transferencia";
+    public static final String TRANSFERENCIA_ID = "id";
+    public static final String TRANSFERENCIA_FK_CUENTA_RECIBE = "id_cuenta_recibe";
+    public static final String TRANSFERENCIA_FK_CUENTA_TRANSFIERE = "id_cuenta_transfiere";
+    public static final String TRANSFERENCIA_MONTO = "monto";
+    public static final String TRANSFERENCIA_FECHA = "fecha";
+
+    public static final String CREAR_TABLA_TRANSFERENCIA = "CREATE TABLE " + TRANSFERENCIA_TABLA + " (" + TRANSFERENCIA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            TRANSFERENCIA_FK_CUENTA_RECIBE + " INTEGER," + TRANSFERENCIA_FK_CUENTA_TRANSFIERE + " INTEGER," + TRANSFERENCIA_MONTO + " REAL, " + TRANSFERENCIA_FECHA + " DEFAULT CURRENT_TIMESTAMP)";
 
 }

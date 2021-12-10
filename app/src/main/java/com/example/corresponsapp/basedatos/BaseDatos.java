@@ -15,6 +15,7 @@ import com.example.corresponsapp.entidades.Deposito;
 import com.example.corresponsapp.entidades.PagoTarjeta;
 import com.example.corresponsapp.entidades.Retiro;
 import com.example.corresponsapp.entidades.Tarjeta;
+import com.example.corresponsapp.entidades.Transferencia;
 import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Sesion;
 import com.example.corresponsapp.utilidades.UtilidadesBD;
@@ -49,18 +50,20 @@ public class BaseDatos extends SQLiteOpenHelper {
         db.execSQL(UtilidadesBD.CREAR_CORRESPONSAL_TABLA);
         db.execSQL(UtilidadesBD.CREAR_TABLA_RETIRO);
         db.execSQL(UtilidadesBD.CREAR_TABLA_PAGO_TARJETA);
-        db.execSQL("INSERT INTO " + UtilidadesBD.CORRESPONSAL_TABLA + " (nombre_completo, saldo, correo, clave) VALUES ('Jhoan Rangel',10000, 'jhoan', '123')");
+        db.execSQL(UtilidadesBD.CREAR_TABLA_TRANSFERENCIA);
+        db.execSQL("INSERT INTO " + UtilidadesBD.CORRESPONSAL_TABLA + " (nombre_completo, saldo, correo, clave) VALUES ('Jhoan Rangel',10000, 'jhoan@wposs.com', '123456')");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("DROP TABLE IF EXISTS " + UtilidadesBD.CLIENTE_TABLA);
-        db.execSQL("DROP TABLE IF EXISTS " + UtilidadesBD.TARJETA_TABLA);
-        db.execSQL("DROP TABLE IF EXISTS " + UtilidadesBD.CUENTA_BANCARIA_TABLA);
-        db.execSQL("DROP TABLE IF EXISTS " + UtilidadesBD.DEPOSITO_TABLA);
-        db.execSQL("DROP TABLE IF EXISTS " + UtilidadesBD.CORRESPONSAL_TABLA);
-        db.execSQL("DROP TABLE IF EXISTS " + UtilidadesBD.RETIRO_TABLA);
-        db.execSQL("DROP TABLE IF EXISTS " + UtilidadesBD.PAGO_TARJETA_TABLA);
+        db.execSQL(Constantes.DROP_TABLE_EXISTENT + UtilidadesBD.CLIENTE_TABLA);
+        db.execSQL(Constantes.DROP_TABLE_EXISTENT + UtilidadesBD.TARJETA_TABLA);
+        db.execSQL(Constantes.DROP_TABLE_EXISTENT + UtilidadesBD.CUENTA_BANCARIA_TABLA);
+        db.execSQL(Constantes.DROP_TABLE_EXISTENT + UtilidadesBD.DEPOSITO_TABLA);
+        db.execSQL(Constantes.DROP_TABLE_EXISTENT + UtilidadesBD.CORRESPONSAL_TABLA);
+        db.execSQL(Constantes.DROP_TABLE_EXISTENT + UtilidadesBD.RETIRO_TABLA);
+        db.execSQL(Constantes.DROP_TABLE_EXISTENT + UtilidadesBD.PAGO_TARJETA_TABLA);
+        db.execSQL(Constantes.DROP_TABLE_EXISTENT + UtilidadesBD.TRANSFERENCIA_MONTO);
         onCreate(db);
     }
 
@@ -68,50 +71,20 @@ public class BaseDatos extends SQLiteOpenHelper {
     //CREAR CUENTA DEL CLIENTE
     public long crearCuenta(CuentaBancaria cuentaBancaria) {
         SQLiteDatabase db = this.getWritableDatabase();
-        //Consultar el id del cliente apartir del documento para saber si ya se encuentra registrado
-        long idCliente = consultarIdCliente(cuentaBancaria.getCliente().getDocumento());
-        if (idCliente <= 0) {
-            //Guardamos el registro del cliente nuevo
-            long respuestaCliente = crearCliente(cuentaBancaria.getCliente());
-            if (respuestaCliente > 0) {
-                //Le asignamos una tarjeta
-                long respuestaTarjeta = crearTarjeta(cuentaBancaria.getTarjeta());
-                if (respuestaTarjeta > 0) {
+        ContentValues valuesCuenta = new ContentValues();
+        valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_NUMERO_CUENTA, cuentaBancaria.getNumero_cuenta());
+        valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_PIN, cuentaBancaria.getPIN());
+        valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_SALDO, cuentaBancaria.getSaldo());
+        valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_FK_CLIENTE, cuentaBancaria.getCliente().getId());
+        valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_FK_TARJETA, cuentaBancaria.getTarjeta().getId());
 
-                    ContentValues valuesCuenta = new ContentValues();
-                    valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_NUMERO_CUENTA, cuentaBancaria.getNumero_cuenta());
-                    valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_PIN, cuentaBancaria.getPIN());
-                    valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_SALDO, cuentaBancaria.getSaldo());
-                    valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_FK_CLIENTE, respuestaCliente);
-                    valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_FK_TARJETA, respuestaTarjeta);
+        //Le asignamos una cuenta bancaria
+        long respuestaCuenta = db.insert(UtilidadesBD.CUENTA_BANCARIA_TABLA, UtilidadesBD.CUENTA_BANCARIA_ID, valuesCuenta);
 
-                    //Le asignamos una cuenta bancaria
-                    long respuestaCuenta = db.insert(UtilidadesBD.CUENTA_BANCARIA_TABLA, UtilidadesBD.CUENTA_BANCARIA_ID, valuesCuenta);
-
-                    if (respuestaCuenta > 0) {
-                        //Cuando se registre el cliente se le debe sumar 10000 al corresponsal
-                        long respuestaComision = registrarComision(Sesion.corresponsalSesion.getId(), Constantes.COMISION_CUENTA_NUEVA);
-                        if (respuestaComision > 0) {
-                            return respuestaComision;
-                        } else {
-                            //RETORNAR -5: Comisión no registrada
-                            return -5;
-                        }
-                    } else {
-                        //RETORNAR -1: Error al crear la cuenta
-                        return -1;
-                    }
-                } else {
-                    //RETORNAR -2: Error al crear la tarjeta
-                    return -2;
-                }
-            } else {
-                //RETORNAR -3: Error al crear al cliente
-                return -3;
-            }
+        if (respuestaCuenta > 0) {
+            return respuestaCuenta;
         } else {
-            //RETORNAR -4: Documento previamente registrado
-            return -4;
+            return -1;
         }
     }
 
@@ -157,13 +130,13 @@ public class BaseDatos extends SQLiteOpenHelper {
         }
     }
 
-    public long depositarDinero(int idCuenta, double deposito) {
+    public long depositarDinero(int idCuenta, double deposito, double comision) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues valuesDeposito = new ContentValues();
-        double nuevoSaldo = consultarSaldoCuenta(idCuenta) + (deposito - Constantes.COMISION_DEPOSITAR);
+        double nuevoSaldo = consultarSaldoCuenta(idCuenta) + (deposito - comision);
         valuesDeposito.put(UtilidadesBD.CUENTA_BANCARIA_SALDO, nuevoSaldo);
         //Se le suma al corresponsal el valor del depósito
-        long respuestaComision = registrarComision(Sesion.corresponsalSesion.getId(), Constantes.COMISION_DEPOSITAR);
+        long respuestaComision = registrarComision(Sesion.corresponsalSesion.getId(), comision);
         if (respuestaComision > 0) {
             long resultadoDeposito = db.update(UtilidadesBD.CUENTA_BANCARIA_TABLA, valuesDeposito, UtilidadesBD.CUENTA_BANCARIA_ID + "= ?", new String[]{String.valueOf(idCuenta)});
 
@@ -396,6 +369,23 @@ public class BaseDatos extends SQLiteOpenHelper {
             return cursor.getLong(0);
         } else {
             //Consulta no realizada
+            return -1;
+        }
+    }
+
+    public long crearTransferencia(Transferencia transferencia) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valuesTransferencia = new ContentValues();
+        valuesTransferencia.put(UtilidadesBD.TRANSFERENCIA_FK_CUENTA_TRANSFIERE, transferencia.getCuentaTransfiere().getId());
+        valuesTransferencia.put(UtilidadesBD.TRANSFERENCIA_FK_CUENTA_RECIBE, transferencia.getCuentaRecibe().getId());
+        valuesTransferencia.put(UtilidadesBD.TRANSFERENCIA_MONTO, transferencia.getMonto());
+
+        long resultadoTransferencia = db.insert(UtilidadesBD.TRANSFERENCIA_TABLA, UtilidadesBD.TRANSFERENCIA_ID, valuesTransferencia);
+
+        if (resultadoTransferencia > 0) {
+            return resultadoTransferencia;
+        } else {
+            //No se creó el retiro
             return -1;
         }
     }

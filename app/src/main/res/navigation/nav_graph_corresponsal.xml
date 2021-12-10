@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/transferirFragment"
-        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.TransferirFragment"
+        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.transferir.TransferirFragment"
         android:label="fragment_transferir"
         tools:layout="@layout/fragment_transferir" >
         <action

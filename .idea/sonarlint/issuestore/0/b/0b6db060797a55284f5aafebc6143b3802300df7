@@ -1,13 +1,0 @@
-
-P
-java:S1118":Add a private constructor to hide the implicit public one.(ýä©î
-e
-java:S11928"JDefine a constant instead of duplicating this literal " INTEGER," 3 times.(”®»‚ûÿÿÿÿ
-‰
-java:S1192"nDefine a constant instead of duplicating this literal " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " 7 times.(ÁÎþÆÿÿÿÿÿ
-i
-java:S1192"NDefine a constant instead of duplicating this literal "CREATE TABLE " 7 times.(ÁÎþÆÿÿÿÿÿ
-^
-java:S1192"HDefine a constant instead of duplicating this literal " TEXT, " 8 times.(Á•ªú
-c
-java:S1192""HDefine a constant instead of duplicating this literal " REAL, " 4 times.(é›¦¾þÿÿÿÿ

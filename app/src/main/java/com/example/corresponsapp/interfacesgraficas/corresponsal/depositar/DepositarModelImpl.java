@@ -8,6 +8,7 @@ import com.example.corresponsapp.basedatos.BaseDatos;
 import com.example.corresponsapp.entidades.Cliente;
 import com.example.corresponsapp.entidades.CuentaBancaria;
 import com.example.corresponsapp.entidades.Deposito;
+import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.UtilidadesBD;
 
 public class DepositarModelImpl implements DepositarMVP.Model {
@@ -29,7 +30,7 @@ public class DepositarModelImpl implements DepositarMVP.Model {
             int idCuenta = baseDatos.consultarIdCuentaDocumento(deposito.getCuentaBancaria().getCliente().getDocumento());
             if (idCuenta > 0) {
                 //Verificamos que se haya actualizado la cuenta bancaria del cliente
-                long resultadoDepositoCliente = baseDatos.depositarDinero(idCuenta, deposito.getMonto());
+                long resultadoDepositoCliente = baseDatos.depositarDinero(idCuenta, deposito.getMonto(), Constantes.COMISION_DEPOSITAR);
                 if (resultadoDepositoCliente > 0) {
                     deposito.getCuentaBancaria().getCliente().setId(idCliente);
                     baseDatos.crearDeposito(deposito);

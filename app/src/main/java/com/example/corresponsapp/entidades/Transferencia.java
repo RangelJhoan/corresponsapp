@@ -3,8 +3,8 @@ package com.example.corresponsapp.entidades;
 public class Transferencia {
 
     private int id;
-    private Cliente cliente_recibe;
-    private Cliente cliente_transfiere;
+    private CuentaBancaria cuentaRecibe;
+    private CuentaBancaria cuentaTransfiere;
     private double monto;
     private String fecha;
 
@@ -19,20 +19,20 @@ public class Transferencia {
         this.id = id;
     }
 
-    public Cliente getCliente_recibe() {
-        return cliente_recibe;
+    public CuentaBancaria getCuentaRecibe() {
+        return cuentaRecibe;
     }
 
-    public void setCliente_recibe(Cliente cliente_recibe) {
-        this.cliente_recibe = cliente_recibe;
+    public void setCuentaRecibe(CuentaBancaria cuentaRecibe) {
+        this.cuentaRecibe = cuentaRecibe;
     }
 
-    public Cliente getCliente_transfiere() {
-        return cliente_transfiere;
+    public CuentaBancaria getCuentaTransfiere() {
+        return cuentaTransfiere;
     }
 
-    public void setCliente_transfiere(Cliente cliente_transfiere) {
-        this.cliente_transfiere = cliente_transfiere;
+    public void setCuentaTransfiere(CuentaBancaria cuentaTransfiere) {
+        this.cuentaTransfiere = cuentaTransfiere;
     }
 
     public double getMonto() {
