@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.corresponsapp.basedatos.BaseDatos;
 import com.example.corresponsapp.entidades.Transferencia;
 import com.example.corresponsapp.utilidades.Constantes;
+import com.example.corresponsapp.utilidades.Sesion;
 
 public class TransferirModelImpl implements TransferirMVP.Model {
 
@@ -32,18 +33,23 @@ public class TransferirModelImpl implements TransferirMVP.Model {
                         if (idCuentaRecibe > 0) {
                             //Verificamos que el cliente tenga dinero para la transferencia y si tiene, retiramos el dinero de su cuenta
                             if (baseDatos.retirarDinero((int) idCuentaTransfiere, transferencia.getMonto(), Constantes.COMISION_TRANSFERIR) > 0) {
-                                //Verificamos que el cliente haya recibido el dinero
-                                if(baseDatos.depositarDinero((int) idCuentaRecibe, transferencia.getMonto(), 0) > 0){
-                                    //Verificamos que se registre la transferencia
-                                    transferencia.getCuentaTransfiere().setId((int) idCuentaTransfiere);
-                                    transferencia.getCuentaRecibe().setId((int) idCuentaRecibe);
-                                    if(baseDatos.crearTransferencia(transferencia) > 0){
-                                        presenter.mostrarResultado("Transferencia realizada correctamente");
+                                //Verificamos que el corresponsal haya obtenido la comisión
+                                if(baseDatos.registrarComision(Sesion.corresponsalSesion.getId(), Constantes.COMISION_TRANSFERIR) > 0){
+                                    //Verificamos que el cliente haya recibido el dinero
+                                    if(baseDatos.depositarDinero((int) idCuentaRecibe, transferencia.getMonto(), 0) > 0){
+                                        //Verificamos que se registre la transferencia
+                                        transferencia.getCuentaTransfiere().setId((int) idCuentaTransfiere);
+                                        transferencia.getCuentaRecibe().setId((int) idCuentaRecibe);
+                                        if(baseDatos.crearTransferencia(transferencia) > 0){
+                                            presenter.mostrarResultado("Transferencia realizada correctamente");
+                                        }else{
+                                            presenter.mostrarError("No se pudo realizar el registro de la transferencia");
+                                        }
                                     }else{
-                                        presenter.mostrarError("No se pudo realizar el registro de la transferencia");
+                                        presenter.mostrarError("No se pudo realizar la transferencia");
                                     }
                                 }else{
-                                    presenter.mostrarError("No se pudo realizar la transferencia");
+                                    presenter.mostrarError("No se le pudo consignar la comisión al corresponsal");
                                 }
                             } else {
                                 presenter.mostrarError("Saldo insuficiente para la transferencia");

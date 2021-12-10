@@ -19,10 +19,13 @@
         <entry key="..\:/Android/CorresponsApp/app/src/main/res/layout/fragment_transferir.xml" value="0.25" />
         <entry key="..\:/Android/CorresponsApp/app/src/main/res/layout/item_list_botonesmenu.xml" value="0.33" />
         <entry key="..\:/Android/CorresponsApp/app/src/main/res/layout/menu_toolbar.xml" value="0.36666666666666664" />
+        <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/layout/activity_login.xml" value="0.20425724637681159" />
         <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/layout/fragment_corresponsal_menu.xml" value="0.17831813576494426" />
         <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/layout/fragment_crear_cuenta.xml" value="0.20520833333333333" />
         <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/layout/fragment_depositar.xml" value="0.2" />
+        <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/layout/fragment_historial_transacciones.xml" value="0.36666666666666664" />
         <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/layout/fragment_pago_tarjeta.xml" value="0.20520833333333333" />
+        <entry key="..\:/RangelJhoan/corresponsapp/app/src/main/res/layout/item_list_transaccioninfocorta.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

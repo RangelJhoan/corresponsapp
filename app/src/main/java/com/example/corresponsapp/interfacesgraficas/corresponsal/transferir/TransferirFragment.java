@@ -12,9 +12,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.corresponsapp.R;
 import com.example.corresponsapp.databinding.FragmentTransferirBinding;
+import com.example.corresponsapp.entidades.Cliente;
+import com.example.corresponsapp.entidades.CuentaBancaria;
 import com.example.corresponsapp.entidades.Transferencia;
 import com.example.corresponsapp.interfaces.ConfirmacionCallback;
 import com.example.corresponsapp.interfaces.IAbrirDialogo;
@@ -30,6 +34,7 @@ public class TransferirFragment extends Fragment implements TransferirMVP.View, 
     private Activity actividad;
     private IAbrirDialogo iAbrirDialogo;
     private TransferirMVP.Presenter presenter;
+    private NavController navController;
 
     public TransferirFragment() {
 
@@ -56,6 +61,7 @@ public class TransferirFragment extends Fragment implements TransferirMVP.View, 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         presenter = new TransferirPresenterImpl(this);
+        navController = Navigation.findNavController(view);
 
         binding.menuToolbar.ivPantalla.setImageResource(R.drawable.transferir_128);
         binding.menuToolbar.tvTitulo.setText(Constantes.TRANSFERIR);
@@ -118,10 +124,19 @@ public class TransferirFragment extends Fragment implements TransferirMVP.View, 
 
     private void transferirDinero() {
         Transferencia transferencia = new Transferencia();
+        CuentaBancaria cuentaBancariaTransfiere = new CuentaBancaria();
+        CuentaBancaria cuentaBancariaRecibe = new CuentaBancaria();
+        Cliente clienteTransfiere = new Cliente();
+        Cliente clienteRecibe = new Cliente();
+        clienteTransfiere.setDocumento(binding.etDocumentoTransfiere.getText().toString());
+        cuentaBancariaTransfiere.setCliente(clienteTransfiere);
+        cuentaBancariaTransfiere.setPIN(binding.etPIN.getText().toString());
+        clienteRecibe.setDocumento(binding.etDocumentoRecibe.getText().toString());
+        cuentaBancariaRecibe.setCliente(clienteRecibe);
+
         transferencia.setMonto(Double.parseDouble(binding.etMonto.getText().toString()));
-        transferencia.getCuentaTransfiere().getCliente().setDocumento(binding.etDocumentoTransfiere.getText().toString());
-        transferencia.getCuentaTransfiere().setPIN(binding.etPIN.getText().toString());
-        transferencia.getCuentaRecibe().getCliente().setDocumento(binding.etDocumentoRecibe.getText().toString());
+        transferencia.setCuentaTransfiere(cuentaBancariaTransfiere);
+        transferencia.setCuentaRecibe(cuentaBancariaRecibe);
 
         presenter.transferirDinero(getContext(),transferencia);
     }
@@ -129,6 +144,7 @@ public class TransferirFragment extends Fragment implements TransferirMVP.View, 
     @Override
     public void mostrarResultado(String resultado) {
         Toast.makeText(getContext(), resultado, Toast.LENGTH_SHORT).show();
+        navController.navigate(R.id.corresponsalMenuFragment);
     }
 
     @Override

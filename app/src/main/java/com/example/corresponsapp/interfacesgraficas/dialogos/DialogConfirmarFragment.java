@@ -93,6 +93,19 @@ public class DialogConfirmarFragment extends DialogFragment {
             binding.llFechaExpiracion.setVisibility(View.GONE);
             binding.llNumeroTarjeta.setVisibility(View.GONE);
             binding.llDocumentoRecibe.setVisibility(View.GONE);
+        }else if (informacion.get("accion").equals(Constantes.TRANSFERIR)) {
+            //Cargar información de transferir dinero
+            binding.tvSetAccion.setText(informacion.get("accion"));
+            binding.tvSetDocumento.setText(informacion.get("documentoTransfiere"));
+            binding.tvSetDocumentoRecibe.setText(informacion.get("documentoRecibe"));
+            binding.tvSetValor.setText(informacion.get("monto"));
+            binding.tvSetComision.setText(informacion.get("comision"));
+
+            //Ocultar
+            binding.llCuotas.setVisibility(View.GONE);
+            binding.llNombre.setVisibility(View.GONE);
+            binding.llFechaExpiracion.setVisibility(View.GONE);
+            binding.llNumeroTarjeta.setVisibility(View.GONE);
         }
 
         builder.setView(binding.getRoot());

@@ -20,6 +20,8 @@ import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Sesion;
 import com.example.corresponsapp.utilidades.UtilidadesBD;
 
+import java.util.ArrayList;
+
 public class BaseDatos extends SQLiteOpenHelper {
     private static BaseDatos instancia = null;
     private Context mCxt;
@@ -388,6 +390,143 @@ public class BaseDatos extends SQLiteOpenHelper {
             //No se creó el retiro
             return -1;
         }
+    }
+
+    public ArrayList<Retiro> consultarRetiros() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<Retiro> listaRetiros = new ArrayList<>();
+        Retiro retiro = null;
+        CuentaBancaria cuentaBancaria = null;
+        Cliente cliente = null;
+
+        Cursor cursor = db.rawQuery("SELECT r.fecha, r.monto, c.documento " +
+                "FROM " + UtilidadesBD.RETIRO_TABLA + " r " +
+                "JOIN " + UtilidadesBD.CLIENTE_TABLA + " c ON c.id = r.id_cliente ", null);
+
+        //Almacenar la lista
+        while (cursor.moveToNext()) {
+            retiro = new Retiro();
+            cliente = new Cliente();
+            cuentaBancaria = new CuentaBancaria();
+
+            retiro.setFecha(cursor.getString(0));
+            retiro.setMonto(cursor.getDouble(1));
+            cliente.setDocumento(cursor.getString(2));
+
+            cuentaBancaria.setCliente(cliente);
+
+            retiro.setCuentaBancaria(cuentaBancaria);
+
+            listaRetiros.add(retiro);
+
+        }
+        return listaRetiros;
+    }
+
+    public ArrayList<Deposito> consultarDepositos() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<Deposito> listaDepositos = new ArrayList<>();
+        Deposito deposito = null;
+        CuentaBancaria cuentaBancaria = null;
+        Cliente cliente = null;
+
+        Cursor cursor = db.rawQuery("SELECT d.fecha, d.monto, d.documento, c.documento " +
+                "FROM " + UtilidadesBD.DEPOSITO_TABLA + " d " +
+                "JOIN " + UtilidadesBD.CLIENTE_TABLA + " c ON c.id = d.id_cliente ", null);
+
+        //Almacenar la lista
+        while (cursor.moveToNext()) {
+            deposito = new Deposito();
+            cliente = new Cliente();
+            cuentaBancaria = new CuentaBancaria();
+
+            deposito.setFecha(cursor.getString(0));
+            deposito.setMonto(cursor.getDouble(1));
+            deposito.setDocumento(cursor.getString(2));
+            cliente.setDocumento(cursor.getString(3));
+
+            cuentaBancaria.setCliente(cliente);
+
+            deposito.setCuentaBancaria(cuentaBancaria);
+
+            listaDepositos.add(deposito);
+
+        }
+        return listaDepositos;
+    }
+
+    public ArrayList<PagoTarjeta> consultarPagosTarjeta() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<PagoTarjeta> listaPagosTarjeta = new ArrayList<>();
+        PagoTarjeta pagoTarjeta = null;
+        CuentaBancaria cuentaBancaria = null;
+        Cliente cliente = null;
+
+        Cursor cursor = db.rawQuery("SELECT pt.fecha, pt.valor, cu.numero_cuenta, c.documento " +
+                "FROM " + UtilidadesBD.PAGO_TARJETA_TABLA + " pt " +
+                "JOIN " + UtilidadesBD.CUENTA_BANCARIA_TABLA + " cu ON cu.id = pt.id_cuenta " +
+                "JOIN " + UtilidadesBD.CLIENTE_TABLA + " c ON c.id = cu.id_cliente ", null);
+
+        //Almacenar la lista
+        while (cursor.moveToNext()) {
+            pagoTarjeta = new PagoTarjeta();
+            cliente = new Cliente();
+            cuentaBancaria = new CuentaBancaria();
+
+            pagoTarjeta.setFecha(cursor.getString(0));
+            pagoTarjeta.setValor(cursor.getDouble(1));
+            cuentaBancaria.setNumero_cuenta(cursor.getString(2));
+            cliente.setDocumento(cursor.getString(3));
+
+            cuentaBancaria.setCliente(cliente);
+
+            pagoTarjeta.setCuentaBancaria(cuentaBancaria);
+
+            listaPagosTarjeta.add(pagoTarjeta);
+
+        }
+        return listaPagosTarjeta;
+    }
+
+    public ArrayList<Transferencia> consultarTransferencias() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<Transferencia> listaTransferencia = new ArrayList<>();
+        Transferencia transferencia = null;
+        CuentaBancaria cuentaBancariaRecibe = null;
+        CuentaBancaria cuentaBancariaTransfiere = null;
+        Cliente clienteRecibe = null;
+        Cliente clienteTransfiere = null;
+
+        Cursor cursor = db.rawQuery("SELECT t.fecha, t.monto, cr.documento, ct.documento " +
+                "FROM " + UtilidadesBD.TRANSFERENCIA_TABLA + " t " +
+                "JOIN " + UtilidadesBD.CUENTA_BANCARIA_TABLA + " cur ON cur.id = t.id_cuenta_recibe " +
+                "JOIN " + UtilidadesBD.CUENTA_BANCARIA_TABLA + " cut ON cut.id = t.id_cuenta_transfiere " +
+                "JOIN " + UtilidadesBD.CLIENTE_TABLA + " cr ON cr.id = cur.id_cliente " +
+                "JOIN " + UtilidadesBD.CLIENTE_TABLA + " ct ON ct.id = cut.id_cliente ", null);
+
+        //Almacenar la lista
+        while (cursor.moveToNext()) {
+            transferencia = new Transferencia();
+            clienteRecibe = new Cliente();
+            clienteTransfiere = new Cliente();
+            cuentaBancariaRecibe = new CuentaBancaria();
+            cuentaBancariaTransfiere = new CuentaBancaria();
+
+            transferencia.setFecha(cursor.getString(0));
+            transferencia.setMonto(cursor.getDouble(1));
+            clienteRecibe.setDocumento(cursor.getString(2));
+            clienteTransfiere.setDocumento(cursor.getString(3));
+
+            cuentaBancariaRecibe.setCliente(clienteRecibe);
+            cuentaBancariaTransfiere.setCliente(clienteTransfiere);
+
+            transferencia.setCuentaTransfiere(cuentaBancariaTransfiere);
+            transferencia.setCuentaRecibe(cuentaBancariaRecibe);
+
+            listaTransferencia.add(transferencia);
+
+        }
+        return listaTransferencia;
     }
 }
 

@@ -6,6 +6,7 @@ public class PagoTarjeta {
     private CuentaBancaria cuentaBancaria;
     private double valor;
     private int numeroCuotas;
+    private String fecha;
 
     public PagoTarjeta() {
     }
@@ -40,5 +41,13 @@ public class PagoTarjeta {
 
     public void setNumeroCuotas(int numeroCuotas) {
         this.numeroCuotas = numeroCuotas;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 }
