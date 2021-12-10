@@ -1,0 +1,18 @@
+
+
+java:S1186""€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¨Ό¥ªϊÿÿÿÿ
+s
+java:S1450"XRemove the "actividad" field and declare it as a local variable in the relevant methods.(δί‰³ψÿÿÿÿ
+q
+java:S1149M"VReplace the synchronized class "Hashtable" by an unsynchronized one such as "HashMap".(Εέλώÿÿÿÿ
+O
+java:S1172&"9Remove these unused method parameters "param1", "param2".(ΐσ΄
+>
+java:S1185,"(Remove this method to simply inherit it.(ίμκ―
+G
+java:S1602?",Remove useless curly braces around statement(ίεαΨωÿÿÿÿ
+m
+java:S3776E"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(οά‘ύÿÿÿÿ
+k	java:S117M"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Εέλώÿÿÿÿ
+u
+java:S1488'"`Immediately return this expression instead of assigning it to the temporary variable "fragment".(Α΄½
