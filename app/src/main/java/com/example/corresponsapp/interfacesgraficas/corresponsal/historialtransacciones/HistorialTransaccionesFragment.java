@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 
 import com.example.corresponsapp.R;
 import com.example.corresponsapp.databinding.FragmentHistorialTransaccionesBinding;
+import com.example.corresponsapp.entidades.ConsultaSaldo;
+import com.example.corresponsapp.entidades.CuentaCreada;
 import com.example.corresponsapp.entidades.Deposito;
 import com.example.corresponsapp.entidades.PagoTarjeta;
 import com.example.corresponsapp.entidades.Retiro;
@@ -21,7 +23,7 @@ import com.example.corresponsapp.interfacesgraficas.adaptadores.AdaptadorInfoCor
 
 import java.util.ArrayList;
 
-public class HistorialTransaccionesFragment extends Fragment implements HistorialMVP.View{
+public class HistorialTransaccionesFragment extends Fragment implements HistorialMVP.View {
 
     private FragmentHistorialTransaccionesBinding binding;
     private HistorialMVP.Presenter presenter;
@@ -56,31 +58,56 @@ public class HistorialTransaccionesFragment extends Fragment implements Historia
 
     }
 
+    /**
+     * Método que recibe una lista de Libros enviada desde el Modelo
+     *
+     * @param listaRetiros
+     */
     @Override
     public void mostrarRetiros(ArrayList<Retiro> listaRetiros) {
         binding.rvRetiro.setLayoutManager(new LinearLayoutManager(getContext()));
-        adaptadorInfoCorta = new AdaptadorInfoCorta(listaRetiros, null, null, null);
+        //Se envía la lista de los retiros al adaptador
+        adaptadorInfoCorta = new AdaptadorInfoCorta(listaRetiros, null, null, null, null, null);
         binding.rvRetiro.setAdapter(adaptadorInfoCorta);
     }
 
     @Override
     public void mostrarDepositos(ArrayList<Deposito> listaDepositos) {
         binding.rvDeposito.setLayoutManager(new LinearLayoutManager(getContext()));
-        adaptadorInfoCorta = new AdaptadorInfoCorta(null, listaDepositos, null, null);
+        //Se envía la lista de depósitos al adaptador
+        adaptadorInfoCorta = new AdaptadorInfoCorta(null, listaDepositos, null, null, null, null);
         binding.rvDeposito.setAdapter(adaptadorInfoCorta);
     }
 
     @Override
     public void mostrarPagosTarjeta(ArrayList<PagoTarjeta> listaPagoTarjetas) {
         binding.rvPagoTarjeta.setLayoutManager(new LinearLayoutManager(getContext()));
-        adaptadorInfoCorta = new AdaptadorInfoCorta(null, null, listaPagoTarjetas, null);
+        //Se envía la lista de pagos con tarjeta al adaptador
+        adaptadorInfoCorta = new AdaptadorInfoCorta(null, null, listaPagoTarjetas, null, null, null);
         binding.rvPagoTarjeta.setAdapter(adaptadorInfoCorta);
     }
 
     @Override
     public void mostrarTransferencias(ArrayList<Transferencia> listaTransferencias) {
         binding.rvTransferencia.setLayoutManager(new LinearLayoutManager(getContext()));
-        adaptadorInfoCorta = new AdaptadorInfoCorta(null, null, null, listaTransferencias);
+        //Se envía la lista de transferencias al adaptador
+        adaptadorInfoCorta = new AdaptadorInfoCorta(null, null, null, listaTransferencias, null, null);
         binding.rvTransferencia.setAdapter(adaptadorInfoCorta);
+    }
+
+    @Override
+    public void mostrarConsultasSaldo(ArrayList<ConsultaSaldo> listaConsultasSaldo) {
+        binding.rvConsultasSaldo.setLayoutManager(new LinearLayoutManager(getContext()));
+        //Se envía la lista de consultas de saldo al adaptador
+        adaptadorInfoCorta = new AdaptadorInfoCorta(null, null, null, null, listaConsultasSaldo, null);
+        binding.rvConsultasSaldo.setAdapter(adaptadorInfoCorta);
+    }
+
+    @Override
+    public void mostrarCuentasCreadas(ArrayList<CuentaCreada> listaCuentasCreadas) {
+        binding.rvCuentasCreada.setLayoutManager(new LinearLayoutManager(getContext()));
+        //Se envía la lista de cuentas creadas al adaptador
+        adaptadorInfoCorta = new AdaptadorInfoCorta(null, null, null, null, null, listaCuentasCreadas);
+        binding.rvCuentasCreada.setAdapter(adaptadorInfoCorta);
     }
 }

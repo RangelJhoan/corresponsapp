@@ -21,6 +21,8 @@ public class HistorialModelImpl implements HistorialMVP.Model{
         presenter.mostrarDepositos(baseDatos.consultarDepositos());
         presenter.mostrarPagosTarjeta(baseDatos.consultarPagosTarjeta());
         presenter.mostrarTransferencias(baseDatos.consultarTransferencias());
+        presenter.mostrarCuentasCreadas(baseDatos.consultarCuentasCreadas());
+        presenter.mostrarConsultasSaldo(baseDatos.consultarConsultasSaldo());
 
     }
 }

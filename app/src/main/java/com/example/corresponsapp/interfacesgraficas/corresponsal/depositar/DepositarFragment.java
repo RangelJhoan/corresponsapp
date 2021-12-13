@@ -71,11 +71,18 @@ public class DepositarFragment extends Fragment implements DepositarMVP.View, Co
 
     }
 
+    /**
+     * Método que valida los campos y sus características y si la información es correcta, abre el diálogo de confirmación de la acción
+     */
     private void validarCampos() {
         EditText[] editTexts = {binding.etDocumentoEnvia, binding.etDocumentoRecibe, binding.etMonto};
+        //Valida que los campos estén llenos
         if (Validaciones.validarCampos(editTexts)) {
+            //Valida que el documento que deposita sea numérico
             if (Utilidades.validarSoloNumeros(binding.etDocumentoEnvia.getText().toString())) {
+                //Valida que el documento que recibe el depósito sea de tipo numérico
                 if (Utilidades.validarSoloNumeros(binding.etDocumentoRecibe.getText().toString())) {
+                    //Valida que el monto sea de tipo numérico
                     if (Utilidades.validarSoloNumeros(binding.etMonto.getText().toString())) {
                         //El valor mínimo de la transacción son 2000 pesos
                         if(Double.parseDouble(binding.etMonto.getText().toString()) >= 2000){
@@ -104,6 +111,9 @@ public class DepositarFragment extends Fragment implements DepositarMVP.View, Co
         }
     }
 
+    /**
+     * Método que ejecuta el método del Presentador para comunicarse con el Modelo.
+     */
     private void depositarDinero() {
         Deposito deposito = new Deposito();
         Cliente cliente = new Cliente();

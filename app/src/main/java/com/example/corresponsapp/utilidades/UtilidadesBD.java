@@ -87,4 +87,24 @@ public class UtilidadesBD {
     public static final String CREAR_TABLA_TRANSFERENCIA = "CREATE TABLE " + TRANSFERENCIA_TABLA + " (" + TRANSFERENCIA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             TRANSFERENCIA_FK_CUENTA_RECIBE + " INTEGER," + TRANSFERENCIA_FK_CUENTA_TRANSFIERE + " INTEGER," + TRANSFERENCIA_MONTO + " REAL, " + TRANSFERENCIA_FECHA + " DEFAULT CURRENT_TIMESTAMP)";
 
+    //CAMPOS ENTIDAD: consulta_saldo
+    public static final String CONSULTA_SALDO_TABLA = "consulta_saldo";
+    public static final String CONSULTA_SALDO_ID = "id";
+    public static final String CONSULTA_SALDO_FK_CLIENTE = "id_cliente";
+    public static final String CONSULTA_SALDO_SALDO = "saldo";
+    public static final String CONSULTA_SALDO_FECHA = "fecha";
+
+    public static final String CREAR_TABLA_CONSULTA_SALDO = "CREATE TABLE " + CONSULTA_SALDO_TABLA + " (" + CONSULTA_SALDO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CONSULTA_SALDO_FK_CLIENTE + " INTEGER," + CONSULTA_SALDO_SALDO + " REAL, " + CONSULTA_SALDO_FECHA + " DEFAULT CURRENT_TIMESTAMP)";
+
+    //CAMPOS ENTIDAD: cuenta_creada
+    public static final String CUENTA_CREADA_TABLA = "cuenta_creada";
+    public static final String CUENTA_CREADA_ID = "id";
+    public static final String CUENTA_CREADA_FK_CLIENTE = "id_cliente";
+    public static final String CUENTA_CREADA_MONTO = "monto";
+    public static final String CUENTA_CREADA_FECHA = "fecha";
+
+    public static final String CREAR_TABLA_CUENTA_CREADA = "CREATE TABLE " + CUENTA_CREADA_TABLA + " (" + CUENTA_CREADA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CUENTA_CREADA_FK_CLIENTE + " INTEGER," + CUENTA_CREADA_MONTO + " REAL, " + CUENTA_CREADA_FECHA + " DEFAULT CURRENT_TIMESTAMP)";
+
 }

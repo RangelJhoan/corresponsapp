@@ -16,7 +16,7 @@
             android:id="@+id/tvTitulo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Registrar cuenta"
+            android:text="@string/registrar_cuenta"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="26sp"
@@ -27,8 +27,10 @@
     <ImageView
         android:id="@+id/ivPantalla"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
+        android:adjustViewBounds="true"
         android:layout_marginTop="10dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/banco_128"/>
 
 </LinearLayout>

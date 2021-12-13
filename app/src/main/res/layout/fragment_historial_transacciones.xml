@@ -8,23 +8,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         tools:context=".interfacesgraficas.corresponsal.historialtransacciones.HistorialTransaccionesFragment">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="18sp"
             android:text="@string/retiros"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRetiro"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
             android:text="@string/depositos"
             android:textStyle="bold" />
 
@@ -36,6 +42,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
             android:text="@string/pago_con_tarjeta"
             android:textStyle="bold" />
 
@@ -47,6 +56,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
             android:text="@string/transferencias"
             android:textStyle="bold" />
 
@@ -54,6 +66,35 @@
             android:id="@+id/rvTransferencia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:text="@string/consultas_de_saldo"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvConsultasSaldo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:text="@string/cuentas_creadas"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCuentasCreada"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
 
     </LinearLayout>
 </ScrollView>

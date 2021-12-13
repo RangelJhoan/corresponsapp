@@ -10,8 +10,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.example.corresponsapp.entidades.Cliente;
+import com.example.corresponsapp.entidades.ConsultaSaldo;
 import com.example.corresponsapp.entidades.Corresponsal;
 import com.example.corresponsapp.entidades.CuentaBancaria;
+import com.example.corresponsapp.entidades.CuentaCreada;
 import com.example.corresponsapp.entidades.Deposito;
 import com.example.corresponsapp.entidades.PagoTarjeta;
 import com.example.corresponsapp.entidades.Retiro;
@@ -68,6 +70,8 @@ public class BaseDatos extends SQLiteOpenHelper {
         db.execSQL(UtilidadesBD.CREAR_TABLA_RETIRO);
         db.execSQL(UtilidadesBD.CREAR_TABLA_PAGO_TARJETA);
         db.execSQL(UtilidadesBD.CREAR_TABLA_TRANSFERENCIA);
+        db.execSQL(UtilidadesBD.CREAR_TABLA_CONSULTA_SALDO);
+        db.execSQL(UtilidadesBD.CREAR_TABLA_CUENTA_CREADA);
         db.execSQL("INSERT INTO " + UtilidadesBD.CORRESPONSAL_TABLA + " (nombre_completo, saldo, correo, clave) VALUES ('Jhoan Rangel',10000, 'jhoan@wposs.com', '123456')");
     }
 
@@ -87,6 +91,8 @@ public class BaseDatos extends SQLiteOpenHelper {
         db.execSQL(Constantes.DROP_TABLE_EXISTENT + UtilidadesBD.RETIRO_TABLA);
         db.execSQL(Constantes.DROP_TABLE_EXISTENT + UtilidadesBD.PAGO_TARJETA_TABLA);
         db.execSQL(Constantes.DROP_TABLE_EXISTENT + UtilidadesBD.TRANSFERENCIA_MONTO);
+        db.execSQL(Constantes.DROP_TABLE_EXISTENT + UtilidadesBD.CONSULTA_SALDO_TABLA);
+        db.execSQL(Constantes.DROP_TABLE_EXISTENT + UtilidadesBD.CUENTA_CREADA_TABLA);
         onCreate(db);
     }
 
@@ -130,6 +136,28 @@ public class BaseDatos extends SQLiteOpenHelper {
         //Crea el cliente
         long resultadoCliente = db.insert(UtilidadesBD.CLIENTE_TABLA, UtilidadesBD.CLIENTE_ID, valuesCliente);
         return resultadoCliente;
+    }
+
+    public long crearCuentaCreada(CuentaCreada cuentaCreada){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valuesCuentaCreada = new ContentValues();
+        valuesCuentaCreada.put(UtilidadesBD.CUENTA_CREADA_FK_CLIENTE, cuentaCreada.getCliente().getId());
+        valuesCuentaCreada.put(UtilidadesBD.CUENTA_CREADA_MONTO, cuentaCreada.getMontoInicial());
+
+        //Crea el registro de la creación del cliente
+        long resultadoCliente = db.insert(UtilidadesBD.CUENTA_CREADA_TABLA, UtilidadesBD.CUENTA_CREADA_ID, valuesCuentaCreada);
+        return resultadoCliente;
+    }
+
+    public long crearConsultaSaldo(ConsultaSaldo consultaSaldo){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valuesConsultarSaldo = new ContentValues();
+        valuesConsultarSaldo.put(UtilidadesBD.CONSULTA_SALDO_FK_CLIENTE, consultaSaldo.getCliente().getId());
+        valuesConsultarSaldo.put(UtilidadesBD.CONSULTA_SALDO_SALDO, consultaSaldo.getSaldo());
+
+        //Crea el registro de la consulta del saldo
+        long resultadoConsultaSaldo = db.insert(UtilidadesBD.CONSULTA_SALDO_TABLA, UtilidadesBD.CONSULTA_SALDO_ID, valuesConsultarSaldo);
+        return resultadoConsultaSaldo;
     }
 
     /**
@@ -743,6 +771,58 @@ public class BaseDatos extends SQLiteOpenHelper {
 
         }
         return listaTransferencia;
+    }
+
+    public ArrayList<CuentaCreada> consultarCuentasCreadas() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<CuentaCreada> listaCuentasCreadas = new ArrayList<>();
+        CuentaCreada cuentaCreada;
+        Cliente cliente;
+
+        Cursor cursor = db.rawQuery("SELECT cc.fecha, cc.monto, c.documento " +
+                "FROM " + UtilidadesBD.CUENTA_CREADA_TABLA + " cc " +
+                "JOIN " + UtilidadesBD.CLIENTE_TABLA + " c ON c.id = cc.id_cliente", null);
+
+        //Almacenar la lista
+        while (cursor.moveToNext()) {
+            cuentaCreada = new CuentaCreada();
+            cliente = new Cliente();
+
+            cuentaCreada.setFecha(cursor.getString(0));
+            cuentaCreada.setMontoInicial(cursor.getDouble(1));
+            cliente.setDocumento(cursor.getString(2));
+            cuentaCreada.setCliente(cliente);
+
+            listaCuentasCreadas.add(cuentaCreada);
+
+        }
+        return listaCuentasCreadas;
+    }
+
+    public ArrayList<ConsultaSaldo> consultarConsultasSaldo() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<ConsultaSaldo> listaConsultaSaldo = new ArrayList<>();
+        ConsultaSaldo consultaSaldo;
+        Cliente cliente;
+
+        Cursor cursor = db.rawQuery("SELECT cs.fecha, cs.saldo, c.documento " +
+                "FROM " + UtilidadesBD.CONSULTA_SALDO_TABLA + " cs " +
+                "JOIN " + UtilidadesBD.CLIENTE_TABLA + " c ON c.id = cs.id_cliente", null);
+
+        //Almacenar la lista
+        while (cursor.moveToNext()) {
+            consultaSaldo = new ConsultaSaldo();
+            cliente = new Cliente();
+
+            consultaSaldo.setFecha(cursor.getString(0));
+            consultaSaldo.setSaldo(cursor.getDouble(1));
+            cliente.setDocumento(cursor.getString(2));
+            consultaSaldo.setCliente(cliente);
+
+            listaConsultaSaldo.add(consultaSaldo);
+
+        }
+        return listaConsultaSaldo;
     }
 }
 

@@ -76,6 +76,9 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
 
     }
 
+    /**
+     * Método que valida la información de la creación de la cuenta del cliente
+     */
     private void crearCuenta() {
         EditText[] editTexts = {binding.etNombreCompleto, binding.etDocumento, binding.etPIN, binding.etConfirmarPIN, binding.etSaldoInicial};
         //Validar que los campos tengan texto
@@ -131,6 +134,10 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
         }
     }
 
+    /**
+     * Método para crear la tarjeta que luego será asignada al cliente que crea la cuenta
+     * @param tarjeta Objeto tarjeta vacío que será llenado con la información creada en este método
+     */
     private void crearTarjeta(Tarjeta tarjeta) {
         //La fecha de expiración se crea con 5 años de validez
         tarjeta.setFecha_expiracion(Utilidades.obtenerFechaExpiracion());
@@ -138,6 +145,10 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
         tarjeta.setCvv(crearCVV());
     }
 
+    /**
+     * Método para crear el código CVV del cliente aleatoriamente
+     * @return Retorna una cadena de caracteres con el código CVV que se creó
+     */
     private String crearCVV() {
         StringBuilder cvv = new StringBuilder();
         for (int i = 0; i < 4; i++) {
@@ -147,6 +158,11 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
     }
 
 
+    /**
+     * Crea el número de la tarjeta que será el mismo número de la cuenta bancaria. Se crea apartir de un número de franquicia, el número de documento y demás números aleatorios
+     * @param documento Cadena de texto con el documento ingresado por el cliente
+     * @return Retorna el número de la tarjeta
+     */
     private String crearNumeroTarjeta(String documento) {
         int longitudDocumento = documento.length();
         //El primer número es un número aleatorio entre 3 y 6 y se concatena su número de documento
@@ -158,6 +174,10 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
         return numeroTarjeta;
     }
 
+    /**
+     * Muestra el resultado enviado desde el Modelo si se cumplieron con las demás validaciones
+     * @param resultado Cadena de texto con el resultado enviado desde el Modelo
+     */
     @Override
     public void mostrarResultado(String resultado) {
         Toast.makeText(getContext(), resultado, Toast.LENGTH_SHORT).show();

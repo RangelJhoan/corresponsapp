@@ -72,13 +72,22 @@ public class TransferirFragment extends Fragment implements TransferirMVP.View, 
 
     }
 
+    /**
+     * Valida que todos los campos contengan información correcta y abre el diálogo de confirmación
+     */
     private void validarCampos() {
         EditText[] editTexts = {binding.etDocumentoRecibe, binding.etDocumentoTransfiere, binding.etPIN, binding.etConfirmarPIN, binding.etMonto};
+        //Valida que todos los campos estén llenos
         if (Validaciones.validarCampos(editTexts)) {
+            //Valida que los PINES coincidan
             if (binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())) {
+                //Valida que el documento sea de tipo numérico
                 if (Utilidades.validarSoloNumeros(binding.etDocumentoTransfiere.getText().toString())) {
+                    //Valida que el número PIN sea de tipo numérico
                     if (Utilidades.validarSoloNumeros(binding.etPIN.getText().toString())) {
+                        //Valida que el documento que recibe la transferencia sea de tipo numérico
                         if (Utilidades.validarSoloNumeros(binding.etDocumentoRecibe.getText().toString())) {
+                            //Valida que el monto sea de tipo numérico
                             if (Utilidades.validarSoloNumeros(binding.etMonto.getText().toString())) {
                                 Hashtable<String, String> informacion = new Hashtable<>();
                                 informacion.put("accion", Constantes.TRANSFERIR);
@@ -122,6 +131,9 @@ public class TransferirFragment extends Fragment implements TransferirMVP.View, 
         }
     }
 
+    /**
+     * Ejecuta el métido Transferir Dinero implementado en el Modelo
+     */
     private void transferirDinero() {
         Transferencia transferencia = new Transferencia();
         CuentaBancaria cuentaBancariaTransfiere = new CuentaBancaria();

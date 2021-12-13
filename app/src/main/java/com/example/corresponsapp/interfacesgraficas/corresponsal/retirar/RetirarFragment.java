@@ -71,20 +71,28 @@ public class RetirarFragment extends Fragment implements RetirarMVP.View, Confir
 
     }
 
+    /**
+     * Valida que la información ingresada sea correcta. Si es correcta abre el diálogo de confirmación del retiro al cliente
+     */
     private void abrirDialogo() {
         EditText[] editTexts = {binding.etDocumento, binding.etPIN, binding.etConfirmarPIN, binding.etMonto};
+        //Valida que todos los campos estén llenos
         if (Validaciones.validarCampos(editTexts)) {
+            //Valida que el documento sea de tipo numérico
             if (Utilidades.validarSoloNumeros(binding.etDocumento.getText().toString())) {
+                //Valida que el código PIN sea de tipo numérico
                 if (Utilidades.validarSoloNumeros(binding.etPIN.getText().toString())) {
+                    //Valida que el Monto sea de tipo numérico
                     if (Utilidades.validarSoloNumeros(binding.etMonto.getText().toString())) {
-                        if(binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())){
+                        //Valida que los PINES coincidan
+                        if (binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())) {
                             Hashtable<String, String> informacion = new Hashtable<>();
                             informacion.put("accion", Constantes.RETIRAR);
                             informacion.put("documentoAccion", binding.etDocumento.getText().toString());
                             informacion.put("monto", binding.etMonto.getText().toString());
                             informacion.put("comision", String.valueOf(Constantes.COMISION_RETIRAR));
                             iAbrirDialogo.abrirDialogo(informacion, this);
-                        }else{
+                        } else {
                             Toast.makeText(getContext(), "Número PIN no coincide", Toast.LENGTH_LONG).show();
                         }
                     } else {
@@ -102,29 +110,21 @@ public class RetirarFragment extends Fragment implements RetirarMVP.View, Confir
         }
     }
 
+    /**
+     * Método que ejecuta el método de retirar Dinero en el Modelo
+     */
     private void retirarDinero() {
-        EditText[] editTexts = {binding.etDocumento, binding.etPIN, binding.etConfirmarPIN, binding.etMonto};
+        Retiro retiro = new Retiro();
+        Cliente cliente = new Cliente();
+        CuentaBancaria cuentaBancaria = new CuentaBancaria();
+        cuentaBancaria.setCliente(cliente);
+        cuentaBancaria.setPIN(binding.etPIN.getText().toString());
 
-        if (Validaciones.validarCampos(editTexts)) {
-            if (binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())) {
-                Retiro retiro = new Retiro();
-                Cliente cliente = new Cliente();
-                CuentaBancaria cuentaBancaria = new CuentaBancaria();
-                cuentaBancaria.setCliente(cliente);
-                cuentaBancaria.setPIN(binding.etPIN.getText().toString());
+        cliente.setDocumento(binding.etDocumento.getText().toString());
+        retiro.setMonto(Double.parseDouble(binding.etMonto.getText().toString()));
+        retiro.setCuentaBancaria(cuentaBancaria);
 
-                cliente.setDocumento(binding.etDocumento.getText().toString());
-                retiro.setMonto(Double.parseDouble(binding.etMonto.getText().toString()));
-                retiro.setCuentaBancaria(cuentaBancaria);
-
-                presenter.retirarDinero(getContext(), retiro);
-            } else {
-                Toast.makeText(getContext(), "Código PIN no coincide", Toast.LENGTH_LONG).show();
-            }
-        } else {
-            Toast.makeText(getContext(), "Por favor llene todos los campos", Toast.LENGTH_LONG).show();
-        }
-
+        presenter.retirarDinero(getContext(), retiro);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.example.corresponsapp.interfacesgraficas.corresponsal.corresponsalmenu;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,7 +12,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +59,6 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
         return binding.getRoot();
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

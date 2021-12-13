@@ -49,5 +49,7 @@
     <string name="cambiar_clave">Cambiar Clave</string>
     <string name="cerrar_sesion">Cerrar Sesión</string>
     <string name="contrasena_nueva">Contraseña nueva</string>
+    <string name="consultas_de_saldo">Consultas de saldo</string>
+    <string name="cuentas_creadas">Cuentas creadas</string>
 
 </resources>

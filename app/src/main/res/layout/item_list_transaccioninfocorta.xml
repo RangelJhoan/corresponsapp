@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/ivAccion"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/retirar_128"/>
 
         <LinearLayout

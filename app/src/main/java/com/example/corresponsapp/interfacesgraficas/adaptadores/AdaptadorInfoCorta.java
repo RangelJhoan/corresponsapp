@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.corresponsapp.R;
+import com.example.corresponsapp.entidades.ConsultaSaldo;
+import com.example.corresponsapp.entidades.CuentaCreada;
 import com.example.corresponsapp.entidades.Deposito;
 import com.example.corresponsapp.entidades.PagoTarjeta;
 import com.example.corresponsapp.entidades.Retiro;
@@ -24,12 +26,23 @@ public class AdaptadorInfoCorta extends RecyclerView.Adapter<AdaptadorInfoCorta.
     private ArrayList<Deposito> listaDepositos;
     private ArrayList<Transferencia> listaTransferencias;
     private ArrayList<PagoTarjeta> listaPagosTarjeta;
+    private ArrayList<CuentaCreada> listaCuentasCreada;
+    private ArrayList<ConsultaSaldo> listaConsultasSaldo;
 
-    public AdaptadorInfoCorta(ArrayList<Retiro> listaRetiros, ArrayList<Deposito> listaDepositos, ArrayList<PagoTarjeta> listaPagosTarjeta, ArrayList<Transferencia> listaTransferencias) {
+    /**
+     * Recibe la lista a mostrar en los distintos recyclers views
+     * @param listaRetiros Recibe la lista de retiros. Si la lista es nula es porque se inicializó con otra lista
+     * @param listaDepositos Recibe la lista de depósitos. Si la lista es nula es porque se inicializó con otra lista
+     * @param listaPagosTarjeta Recibe la lista de pagos con tarjeta. Si la lista es nula es porque se inicializó con otra lista
+     * @param listaTransferencias Recibe la lista de transferencias. Si la lista es nula es porque se inicializó con otra lista
+     */
+    public AdaptadorInfoCorta(ArrayList<Retiro> listaRetiros, ArrayList<Deposito> listaDepositos, ArrayList<PagoTarjeta> listaPagosTarjeta, ArrayList<Transferencia> listaTransferencias, ArrayList<ConsultaSaldo> listaConsultasSaldo, ArrayList<CuentaCreada> listaCuentasCreada) {
         this.listaRetiros = listaRetiros;
         this.listaDepositos = listaDepositos;
         this.listaPagosTarjeta = listaPagosTarjeta;
         this.listaTransferencias = listaTransferencias;
+        this.listaConsultasSaldo = listaConsultasSaldo;
+        this.listaCuentasCreada = listaCuentasCreada;
     }
 
     @NonNull
@@ -41,6 +54,7 @@ public class AdaptadorInfoCorta extends RecyclerView.Adapter<AdaptadorInfoCorta.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderDatos holder, int position) {
+        //Si la lista de retiros no es nula, llena el recycler view con esta lista
         if (listaRetiros != null) {
             holder.accion.setImageResource(R.drawable.retirar_128);
 
@@ -64,7 +78,8 @@ public class AdaptadorInfoCorta extends RecyclerView.Adapter<AdaptadorInfoCorta.
 
             holder.fecha.setText("Fecha: " + listaPagosTarjeta.get(position).getFecha());
             holder.monto.setText("Monto: " + listaPagosTarjeta.get(position).getValor());
-            holder.numeroTarjeta.setText("Número tarjeta: " + listaPagosTarjeta.get(position).getCuentaBancaria().getNumero_cuenta());
+            String numeroTarjeta = listaPagosTarjeta.get(position).getCuentaBancaria().getNumero_cuenta();
+            holder.numeroTarjeta.setText("Número tarjeta: ************" + numeroTarjeta.substring(12,16));
             holder.documento1.setText("Documento: " + listaPagosTarjeta.get(position).getCuentaBancaria().getCliente().getDocumento());
 
             holder.documento2.setVisibility(View.GONE);
@@ -77,6 +92,24 @@ public class AdaptadorInfoCorta extends RecyclerView.Adapter<AdaptadorInfoCorta.
             holder.documento2.setText("Documento que recibe: " + listaTransferencias.get(position).getCuentaRecibe().getCliente().getDocumento());
 
             holder.numeroTarjeta.setVisibility(View.GONE);
+        }else if(listaCuentasCreada != null){
+            holder.accion.setImageResource(R.drawable.anadir_128);
+
+            holder.fecha.setText("Fecha: " + listaCuentasCreada.get(position).getFecha());
+            holder.monto.setText("Monto: " + listaCuentasCreada.get(position).getMontoInicial());
+            holder.documento1.setText("Documento del cliente: " + listaCuentasCreada.get(position).getCliente().getDocumento());
+
+            holder.numeroTarjeta.setVisibility(View.GONE);
+            holder.documento2.setVisibility(View.GONE);
+        }else if(listaConsultasSaldo != null){
+            holder.accion.setImageResource(R.drawable.consultar_saldo_128);
+
+            holder.fecha.setText("Fecha: " + listaConsultasSaldo.get(position).getFecha());
+            holder.monto.setText("Monto: " + listaConsultasSaldo.get(position).getSaldo());
+            holder.documento1.setText("Documento del cliente: " + listaConsultasSaldo.get(position).getCliente().getDocumento());
+
+            holder.numeroTarjeta.setVisibility(View.GONE);
+            holder.documento2.setVisibility(View.GONE);
         }
     }
 
@@ -90,6 +123,10 @@ public class AdaptadorInfoCorta extends RecyclerView.Adapter<AdaptadorInfoCorta.
             return listaPagosTarjeta.size();
         } else if (listaTransferencias != null) {
             return listaTransferencias.size();
+        }else if (listaConsultasSaldo != null) {
+            return listaConsultasSaldo.size();
+        }else if (listaCuentasCreada != null) {
+            return listaCuentasCreada.size();
         } else {
             return 0;
         }

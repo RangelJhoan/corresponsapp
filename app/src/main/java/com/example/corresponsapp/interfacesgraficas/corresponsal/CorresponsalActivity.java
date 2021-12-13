@@ -31,12 +31,21 @@ public class CorresponsalActivity extends AppCompatActivity implements IAbrirDia
 
     }
 
+    /**
+     * Abre el diálogo cuando sea llamado en algún fragmento
+     * @param informacion Obtiene un objeto Hashtable con la información que se presentará en el fragment dialog
+     * @param callback Callback que regresa la confirmación del cliente
+     */
     @Override
     public void abrirDialogo(Hashtable<String, String> informacion, ConfirmacionCallback callback) {
         DialogConfirmarFragment dialog = new DialogConfirmarFragment(informacion, callback);
         dialog.show(getSupportFragmentManager(),"DialogoConfirmacion");
     }
 
+    /**
+     * Método que abre el menú secundario con las opciones del corresponsal
+     * @param view Parámetro que recibe la vista del fragment para poder ejecutar el NavController
+     */
     @Override
     public void abrirOpciones(View view) {
         DialogOpcCorFragment dialog = new DialogOpcCorFragment(view);

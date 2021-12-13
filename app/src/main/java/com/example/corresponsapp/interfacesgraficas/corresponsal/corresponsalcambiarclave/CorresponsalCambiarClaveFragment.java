@@ -59,10 +59,11 @@ public class CorresponsalCambiarClaveFragment extends Fragment implements Corres
         binding.btnCambiarClave.setOnClickListener(view1 -> {
             validarCampos();
         });
-
-
     }
 
+    /**
+     * Se realizan las distintas validaciones para realizar el cambio de clave en el corresponsal
+     */
     private void validarCampos() {
         EditText[] editTexts = {binding.etCorreo, binding.etClave, binding.etConfirmarClave};
         //Se valida que los campos estén llenos
@@ -82,12 +83,20 @@ public class CorresponsalCambiarClaveFragment extends Fragment implements Corres
         }
     }
 
+    /**
+     * Muestra un mensaje en pantalla con el resultado obtenido en el modelo
+     * @param resultado Resultado obtenido en el modelo luego de realizar las distintas validaciones y operaciones
+     */
     @Override
     public void mostrarResultado(String resultado) {
         Toast.makeText(getContext(), resultado, Toast.LENGTH_SHORT).show();
         navController.navigate(R.id.corresponsalMenuFragment);
     }
 
+    /**
+     * Muestra un mensaje en pantalla si el Modelo indica que hubo algún error
+     * @param error
+     */
     @Override
     public void mostrarError(String error) {
         Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();

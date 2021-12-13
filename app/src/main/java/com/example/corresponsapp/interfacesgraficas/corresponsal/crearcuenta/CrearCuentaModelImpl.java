@@ -3,7 +3,9 @@ package com.example.corresponsapp.interfacesgraficas.corresponsal.crearcuenta;
 import android.content.Context;
 
 import com.example.corresponsapp.basedatos.BaseDatos;
+import com.example.corresponsapp.entidades.Cliente;
 import com.example.corresponsapp.entidades.CuentaBancaria;
+import com.example.corresponsapp.entidades.CuentaCreada;
 import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Sesion;
 
@@ -36,7 +38,17 @@ public class CrearCuentaModelImpl implements CrearCuentaMVP.Model {
                         //Cuando se registre el cliente se le debe sumar 10000 al corresponsal
                         long respuestaComision = baseDatos.registrarComision(Sesion.corresponsalSesion.getId(), Constantes.COMISION_CUENTA_NUEVA);
                         if (respuestaComision > 0) {
-                            presenter.mostrarResultado("Cuenta creada correctamente");
+                            CuentaCreada cuentaCreada = new CuentaCreada();
+                            Cliente cliente = new Cliente();
+                            cliente.setId((int) respuestaCliente);
+                            cuentaCreada.setMontoInicial(cuentaBancaria.getSaldo());
+                            cuentaCreada.setCliente(cliente);
+                            //Registra la creación de la cuenta en la base de datos
+                            if(baseDatos.crearCuentaCreada(cuentaCreada) > 0){
+                                presenter.mostrarResultado("Cuenta creada correctamente");
+                            }else{
+                                presenter.mostrarError("¡Error! No se creó el registro de la cuenta");
+                            }
                         } else {
                             presenter.mostrarError("¡Error! No se pudo registrar la comisión");
                         }

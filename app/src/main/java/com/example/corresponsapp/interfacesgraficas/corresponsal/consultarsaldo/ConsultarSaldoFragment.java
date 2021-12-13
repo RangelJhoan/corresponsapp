@@ -66,11 +66,18 @@ public class ConsultarSaldoFragment extends Fragment implements ConsultarSaldoMV
 
     }
 
+    /**
+     * Método que realiza las validaciones necesarias para abrir el diálogo de confirmación
+     */
     private void validarInformacion() {
         EditText[] editTexts = {binding.etDocumento, binding.etPIN, binding.etConfirmarPIN};
+        //Se valida que todos los campos están llenos
         if (Validaciones.validarCampos(editTexts)) {
+            //Se valida que los código PIN coincidan
             if(binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())){
+                //Se valida que el número de documento sea de tipo numérico
                 if(Utilidades.validarSoloNumeros(binding.etDocumento.getText().toString())){
+                    //Se valida que el código PIN ingresado sea de tipo numérico
                     if(Utilidades.validarSoloNumeros(binding.etPIN.getText().toString())){
                         abrirDialogo();
                     }else{
@@ -87,6 +94,9 @@ public class ConsultarSaldoFragment extends Fragment implements ConsultarSaldoMV
         }
     }
 
+    /**
+     * Abre el diálogo de confirmación de la transacción
+     */
     private void abrirDialogo() {
         Hashtable<String, String> informacion = new Hashtable<>();
         informacion.put("accion", Constantes.CONSULTAR_SALDO);
@@ -95,6 +105,9 @@ public class ConsultarSaldoFragment extends Fragment implements ConsultarSaldoMV
         iAbrirDialogo.abrirDialogo(informacion, this);
     }
 
+    /**
+     * A través del presenter ejecuta el método consultar saldo para luego mostrar en pantalla el saldo actual del cliente
+     */
     private void consultarSaldo() {
         CuentaBancaria cuentaBancaria = new CuentaBancaria();
         Cliente cliente = new Cliente();
@@ -106,6 +119,10 @@ public class ConsultarSaldoFragment extends Fragment implements ConsultarSaldoMV
         presenter.consultarSaldo(getContext(), cuentaBancaria);
     }
 
+    /**
+     * Método de la Vista donde se muestra el saldo consultado del cliente
+     * @param saldo Parámetro que recibe el saldo actual del cliente
+     */
     @Override
     public void mostrarSaldo(String saldo) {
         binding.tvSaldoDisponible.setText("$" + saldo);
@@ -113,12 +130,20 @@ public class ConsultarSaldoFragment extends Fragment implements ConsultarSaldoMV
         binding.etConfirmarPIN.setText("");
     }
 
+    /**
+     * Método de la Vista donde se muestra algún error encontrado en el Modelo
+     * @param error Parámetro que obtiene el error que se encontró y se muestra en pantalla
+     */
     @Override
     public void mostrarError(String error) {
         Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
         binding.tvSaldoDisponible.setText("");
     }
 
+    /**
+     * Obtiene la opción escogida por el cliente. Si el cliente confirma la consulta se raliza la consulta, si no se cerrará el diálogo y no se ejecutará ninguna acción
+     * @param confirmacion Parámetro que obtiene la opción que seleccionó el cliente
+     */
     @Override
     public void confirmarTransaccion(String confirmacion) {
         switch (confirmacion){
@@ -134,6 +159,10 @@ public class ConsultarSaldoFragment extends Fragment implements ConsultarSaldoMV
         }
     }
 
+    /**
+     * Se inicializa la apertura del diálogo a través de la implementación en la actividad del corresponsal
+     * @param context
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

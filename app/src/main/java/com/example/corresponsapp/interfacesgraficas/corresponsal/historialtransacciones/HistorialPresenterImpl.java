@@ -2,6 +2,8 @@ package com.example.corresponsapp.interfacesgraficas.corresponsal.historialtrans
 
 import android.content.Context;
 
+import com.example.corresponsapp.entidades.ConsultaSaldo;
+import com.example.corresponsapp.entidades.CuentaCreada;
 import com.example.corresponsapp.entidades.Deposito;
 import com.example.corresponsapp.entidades.PagoTarjeta;
 import com.example.corresponsapp.entidades.Retiro;
@@ -44,6 +46,20 @@ public class HistorialPresenterImpl implements HistorialMVP.Presenter{
     public void mostrarTransferencias(ArrayList<Transferencia> listaTransferencias) {
         if(view != null){
             view.mostrarTransferencias(listaTransferencias);
+        }
+    }
+
+    @Override
+    public void mostrarConsultasSaldo(ArrayList<ConsultaSaldo> listaConsultasSaldo) {
+        if(view != null){
+            view.mostrarConsultasSaldo(listaConsultasSaldo);
+        }
+    }
+
+    @Override
+    public void mostrarCuentasCreadas(ArrayList<CuentaCreada> listaCuentasCreadas) {
+        if(view != null){
+            view.mostrarCuentasCreadas(listaCuentasCreadas);
         }
     }
 

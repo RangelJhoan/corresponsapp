@@ -1,179 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".interfacesgraficas.corresponsal.pagotarjeta.PagoTarjetaFragment">
-
-    <include
-        android:id="@+id/menu_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        layout="@layout/menu_toolbar"
-        />
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".interfacesgraficas.corresponsal.pagotarjeta.PagoTarjetaFragment">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilTarjeta"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <include
+            android:id="@+id/menu_toolbar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:hint="@string/numero_de_la_tarjeta"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
-            app:errorEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNumeroTarjeta"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:maxLength="16"
-                android:inputType="number"
-                android:paddingStart="30dp" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_weight="3"
+            layout="@layout/menu_toolbar"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            >
+            android:layout_weight="7"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/itlExpiracion"
+                android:id="@+id/tilTarjeta"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:hint="@string/fecha_expiracion"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:hint="@string/numero_de_la_tarjeta"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etFechaExpiracion"
+                    android:id="@+id/etNumeroTarjeta"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:maxLength="16"
+                    android:inputType="number"
+                    android:paddingStart="30dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                >
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/itlExpiracion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:hint="@string/fecha_expiracion"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="10dp"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFechaExpiracion"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingStart="30dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilCVV"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="40dp"
+                    android:layout_weight="4"
+                    android:hint="@string/cvv"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
+                    app:endIconMode="password_toggle"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCVV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="numberPassword"
+                        android:maxLength="4"
+                        android:paddingHorizontal="10dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout4"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:hint="@string/nombre"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAllCaps="true"
+                    android:maxLength="50"
+                    android:inputType="textPersonName|textCapCharacters"
                     android:paddingStart="30dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilCVV"
+                android:id="@+id/textInputLayout5"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
-                android:layout_weight="4"
-                android:hint="@string/cvv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:hint="@string/valor_a_pagar"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
-                app:endIconMode="password_toggle"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etCVV"
+                    android:id="@+id/etValor"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="numberPassword"
-                    android:maxLength="4"
-                    android:paddingHorizontal="10dp" />
+                    android:inputType="number"
+                    android:maxLength="7"
+                    android:paddingStart="30dp" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout6"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:hint="@string/numero_de_cuotas"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCuotas"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:paddingStart="30dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnPagar"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:paddingHorizontal="60dp"
+                android:layout_weight="1"
+                android:backgroundTint="#0100C1"
+                android:text="@string/pagar" />
 
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout4"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:hint="@string/nombre"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
-            app:errorEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNombre"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAllCaps="true"
-                android:maxLength="50"
-                android:inputType="textPersonName|textCapCharacters"
-                android:paddingStart="30dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout5"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:hint="@string/valor_a_pagar"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
-            app:errorEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etValor"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="number"
-                android:maxLength="7"
-                android:paddingStart="30dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout6"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:hint="@string/numero_de_cuotas"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
-            app:errorEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etCuotas"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="number"
-                android:maxLength="2"
-                android:paddingStart="30dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/btnPagar"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:paddingHorizontal="60dp"
-            android:layout_weight="1"
-            android:backgroundTint="#0100C1"
-            android:text="@string/pagar" />
-
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
