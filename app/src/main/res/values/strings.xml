@@ -1,5 +1,53 @@
 <resources>
     <string name="app_name">CorresponsApp</string>
+    <string name="registrar_cuenta">Registrar cuenta</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="documento">Documento</string>
+    <string name="pin">PIN</string>
+    <string name="saldo">Saldo</string>
+    <string name="bienvenido">¡Bienvenido!</string>
+    <string name="correo_electronico">Correo Electrónico</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="confirmar_pin">Confirmar PIN</string>
+    <string name="saldo_disponible">Saldo disponible:</string>
+    <string name="consultar_saldo">Consultar Saldo</string>
+    <string name="crear_cuenta">Crear Cuenta</string>
+    <string name="documento_a_depositar">Documento a depositar</string>
+    <string name="documento_que_deposita">Documento que deposita</string>
+    <string name="monto_a_depositar">Monto a depositar</string>
+    <string name="depositar">Depositar</string>
+    <string name="confirmar_transaccion">Confirmar Transacción</string>
+    <string name="accion_a_realizar">Acción a realizar</string>
+    <string name="documento_que_realiza_la_accion">Documento que realiza la acción</string>
+    <string name="numero_de_tarjeta">Número de tarjeta</string>
+    <string name="tarjeta">Tarjeta</string>
+    <string name="fecha_expiracion">Fecha Expiración</string>
+    <string name="documento_cliente_que_recibe">Documento cliente que recibe</string>
+    <string name="valor_de_la_transaccion">Valor de la transacción</string>
+    <string name="numero_de_cuotas">Número de cuotas</string>
+    <string name="valor_de_la_comision">Valor de la comisión</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="retiros">Retiros</string>
+    <string name="depositos">Depósitos</string>
+    <string name="pago_con_tarjeta">Pago con tarjeta</string>
+    <string name="transferencias">Transferencias</string>
+    <string name="numero_de_la_tarjeta">Número de la tarjeta</string>
+    <string name="cvv">CVV</string>
+    <string name="valor_a_pagar">Valor a pagar</string>
+    <string name="pagar">Pagar</string>
+    <string name="monto_a_retirar">Monto a retirar</string>
+    <string name="retirar">Retirar</string>
+    <string name="documento_cliente_que_transfiere">Documento cliente que transfiere</string>
+    <string name="monto_a_transferir">Monto a transferir</string>
+    <string name="transferir">Transferir</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="confirmar_nueva_contrasena">Confirmar nueva contraseña</string>
+    <string name="cambiar_clave">Cambiar Clave</string>
+    <string name="cerrar_sesion">Cerrar Sesión</string>
+    <string name="contrasena_nueva">Contraseña nueva</string>
+
 </resources>

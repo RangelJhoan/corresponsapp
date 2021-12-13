@@ -9,6 +9,8 @@ public class Constantes {
     public static final String CONSULTAR_SALDO = "Consultar saldo";
     public static final String HISTORIAL_TRANSACCIONES = "Historial de transacciones";
 
+    public static final String CORRESPONSAL_CAMBIAR_CLAVE = "Cambiar clave";
+
     public static final String DROP_TABLE_EXISTENT = "DROP TABLE IF EXISTS ";
 
     public static final double COMISION_RETIRAR = 2000;

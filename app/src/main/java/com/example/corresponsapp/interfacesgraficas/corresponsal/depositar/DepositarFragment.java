@@ -77,7 +77,8 @@ public class DepositarFragment extends Fragment implements DepositarMVP.View, Co
             if (Utilidades.validarSoloNumeros(binding.etDocumentoEnvia.getText().toString())) {
                 if (Utilidades.validarSoloNumeros(binding.etDocumentoRecibe.getText().toString())) {
                     if (Utilidades.validarSoloNumeros(binding.etMonto.getText().toString())) {
-                        if(Double.parseDouble(binding.etMonto.getText().toString()) >= 1000){
+                        //El valor mínimo de la transacción son 2000 pesos
+                        if(Double.parseDouble(binding.etMonto.getText().toString()) >= 2000){
                             Hashtable<String, String> informacion = new Hashtable<>();
                             informacion.put("accion", Constantes.DEPOSITAR);
                             informacion.put("documentoAccion", binding.etDocumentoEnvia.getText().toString());

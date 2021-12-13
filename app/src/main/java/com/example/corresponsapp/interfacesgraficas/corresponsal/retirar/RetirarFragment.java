@@ -77,14 +77,16 @@ public class RetirarFragment extends Fragment implements RetirarMVP.View, Confir
             if (Utilidades.validarSoloNumeros(binding.etDocumento.getText().toString())) {
                 if (Utilidades.validarSoloNumeros(binding.etPIN.getText().toString())) {
                     if (Utilidades.validarSoloNumeros(binding.etMonto.getText().toString())) {
-
-                        Hashtable<String, String> informacion = new Hashtable<>();
-                        informacion.put("accion", Constantes.RETIRAR);
-                        informacion.put("documentoAccion", binding.etDocumento.getText().toString());
-                        informacion.put("monto", binding.etMonto.getText().toString());
-                        informacion.put("comision", String.valueOf(Constantes.COMISION_RETIRAR));
-                        iAbrirDialogo.abrirDialogo(informacion, this);
-
+                        if(binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())){
+                            Hashtable<String, String> informacion = new Hashtable<>();
+                            informacion.put("accion", Constantes.RETIRAR);
+                            informacion.put("documentoAccion", binding.etDocumento.getText().toString());
+                            informacion.put("monto", binding.etMonto.getText().toString());
+                            informacion.put("comision", String.valueOf(Constantes.COMISION_RETIRAR));
+                            iAbrirDialogo.abrirDialogo(informacion, this);
+                        }else{
+                            Toast.makeText(getContext(), "Número PIN no coincide", Toast.LENGTH_LONG).show();
+                        }
                     } else {
                         Toast.makeText(getContext(), "Digite el monto sólo números", Toast.LENGTH_LONG).show();
                     }

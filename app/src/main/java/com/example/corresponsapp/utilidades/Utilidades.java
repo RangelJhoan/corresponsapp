@@ -17,6 +17,12 @@ public class Utilidades {
     }
 
     @SuppressLint("SimpleDateFormat")
+    public static String obtenerFechaDMY(){
+        Calendar calendar = Calendar.getInstance();
+        return new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
+    }
+
+    @SuppressLint("SimpleDateFormat")
     public static String obtenerFechaExpiracion(){
         Date fechaActual = new Date();
         Calendar calendar = Calendar.getInstance();

@@ -19,7 +19,7 @@
             android:id="@+id/tvTitulo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Confirmar Transacción"
+            android:text="@string/confirmar_transaccion"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="22sp"
@@ -47,7 +47,7 @@
                 android:id="@+id/tvAccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Acción a realizar"
+                android:text="@string/accion_a_realizar"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -73,7 +73,7 @@
                 android:id="@+id/tvNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
+                android:text="@string/nombre"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -81,7 +81,7 @@
                 android:id="@+id/tvSetNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
+                android:text="@string/nombre"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -99,7 +99,7 @@
                 android:id="@+id/tvDocumento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Documento que realiza la acción"
+                android:text="@string/documento_que_realiza_la_accion"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -107,7 +107,7 @@
                 android:id="@+id/tvSetDocumento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Documento"
+                android:text="@string/documento"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -125,7 +125,7 @@
                 android:id="@+id/tvTarjeta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Número de tarjeta"
+                android:text="@string/numero_de_tarjeta"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -133,7 +133,7 @@
                 android:id="@+id/tvSetTarjeta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tarjeta"
+                android:text="@string/tarjeta"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -151,7 +151,7 @@
                 android:id="@+id/tvFechaExpiracion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fecha Expiración"
+                android:text="@string/fecha_expiracion"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -159,7 +159,7 @@
                 android:id="@+id/tvSetFecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tarjeta"
+                android:text="Fecha"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -177,7 +177,7 @@
                 android:id="@+id/tvDocumentoRecibe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Documento cliente que recibe"
+                android:text="@string/documento_cliente_que_recibe"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -203,7 +203,7 @@
                 android:id="@+id/tvValor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Valor de la transacción"
+                android:text="@string/valor_de_la_transaccion"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -229,7 +229,7 @@
                 android:id="@+id/tvCuotas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Número de cuotas"
+                android:text="@string/numero_de_cuotas"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -255,7 +255,7 @@
                 android:id="@+id/tvComision"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Valor de la comisión"
+                android:text="@string/valor_de_la_comision"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -285,8 +285,8 @@
             android:layout_marginEnd="10dp"
             android:padding="10dp"
             android:layout_weight="1"
-            android:backgroundTint="#8000c9"
-            android:text="Cancelar" />
+            android:backgroundTint="@color/purpura_cancelar"
+            android:text="@string/cancelar" />
 
         <Button
             android:id="@+id/btnConfirmar"
@@ -296,8 +296,8 @@
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
             android:padding="10dp"
-            android:backgroundTint="#0100C1"
-            android:text="Confirmar" />
+            android:backgroundTint="@color/azul_terciario"
+            android:text="@string/confirmar" />
 
     </LinearLayout>
 

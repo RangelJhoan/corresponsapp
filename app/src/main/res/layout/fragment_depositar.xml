@@ -30,7 +30,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Documento a depositar"
+            android:hint="@string/documento_a_depositar"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
@@ -51,7 +51,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Documento que deposita"
+            android:hint="@string/documento_que_deposita"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
@@ -72,7 +72,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Monto a depositar"
+            android:hint="@string/monto_a_depositar"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
@@ -89,12 +89,12 @@
             android:id="@+id/btnDepositar"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:paddingHorizontal="60dp"
             android:layout_weight="1"
             android:backgroundTint="#0100C1"
-            android:text="Depositar" />
+            android:text="@string/depositar" />
 
     </LinearLayout>
 

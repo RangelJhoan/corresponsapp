@@ -80,13 +80,13 @@ public class TransferirFragment extends Fragment implements TransferirMVP.View, 
                     if (Utilidades.validarSoloNumeros(binding.etPIN.getText().toString())) {
                         if (Utilidades.validarSoloNumeros(binding.etDocumentoRecibe.getText().toString())) {
                             if (Utilidades.validarSoloNumeros(binding.etMonto.getText().toString())) {
-                                Hashtable<String, String> información = new Hashtable<>();
-                                información.put("accion", Constantes.TRANSFERIR);
-                                información.put("documentoTransfiere", binding.etDocumentoTransfiere.getText().toString());
-                                información.put("documentoRecibe", binding.etDocumentoRecibe.getText().toString());
-                                información.put("monto", binding.etMonto.getText().toString());
-                                información.put("comision", String.valueOf(Constantes.COMISION_TRANSFERIR));
-                                iAbrirDialogo.abrirDialogo(información, this);
+                                Hashtable<String, String> informacion = new Hashtable<>();
+                                informacion.put("accion", Constantes.TRANSFERIR);
+                                informacion.put("documentoTransfiere", binding.etDocumentoTransfiere.getText().toString());
+                                informacion.put("documentoRecibe", binding.etDocumentoRecibe.getText().toString());
+                                informacion.put("monto", binding.etMonto.getText().toString());
+                                informacion.put("comision", String.valueOf(Constantes.COMISION_TRANSFERIR));
+                                iAbrirDialogo.abrirDialogo(informacion, this);
                             } else {
                                 Toast.makeText(getContext(), "Monto a transferir debe ser tipo numérico", Toast.LENGTH_LONG).show();
                             }

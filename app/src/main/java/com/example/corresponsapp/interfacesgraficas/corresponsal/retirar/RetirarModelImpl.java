@@ -1,14 +1,11 @@
 package com.example.corresponsapp.interfacesgraficas.corresponsal.retirar;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.example.corresponsapp.basedatos.BaseDatos;
 import com.example.corresponsapp.entidades.Retiro;
 import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Sesion;
-import com.example.corresponsapp.utilidades.UtilidadesBD;
 
 public class RetirarModelImpl implements RetirarMVP.Model {
 

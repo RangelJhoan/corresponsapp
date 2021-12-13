@@ -30,7 +30,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Documento cliente que transfiere"
+            android:hint="@string/documento_cliente_que_transfiere"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
@@ -51,7 +51,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="PIN"
+            android:hint="@string/pin"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:endIconMode="password_toggle"
@@ -74,7 +74,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Confirmar PIN"
+            android:hint="@string/confirmar_pin"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:endIconMode="password_toggle"
@@ -97,7 +97,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Documento cliente que recibe"
+            android:hint="@string/documento_cliente_que_recibe"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
@@ -118,7 +118,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Monto a transferir"
+            android:hint="@string/monto_a_transferir"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
@@ -140,7 +140,7 @@
             android:paddingHorizontal="40dp"
             android:layout_weight="1"
             android:backgroundTint="#0100C1"
-            android:text="Transferir" />
+            android:text="@string/transferir" />
 
     </LinearLayout>
 

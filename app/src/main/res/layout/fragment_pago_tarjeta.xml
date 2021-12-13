@@ -30,7 +30,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Número de la tarjeta"
+            android:hint="@string/numero_de_la_tarjeta"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
@@ -58,7 +58,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="6"
-                android:hint="Fecha expiración"
+                android:hint="@string/fecha_expiracion"
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="10dp"
                 app:boxBackgroundMode="outline"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="40dp"
                 android:layout_weight="4"
-                android:hint="CVV"
+                android:hint="@string/cvv"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
                 app:endIconMode="password_toggle"
@@ -91,7 +91,7 @@
                     android:layout_height="match_parent"
                     android:inputType="numberPassword"
                     android:maxLength="4"
-                    android:paddingStart="30dp" />
+                    android:paddingHorizontal="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -104,7 +104,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Nombre"
+            android:hint="@string/nombre"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
@@ -115,7 +115,7 @@
                 android:layout_height="match_parent"
                 android:textAllCaps="true"
                 android:maxLength="50"
-                android:inputType="textPersonName"
+                android:inputType="textPersonName|textCapCharacters"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,7 +127,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Valor a pagar"
+            android:hint="@string/valor_a_pagar"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
@@ -149,7 +149,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Numero de cuotas"
+            android:hint="@string/numero_de_cuotas"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
@@ -167,12 +167,12 @@
             android:id="@+id/btnPagar"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:paddingHorizontal="60dp"
             android:layout_weight="1"
             android:backgroundTint="#0100C1"
-            android:text="Pagar" />
+            android:text="@string/pagar" />
 
     </LinearLayout>
 

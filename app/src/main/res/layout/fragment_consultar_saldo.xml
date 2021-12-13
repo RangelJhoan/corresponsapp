@@ -30,7 +30,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Documento"
+            android:hint="@string/documento"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
@@ -51,7 +51,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="PIN"
+            android:hint="@string/pin"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:endIconMode="password_toggle"
@@ -74,7 +74,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Confirmar PIN"
+            android:hint="@string/confirmar_pin"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:endIconMode="password_toggle"
@@ -94,7 +94,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_marginTop="10dp"
-            android:text="Saldo disponible:"
+            android:text="@string/saldo_disponible"
             android:textAlignment="center"
             android:textSize="26sp"
             android:textStyle="bold" />
@@ -113,12 +113,12 @@
             android:id="@+id/btnConsultarSaldo"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:paddingHorizontal="30dp"
             android:layout_weight="1"
             android:backgroundTint="#0100C1"
-            android:text="Consultar Saldo" />
+            android:text="@string/consultar_saldo" />
 
     </LinearLayout>
 

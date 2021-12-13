@@ -30,7 +30,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Documento"
+            android:hint="@string/documento"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
@@ -51,7 +51,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="PIN"
+            android:hint="@string/pin"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:endIconMode="password_toggle"
@@ -74,7 +74,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Confirmar PIN"
+            android:hint="@string/confirmar_pin"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:endIconMode="password_toggle"
@@ -97,7 +97,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:hint="Monto a retirar"
+            android:hint="@string/monto_a_retirar"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
             app:errorEnabled="true">
@@ -119,7 +119,7 @@
             android:paddingHorizontal="60dp"
             android:layout_weight="1"
             android:backgroundTint="#0100C1"
-            android:text="Retirar" />
+            android:text="@string/retirar" />
 
     </LinearLayout>
 

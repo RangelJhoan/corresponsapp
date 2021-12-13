@@ -34,7 +34,7 @@
             android:textStyle="bold"
             android:textSize="26sp"
             android:textAlignment="center"
-            android:text="¡Bienvenido!"/>
+            android:text="@string/bienvenido"/>
 
         <ImageView
             android:layout_width="match_parent"
@@ -59,7 +59,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginVertical="40dp"
             android:paddingTop="40dp"
-            android:hint="Correo Electrónico"
+            android:hint="@string/correo_electronico"
             app:boxBackgroundMode="outline"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -70,7 +70,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textEmailAddress"
-                android:text="jhoan@wposs.com"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +84,7 @@
             app:boxBackgroundMode="outline"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
-            android:hint="Contraseña"
+            android:hint="@string/contrasena"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -94,7 +93,6 @@
                 android:layout_height="match_parent"
                 android:layout_marginVertical="40dp"
                 android:inputType="textPassword"
-                android:text="123"
                 android:paddingStart="30dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,10 +100,10 @@
             android:id="@+id/btnIniciarSesion"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:backgroundTint="#0100C1"
+            android:backgroundTint="@color/azul_terciario"
             android:layout_weight="1"
             android:layout_margin="20dp"
-            android:text="Iniciar Sesión"
+            android:text="@string/iniciar_sesion"
             />
 
     </LinearLayout>

@@ -1,5 +1,5 @@
 
 s
-java:S1450"XRemove the "baseDatos" field and declare it as a local variable in the relevant methods.(ґуЁщэяяяя
+java:S1450"XRemove the "baseDatos" field and declare it as a local variable in the relevant methods.(ґуЁщэяяяя
 t
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(гЧяжъяяяя8З‹ДЏЪ/
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(гЧяжъяяяя8З‹ДЏЪ/

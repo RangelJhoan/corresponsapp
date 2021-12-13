@@ -10,6 +10,6 @@ java:S1192"NDefine a constant instead of duplicating this literal "CREATE TABL
 ^
 java:S1192"HDefine a constant instead of duplicating this literal " TEXT, " 8 times.(Á•ªú
 ~
-java:S11928"\Define a constant instead of duplicating this literal " DEFAULT CURRENT_TIMESTAMP)" 3 times.(”®»‚ûÿÿÿÿ8ı×ÁÚ/
+java:S11928"\Define a constant instead of duplicating this literal " DEFAULT CURRENT_TIMESTAMP)" 4 times.(”®»‚ûÿÿÿÿ8ı×ÁÚ/
 j
 java:S1192""HDefine a constant instead of duplicating this literal " REAL, " 5 times.(é›¦¾şÿÿÿÿ8Ë¬Ú/

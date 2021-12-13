@@ -12,9 +12,11 @@ java:S1128	"3Remove this unused import 'android.view.ViewGroup'.(‹îá
 M
 java:S1128
 "7Remove this unused import 'android.view.WindowManager'.(Ü³‹Å
-b
-java:S1192+"GDefine a constant instead of duplicating this literal "accion" 8 times.(¹®”èıÿÿÿÿ
+c
+java:S1192+"HDefine a constant instead of duplicating this literal "accion" 10 times.(¹®”èıÿÿÿÿ
+c
+java:S11920"FDefine a constant instead of duplicating this literal "monto" 3 times.(ñüÀ•8ø©è¼Ú/
 k
-java:S11921"IDefine a constant instead of duplicating this literal "comision" 3 times.(™š½àÿÿÿÿÿ8½°ô¬Ù/
+java:S11921"IDefine a constant instead of duplicating this literal "comision" 4 times.(™š½àÿÿÿÿÿ8½°ô¬Ù/
 …
 java:S1319"jThe type of "informacion" should be an interface such as "Map" rather than the implementation "Hashtable".(¦Ù¹øøÿÿÿÿ

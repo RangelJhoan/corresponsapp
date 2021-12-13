@@ -1,0 +1,7 @@
+
+N
+java:S1602+",Remove useless curly braces around statement(üáÀ»ûÿÿÿÿ8õ’’Û/
+T
+java:S1128"2Remove this unused import 'android.text.Editable'.(À”áÈşÿÿÿÿ8’ÖòùÚ/
+R
+java:S1128"5Remove this unused import 'android.text.TextWatcher'.( š«8’ÖòùÚ/

@@ -4,9 +4,8 @@ import android.content.Context;
 
 import com.example.corresponsapp.basedatos.BaseDatos;
 import com.example.corresponsapp.entidades.Corresponsal;
-import com.example.corresponsapp.utilidades.Sesion;
 
-public class LoginModelImpl implements LoginMVP.Model{
+public class LoginModelImpl implements LoginMVP.Model {
 
     private BaseDatos baseDatos;
     private LoginMVP.Presenter presenter;
@@ -18,13 +17,15 @@ public class LoginModelImpl implements LoginMVP.Model{
     @Override
     public void iniciarSesion(Context context, String correo, String clave) {
         baseDatos = BaseDatos.getInstance(context);
-        Sesion.corresponsalSesion = new Corresponsal();
+        //Se realiza la consulta del corresponsal con los datos ingresados en el login
         Corresponsal corresponsal = baseDatos.iniciarSesion(correo, clave);
 
-        if (corresponsal != null){
-            Sesion.corresponsalSesion = corresponsal;
-            presenter.mostrarResultado("¡Bienvenido!");
-        }else{
+        /*Si la información es correcta, se mostrará en pantalla un mensaje de bienvenida y,
+        se creará el objeto que almacenará la información del corresponsal que inició la sesión.
+        Si no, se devolverá un mensaje de error.*/
+        if (corresponsal != null) {
+            presenter.mostrarResultado(corresponsal, "¡Bienvenido!");
+        } else {
             presenter.mostrarError("¡ERROR! Correo o clave incorrecta");
         }
     }

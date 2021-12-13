@@ -1,6 +1,9 @@
 package com.example.corresponsapp.interfacesgraficas.corresponsal.corresponsalmenu;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +13,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +21,9 @@ import android.widget.Toast;
 
 import com.example.corresponsapp.R;
 import com.example.corresponsapp.databinding.FragmentCorresponsalMenuBinding;
+import com.example.corresponsapp.entidades.Corresponsal;
 import com.example.corresponsapp.entidades.Menu;
+import com.example.corresponsapp.interfaces.IAbrirOpcCor;
 import com.example.corresponsapp.interfaces.MenuCallback;
 import com.example.corresponsapp.interfacesgraficas.adaptadores.MenuAdapter;
 import com.example.corresponsapp.utilidades.Constantes;
@@ -31,7 +37,12 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
     private FragmentCorresponsalMenuBinding binding;
     private ArrayList<Menu> listaMenu;
     private MenuAdapter adapter;
+    private IAbrirOpcCor iAbrirOpcCor;
+    private Activity actividad;
     private View view;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+    private Corresponsal sesionCorresponsal;
 
 
     public CorresponsalMenuFragment() {
@@ -56,10 +67,33 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
         super.onViewCreated(view, savedInstanceState);
         this.view = view;
 
+        inicializarPreference();
+
         String[] nombre = Sesion.corresponsalSesion.getNombre_completo().split(" ");
         binding.tvSaludo.setText("Hola, " + nombre[0]);
-        binding.tvSaldo.setText("$"+Sesion.corresponsalSesion.getSaldo());
+        binding.tvSaldo.setText("$"+ Sesion.corresponsalSesion.getSaldo());
 
+        cargarMenu();
+
+        binding.ibOpciones.setOnClickListener(view1 -> {
+            iAbrirOpcCor.abrirOpciones(view);
+        });
+
+    }
+
+    private void inicializarPreference() {
+        sesionCorresponsal = new Corresponsal();
+
+        sesionCorresponsal.setId(preferences.getInt(Sesion.LLAVE_ID,0));
+        sesionCorresponsal.setNombre_completo(preferences.getString(Sesion.LLAVE_NOMBRE, null));
+        sesionCorresponsal.setSaldo(preferences.getFloat(Sesion.LLAVE_SALDO, 0));
+
+        Sesion.corresponsalSesion = new Corresponsal();
+        Sesion.corresponsalSesion = sesionCorresponsal;
+
+    }
+
+    private void cargarMenu() {
         listaMenu = new ArrayList<>();
         listaMenu.add(new Menu(Constantes.PAGOTARJETA, R.drawable.pagotarjeta_128));
         listaMenu.add(new Menu(Constantes.RETIRAR, R.drawable.retirar_128));
@@ -72,7 +106,6 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
         binding.rvBotonesMenu.setLayoutManager(new GridLayoutManager(getContext(),3));
         adapter = new MenuAdapter(listaMenu, this);
         binding.rvBotonesMenu.setAdapter(adapter);
-
     }
 
     @Override
@@ -103,6 +136,17 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
             default:
                 Toast.makeText(getContext(), "Error en el menú.", Toast.LENGTH_SHORT).show();
                 break;
+        }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        preferences = context.getSharedPreferences("sesion",Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        if(context instanceof Activity){
+            actividad = (Activity) context;
+            iAbrirOpcCor = (IAbrirOpcCor) actividad;
         }
     }
 }

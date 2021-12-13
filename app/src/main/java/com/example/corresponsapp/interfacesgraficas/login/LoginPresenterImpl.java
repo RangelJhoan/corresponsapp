@@ -2,6 +2,8 @@ package com.example.corresponsapp.interfacesgraficas.login;
 
 import android.content.Context;
 
+import com.example.corresponsapp.entidades.Corresponsal;
+
 public class LoginPresenterImpl implements LoginMVP.Presenter {
 
     private LoginMVP.Model model;
@@ -13,9 +15,9 @@ public class LoginPresenterImpl implements LoginMVP.Presenter {
     }
 
     @Override
-    public void mostrarResultado(String resultado) {
+    public void mostrarResultado(Corresponsal corresponsal, String resultado) {
         if (view != null) {
-            view.mostrarResultado(resultado);
+            view.mostrarResultado(corresponsal, resultado);
         }
     }
 

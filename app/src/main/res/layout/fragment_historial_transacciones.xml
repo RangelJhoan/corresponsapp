@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Retiros"
+            android:text="@string/retiros"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Depósitos"
+            android:text="@string/depositos"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -36,7 +36,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pago con tarjeta"
+            android:text="@string/pago_con_tarjeta"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Transferencias"
+            android:text="@string/transferencias"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView

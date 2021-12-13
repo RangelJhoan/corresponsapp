@@ -1,15 +1,11 @@
 package com.example.corresponsapp.interfacesgraficas.corresponsal.consultarsaldo;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.example.corresponsapp.basedatos.BaseDatos;
-import com.example.corresponsapp.entidades.Cliente;
 import com.example.corresponsapp.entidades.CuentaBancaria;
 import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Sesion;
-import com.example.corresponsapp.utilidades.UtilidadesBD;
 
 public class ConsultarSaldoModelImpl implements ConsultarSaldoMVP.Model{
 

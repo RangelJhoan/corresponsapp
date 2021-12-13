@@ -86,7 +86,9 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
                 if(Utilidades.validarSoloNumeros(binding.etPIN.getText().toString())){
                     //Número de cédula debe ser tipo numérico
                     if(Utilidades.validarSoloNumeros(binding.etDocumento.getText().toString())){
+                        //Se valida que el saldo inicial sea de tipo numérico
                         if(Utilidades.validarSoloNumeros(binding.etSaldoInicial.getText().toString())){
+                            //Se valida la confirmación del PIN
                             if (binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())) {
 
                                 CuentaBancaria cuentaBancaria = new CuentaBancaria();
@@ -130,7 +132,9 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
     }
 
     private void crearTarjeta(Tarjeta tarjeta) {
+        //La fecha de expiración se crea con 5 años de validez
         tarjeta.setFecha_expiracion(Utilidades.obtenerFechaExpiracion());
+        //El código CVV es de 4 dígitos asignados aleatoriamente
         tarjeta.setCvv(crearCVV());
     }
 
@@ -145,7 +149,9 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
 
     private String crearNumeroTarjeta(String documento) {
         int longitudDocumento = documento.length();
-        String numeroTarjeta = "3" + documento;
+        //El primer número es un número aleatorio entre 3 y 6 y se concatena su número de documento
+        String numeroTarjeta = (int) (Math.random()*4+3) + documento;
+        //A la cadena anterior se le concatenan el resto de números aleatorios para completar un total de 16 dígitos
         for (int i = longitudDocumento; i < 15; i++) {
             numeroTarjeta += String.valueOf((int) (Math.random() * 10));
         }

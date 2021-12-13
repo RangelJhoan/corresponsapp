@@ -9,11 +9,13 @@ B
 java:S1602I",Remove useless curly braces around statement(ÜŞÓÅ
 m
 java:S3776O"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(Òç½öúÿÿÿÿ
-@
-java:S2140Œ")Use "java.util.Random.nextInt()" instead.(‹«ôÆ
-@
-java:S2140–")Use "java.util.Random.nextInt()" instead.(éºòù
-3
-java:S1643–"Use a StringBuilder instead.(éºòù
+G
+java:S2140")Use "java.util.Random.nextInt()" instead.(‹«ôÆ8íÂÓ‘Û/
+L
+java:S2140™")Use "java.util.Random.nextInt()" instead.(ğ»”ùÿÿÿÿ8îÂÓ‘Û/
+G
+java:S2140œ")Use "java.util.Random.nextInt()" instead.(éºòù8ïÂÓ‘Û/
+:
+java:S1643œ"Use a StringBuilder instead.(éºòù8óÂÓ‘Û/
 u
 java:S1488/"`Immediately return this expression instead of assigning it to the temporary variable "fragment".(½“æ

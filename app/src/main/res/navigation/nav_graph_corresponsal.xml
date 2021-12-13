@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_corresponsalMenuFragment_to_historialTransaccionesFragment"
             app:destination="@id/historialTransaccionesFragment" />
+        <action
+            android:id="@+id/action_corresponsalMenuFragment_to_corresponsalCambiarClaveFragment"
+            app:destination="@id/corresponsalCambiarClaveFragment" />
     </fragment>
     <fragment
         android:id="@+id/retirarFragment"
@@ -95,4 +98,17 @@
             android:id="@+id/action_historialTransaccionesFragment_to_corresponsalMenuFragment"
             app:destination="@id/corresponsalMenuFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/corresponsalCambiarClaveFragment"
+        android:name="com.example.corresponsapp.interfacesgraficas.corresponsal.corresponsalcambiarclave.CorresponsalCambiarClaveFragment"
+        android:label="fragment_corresponsal_cambiar_clave"
+        tools:layout="@layout/fragment_corresponsal_cambiar_clave">
+
+        <action
+            android:id="@+id/action_corresponsalCambiarClaveFragment_to_corresponsalMenuFragment"
+            app:destination="@id/corresponsalMenuFragment" />
+    </fragment>
+
+
 </navigation>

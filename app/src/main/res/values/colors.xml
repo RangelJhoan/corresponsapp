@@ -7,5 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="azul_primario">#00008C</color>
+    <color name="azul_secundario">#030097</color>
+    <color name="azul_terciario">#0100C1</color>
+
+    <color name="purpura_cancelar">#8000c9</color>
+
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#8080B6</color>
 </resources>

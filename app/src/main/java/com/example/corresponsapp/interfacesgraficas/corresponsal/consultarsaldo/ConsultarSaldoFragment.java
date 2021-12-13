@@ -109,6 +109,8 @@ public class ConsultarSaldoFragment extends Fragment implements ConsultarSaldoMV
     @Override
     public void mostrarSaldo(String saldo) {
         binding.tvSaldoDisponible.setText("$" + saldo);
+        binding.etPIN.setText("");
+        binding.etConfirmarPIN.setText("");
     }
 
     @Override
