@@ -79,3 +79,9 @@ eapp/src/main/java/com/example/corresponsapp/interfacesgraficas/corresponsal/Cor
 napp/src/main/java/com/example/corresponsapp/interfacesgraficas/corresponsal/transferir/TransferirFragment.java,7\3\73c24fa8ba973ce8439013d2267c7e0365b9c4a2
 y
 Iapp/src/main/java/com/example/corresponsapp/entidades/CuentaBancaria.java,f\8\f8ef027fcb4f644589235d1bc0bfd156ee5429c9
+¡
+qapp/src/main/java/com/example/corresponsapp/interfacesgraficas/corresponsal/pagotarjeta/PagoTarjetaModelImpl.java,d\7\d78b19c89236805a77aefffc8943eba444d2e352
+‚
+Rapp/src/main/java/com/example/corresponsapp/interfacesgraficas/login/LoginMVP.java,b\4\b40aac7de878829f5abbbc3a4e77e782a312718c
+t
+Dapp/src/main/java/com/example/corresponsapp/basedatos/BaseDatos.java,d\c\dcc49bbba9aeb40d9e7417aa78bcf9393d337477
