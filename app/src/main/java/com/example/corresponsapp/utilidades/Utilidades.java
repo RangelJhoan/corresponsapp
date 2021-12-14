@@ -1,6 +1,7 @@
 package com.example.corresponsapp.utilidades;
 
 import android.annotation.SuppressLint;
+import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -53,6 +54,15 @@ public class Utilidades {
             return true;
         }
         return false;
+    }
+
+    public static boolean validarCampos(EditText[] listaTextViews) {
+        for (int i = 0; i < listaTextViews.length; i++) {
+            if (listaTextViews[i].getText().toString().trim().equals("")) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

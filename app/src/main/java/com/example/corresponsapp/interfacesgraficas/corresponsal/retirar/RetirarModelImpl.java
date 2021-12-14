@@ -32,12 +32,18 @@ public class RetirarModelImpl implements RetirarMVP.Model {
                     if (resultadoRetiroCliente > 0) {
                         long respuestaComision = baseDatos.registrarComision(Sesion.corresponsalSesion.getId(), Constantes.COMISION_RETIRAR);
                         if(respuestaComision > 0){
-                            retiro.getCuentaBancaria().getCliente().setId(idCliente);
-                            long respuestaRetiro = baseDatos.crearRetiro(retiro);
-                            if (respuestaRetiro > 0) {
-                                presenter.mostrarResultado("Dinero retirado correctamente");
+                            //Validamos que se le reste el valor al corresponsal
+                            double retiroCorresponsal = retiro.getMonto();
+                            if(baseDatos.retirarCorresponsal(Sesion.corresponsalSesion.getId(), retiroCorresponsal) > 0){
+                                retiro.getCuentaBancaria().getCliente().setId(idCliente);
+                                long respuestaRetiro = baseDatos.crearRetiro(retiro);
+                                if (respuestaRetiro > 0) {
+                                    presenter.mostrarResultado("Dinero retirado correctamente");
+                                }else{
+                                    presenter.mostrarError("¡Error! No se pudo registrar el retiro");
+                                }
                             }else{
-                                presenter.mostrarError("¡Error! No se pudo registrar el retiro");
+                                presenter.mostrarError("¡Error! Saldo insuficiente en el corresponsal");
                             }
                         }else{
                             presenter.mostrarError("¡Error! No se pudo registrar la comisión");

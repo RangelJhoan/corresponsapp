@@ -15,7 +15,7 @@ import com.example.corresponsapp.databinding.ActivityLoginBinding;
 import com.example.corresponsapp.entidades.Corresponsal;
 import com.example.corresponsapp.interfacesgraficas.corresponsal.CorresponsalActivity;
 import com.example.corresponsapp.utilidades.Sesion;
-import com.example.corresponsapp.validaciones.Validaciones;
+import com.example.corresponsapp.utilidades.Utilidades;
 
 public class LoginActivity extends AppCompatActivity implements LoginMVP.View {
     private ActivityLoginBinding binding;
@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity implements LoginMVP.View {
     private void iniciarSesion() {
         EditText[] editTexts = {binding.etCorreo, binding.etClave};
         //Se valida que los campos de texto contengan información
-        if (Validaciones.validarCampos(editTexts)) {
+        if (Utilidades.validarCampos(editTexts)) {
             //Se validan los datos ingresados con los datos almacenados en la base de datos
             presenter.iniciarSesion(getApplicationContext(), binding.etCorreo.getText().toString(), binding.etClave.getText().toString());
         } else {

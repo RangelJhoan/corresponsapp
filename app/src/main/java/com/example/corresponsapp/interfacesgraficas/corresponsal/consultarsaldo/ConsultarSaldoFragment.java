@@ -21,7 +21,6 @@ import com.example.corresponsapp.interfaces.ConfirmacionCallback;
 import com.example.corresponsapp.interfaces.IAbrirDialogo;
 import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Utilidades;
-import com.example.corresponsapp.validaciones.Validaciones;
 
 import java.util.Hashtable;
 
@@ -72,7 +71,7 @@ public class ConsultarSaldoFragment extends Fragment implements ConsultarSaldoMV
     private void validarInformacion() {
         EditText[] editTexts = {binding.etDocumento, binding.etPIN, binding.etConfirmarPIN};
         //Se valida que todos los campos están llenos
-        if (Validaciones.validarCampos(editTexts)) {
+        if (Utilidades.validarCampos(editTexts)) {
             //Se valida que los código PIN coincidan
             if(binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())){
                 //Se valida que el número de documento sea de tipo numérico

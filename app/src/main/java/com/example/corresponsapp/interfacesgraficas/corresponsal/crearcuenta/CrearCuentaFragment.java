@@ -23,16 +23,6 @@ import com.example.corresponsapp.entidades.CuentaBancaria;
 import com.example.corresponsapp.entidades.Tarjeta;
 import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Utilidades;
-import com.example.corresponsapp.validaciones.Validaciones;
-
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.regex.Pattern;
 
 public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View {
     private FragmentCrearCuentaBinding binding;
@@ -82,7 +72,7 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
     private void crearCuenta() {
         EditText[] editTexts = {binding.etNombreCompleto, binding.etDocumento, binding.etPIN, binding.etConfirmarPIN, binding.etSaldoInicial};
         //Validar que los campos tengan texto
-        if (Validaciones.validarCampos(editTexts)) {
+        if (Utilidades.validarCampos(editTexts)) {
             //Nombre del cliente debe de estar en mayúscula
             if (Utilidades.validarTextoMayuscula(binding.etNombreCompleto.getText().toString())) {
                 //PIN debe ser tipo numérico

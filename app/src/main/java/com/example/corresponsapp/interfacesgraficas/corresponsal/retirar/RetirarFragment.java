@@ -24,7 +24,6 @@ import com.example.corresponsapp.interfaces.ConfirmacionCallback;
 import com.example.corresponsapp.interfaces.IAbrirDialogo;
 import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Utilidades;
-import com.example.corresponsapp.validaciones.Validaciones;
 
 import java.util.Hashtable;
 
@@ -77,7 +76,7 @@ public class RetirarFragment extends Fragment implements RetirarMVP.View, Confir
     private void abrirDialogo() {
         EditText[] editTexts = {binding.etDocumento, binding.etPIN, binding.etConfirmarPIN, binding.etMonto};
         //Valida que todos los campos estén llenos
-        if (Validaciones.validarCampos(editTexts)) {
+        if (Utilidades.validarCampos(editTexts)) {
             //Valida que el documento sea de tipo numérico
             if (Utilidades.validarSoloNumeros(binding.etDocumento.getText().toString())) {
                 //Valida que el código PIN sea de tipo numérico
@@ -86,12 +85,17 @@ public class RetirarFragment extends Fragment implements RetirarMVP.View, Confir
                     if (Utilidades.validarSoloNumeros(binding.etMonto.getText().toString())) {
                         //Valida que los PINES coincidan
                         if (binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())) {
-                            Hashtable<String, String> informacion = new Hashtable<>();
-                            informacion.put("accion", Constantes.RETIRAR);
-                            informacion.put("documentoAccion", binding.etDocumento.getText().toString());
-                            informacion.put("monto", binding.etMonto.getText().toString());
-                            informacion.put("comision", String.valueOf(Constantes.COMISION_RETIRAR));
-                            iAbrirDialogo.abrirDialogo(informacion, this);
+                            double monto = Double.parseDouble(binding.etMonto.getText().toString());
+                            if(monto > 2000){
+                                Hashtable<String, String> informacion = new Hashtable<>();
+                                informacion.put("accion", Constantes.RETIRAR);
+                                informacion.put("documentoAccion", binding.etDocumento.getText().toString());
+                                informacion.put("monto", binding.etMonto.getText().toString());
+                                informacion.put("comision", String.valueOf(Constantes.COMISION_RETIRAR));
+                                iAbrirDialogo.abrirDialogo(informacion, this);
+                            }else{
+                                Toast.makeText(getContext(), "Monto mínimo a retirar 2000 pesos", Toast.LENGTH_LONG).show();
+                            }
                         } else {
                             Toast.makeText(getContext(), "Número PIN no coincide", Toast.LENGTH_LONG).show();
                         }

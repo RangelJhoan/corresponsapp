@@ -345,6 +345,61 @@ public class BaseDatos extends SQLiteOpenHelper {
         }
     }
 
+    public long pagarCorresponsal(int idCorresponsal, double valor) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valuesPago = new ContentValues();
+        //Sumarle al saldo del corresponsal el valor
+        double nuevoSaldo = consultarSaldoCorresponsal(idCorresponsal) + valor;
+        valuesPago.put(UtilidadesBD.CORRESPONSAL_SALDO, nuevoSaldo);
+
+        //Asignarle el nuevo saldo a la cuenta del corresponsal
+        long resultadoPago = db.update(UtilidadesBD.CORRESPONSAL_TABLA, valuesPago, UtilidadesBD.CORRESPONSAL_ID + "= ?",
+                new String[]{String.valueOf(idCorresponsal)});
+
+        if (resultadoPago > 0) {
+            //Se le agrega a la sesión del corresponsal el nuevo saldo
+            Sesion.corresponsalSesion.setSaldo(nuevoSaldo);
+            SharedPreferences preferences = mCxt.getSharedPreferences("sesion", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putFloat(Sesion.LLAVE_SALDO, (float) nuevoSaldo);
+            editor.apply();
+            return resultadoPago;
+        } else {
+            //Retornar -1: No se registró el pago
+            return -1;
+        }
+    }
+
+    public long retirarCorresponsal(int idCorresponsal, double valor) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valuesRetiro = new ContentValues();
+        //Sumarle al saldo del corresponsal el valor de la comisión
+        double nuevoSaldo = consultarSaldoCorresponsal(idCorresponsal) - valor;
+        if(nuevoSaldo >= 0){
+            valuesRetiro.put(UtilidadesBD.CORRESPONSAL_SALDO, nuevoSaldo);
+
+            //Asignarle el nuevo saldo a la cuenta del corresponsal
+            long resultadoRetiro = db.update(UtilidadesBD.CORRESPONSAL_TABLA, valuesRetiro, UtilidadesBD.CORRESPONSAL_ID + "= ?",
+                    new String[]{String.valueOf(idCorresponsal)});
+
+            if (resultadoRetiro > 0) {
+                //Se le agrega a la sesión del corresponsal el nuevo saldo
+                Sesion.corresponsalSesion.setSaldo(nuevoSaldo);
+                SharedPreferences preferences = mCxt.getSharedPreferences("sesion", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putFloat(Sesion.LLAVE_SALDO, (float) nuevoSaldo);
+                editor.apply();
+                return resultadoRetiro;
+            } else {
+                //Retornar -1: No se registró la comisión
+                return -1;
+            }
+        }else{
+            //Retornar -2: Saldo insuficiente en el corresponsal
+            return -2;
+        }
+    }
+
     /**
      * Método que inserta en la base de datos el registro con la información de la transferencia que realiza el cliente
      * @param transferencia Parámetro que recibe un objeto Transferencia con la información de la transferencia
@@ -783,6 +838,10 @@ public class BaseDatos extends SQLiteOpenHelper {
         return listaTransferencia;
     }
 
+    /**
+     * Consulta los registros de las consultas de saldo que ha realizado el corresponsal
+     * @return Retorna una lista con las cuentas creadas
+     */
     public ArrayList<CuentaCreada> consultarCuentasCreadas() {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<CuentaCreada> listaCuentasCreadas = new ArrayList<>();
@@ -809,6 +868,10 @@ public class BaseDatos extends SQLiteOpenHelper {
         return listaCuentasCreadas;
     }
 
+    /**
+     * Consulta los registros de las consultas de saldo que ha realizado el corresponsal
+     * @return Retorna una lista con los registros de las consultas de saldo
+     */
     public ArrayList<ConsultaSaldo> consultarConsultasSaldo() {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<ConsultaSaldo> listaConsultaSaldo = new ArrayList<>();

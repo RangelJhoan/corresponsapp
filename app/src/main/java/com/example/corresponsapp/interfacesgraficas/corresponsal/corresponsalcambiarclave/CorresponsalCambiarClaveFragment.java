@@ -19,7 +19,7 @@ import com.example.corresponsapp.databinding.FragmentCorresponsalCambiarClaveBin
 import com.example.corresponsapp.entidades.Corresponsal;
 import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Sesion;
-import com.example.corresponsapp.validaciones.Validaciones;
+import com.example.corresponsapp.utilidades.Utilidades;
 
 public class CorresponsalCambiarClaveFragment extends Fragment implements CorresponsalCambiarClaveMVP.View{
 
@@ -67,7 +67,7 @@ public class CorresponsalCambiarClaveFragment extends Fragment implements Corres
     private void validarCampos() {
         EditText[] editTexts = {binding.etCorreo, binding.etClave, binding.etConfirmarClave};
         //Se valida que los campos estén llenos
-        if(Validaciones.validarCampos(editTexts)){
+        if(Utilidades.validarCampos(editTexts)){
             //Se valida la confirmación de la nueva clave
             if(binding.etClave.getText().toString().equals(binding.etConfirmarClave.getText().toString())){
                 Corresponsal corresponsal = new Corresponsal();

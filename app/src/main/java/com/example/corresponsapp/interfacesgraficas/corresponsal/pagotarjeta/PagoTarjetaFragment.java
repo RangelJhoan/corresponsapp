@@ -29,7 +29,6 @@ import com.example.corresponsapp.interfaces.ConfirmacionCallback;
 import com.example.corresponsapp.interfaces.IAbrirDialogo;
 import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Utilidades;
-import com.example.corresponsapp.validaciones.Validaciones;
 
 import java.util.Calendar;
 import java.util.Hashtable;
@@ -144,7 +143,7 @@ public class PagoTarjetaFragment extends Fragment implements PagoTarjetaMVP.View
 
     private void abrirDialogo() {
         EditText[] editTexts = {binding.etNumeroTarjeta, binding.etCVV, binding.etNombre, binding.etValor, binding.etCuotas};
-        if (Validaciones.validarCampos(editTexts)) {
+        if (Utilidades.validarCampos(editTexts)) {
             if(numeroInicialtarjeta == '3' || numeroInicialtarjeta == '4' || numeroInicialtarjeta == '5' || numeroInicialtarjeta == '6'){
                 if (Utilidades.validarSoloNumeros(binding.etNumeroTarjeta.getText().toString())) {
                     if (Utilidades.validarSoloNumeros(binding.etCVV.getText().toString())) {

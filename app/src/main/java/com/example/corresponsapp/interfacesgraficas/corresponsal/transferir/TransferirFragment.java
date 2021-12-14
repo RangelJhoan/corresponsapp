@@ -24,7 +24,6 @@ import com.example.corresponsapp.interfaces.ConfirmacionCallback;
 import com.example.corresponsapp.interfaces.IAbrirDialogo;
 import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Utilidades;
-import com.example.corresponsapp.validaciones.Validaciones;
 
 import java.util.Hashtable;
 
@@ -78,7 +77,7 @@ public class TransferirFragment extends Fragment implements TransferirMVP.View, 
     private void validarCampos() {
         EditText[] editTexts = {binding.etDocumentoRecibe, binding.etDocumentoTransfiere, binding.etPIN, binding.etConfirmarPIN, binding.etMonto};
         //Valida que todos los campos estén llenos
-        if (Validaciones.validarCampos(editTexts)) {
+        if (Utilidades.validarCampos(editTexts)) {
             //Valida que los PINES coincidan
             if (binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())) {
                 //Valida que el documento sea de tipo numérico

@@ -24,7 +24,6 @@ import com.example.corresponsapp.interfaces.ConfirmacionCallback;
 import com.example.corresponsapp.interfaces.IAbrirDialogo;
 import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Utilidades;
-import com.example.corresponsapp.validaciones.Validaciones;
 
 import java.util.Hashtable;
 
@@ -77,7 +76,7 @@ public class DepositarFragment extends Fragment implements DepositarMVP.View, Co
     private void validarCampos() {
         EditText[] editTexts = {binding.etDocumentoEnvia, binding.etDocumentoRecibe, binding.etMonto};
         //Valida que los campos estén llenos
-        if (Validaciones.validarCampos(editTexts)) {
+        if (Utilidades.validarCampos(editTexts)) {
             //Valida que el documento que deposita sea numérico
             if (Utilidades.validarSoloNumeros(binding.etDocumentoEnvia.getText().toString())) {
                 //Valida que el documento que recibe el depósito sea de tipo numérico

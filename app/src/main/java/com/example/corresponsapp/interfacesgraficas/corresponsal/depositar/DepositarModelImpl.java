@@ -9,6 +9,7 @@ import com.example.corresponsapp.entidades.Cliente;
 import com.example.corresponsapp.entidades.CuentaBancaria;
 import com.example.corresponsapp.entidades.Deposito;
 import com.example.corresponsapp.utilidades.Constantes;
+import com.example.corresponsapp.utilidades.Sesion;
 import com.example.corresponsapp.utilidades.UtilidadesBD;
 
 public class DepositarModelImpl implements DepositarMVP.Model {
@@ -32,9 +33,15 @@ public class DepositarModelImpl implements DepositarMVP.Model {
                 //Verificamos que se haya actualizado la cuenta bancaria del cliente
                 long resultadoDepositoCliente = baseDatos.depositarDinero(idCuenta, deposito.getMonto(), Constantes.COMISION_DEPOSITAR);
                 if (resultadoDepositoCliente > 0) {
-                    deposito.getCuentaBancaria().getCliente().setId(idCliente);
-                    baseDatos.crearDeposito(deposito);
-                    presenter.mostrarRespueta("Depósito realizado correctamente");
+                    //Verificamos que el corresponsal reciba el dinero
+                    double depositoCorresponsal = deposito.getMonto() - Constantes.COMISION_DEPOSITAR;
+                    if(baseDatos.pagarCorresponsal(Sesion.corresponsalSesion.getId(), depositoCorresponsal) > 0){
+                        deposito.getCuentaBancaria().getCliente().setId(idCliente);
+                        baseDatos.crearDeposito(deposito);
+                        presenter.mostrarRespueta("Depósito realizado correctamente");
+                    }else{
+                        presenter.mostrarError("¡Error! Corresponsal no recibió el depósito");
+                    }
                 } else {
                     presenter.mostrarError("¡Error! No se pudo depositar el dinero");
                 }
