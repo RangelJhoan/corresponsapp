@@ -49,8 +49,6 @@ aapp/src/main/java/com/example/corresponsapp/interfacesgraficas/dialogos/DialogO
 Zapp/src/main/java/com/example/corresponsapp/interfacesgraficas/RegistroCuentaActivity.java,d\f\df88eedbb4b766bcd6984c0ba09c55b5a0480828
 ˆ
 Xapp/src/main/java/com/example/corresponsapp/interfacesgraficas/login/LoginModelImpl.java,f\7\f7e916b7c9fd8c31498bc94f76a02b61898abc50
-»
-Šapp/src/main/java/com/example/corresponsapp/interfacesgraficas/corresponsal/corresponsalcambiarclave/CorresponsalCambiarClaveFragment.java,e\5\e55643f836083cb1378b3d4d5e2423ca3c237e20
 ¼
 ‹app/src/main/java/com/example/corresponsapp/interfacesgraficas/corresponsal/corresponsalcambiarclave/CorresponsalCambiarClaveModelImpl.java,6\3\63c6464c6aae1607ee9d31e0796629188afdfb51
 v
@@ -85,3 +83,5 @@ papp/src/main/java/com/example/corresponsapp/interfacesgraficas/corresponsal/cre
 †app/src/main/java/com/example/corresponsapp/interfacesgraficas/corresponsal/historialtransacciones/HistorialTransaccionesFragment.java,0\7\072cf83ff91cb454abd99d63674836d99650b38a
 ‡
 Wapp/src/main/java/com/example/corresponsapp/interfacesgraficas/login/LoginActivity.java,b\1\b158803f106d84668da27b6731b19fa86025d924
+»
+Šapp/src/main/java/com/example/corresponsapp/interfacesgraficas/corresponsal/corresponsalcambiarclave/CorresponsalCambiarClaveFragment.java,e\5\e55643f836083cb1378b3d4d5e2423ca3c237e20
