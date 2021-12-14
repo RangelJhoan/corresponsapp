@@ -138,6 +138,11 @@ public class BaseDatos extends SQLiteOpenHelper {
         return resultadoCliente;
     }
 
+    /**
+     * Crea el registro de la cuenta que creó el corresponsal
+     * @param cuentaCreada Parámetro que recibe un objeto CuentaCreada con la información de la cuenta del cliente que se creó
+     * @return Retorna el ID del registro de la cuenta del cliente
+     */
     public long crearCuentaCreada(CuentaCreada cuentaCreada){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues valuesCuentaCreada = new ContentValues();
@@ -149,6 +154,11 @@ public class BaseDatos extends SQLiteOpenHelper {
         return resultadoCliente;
     }
 
+    /**
+     * Crea el registro del cliente que consulta su saldo en la cuenta bancaria
+     * @param consultaSaldo Parámetro que recibe un objeto Consulta Saldo con la información de la acción realizada por el usuario de consultar saldo
+     * @return Retorna el ID del registro de la consulta del saldo de la cuenta bancaria del cliente
+     */
     public long crearConsultaSaldo(ConsultaSaldo consultaSaldo){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues valuesConsultarSaldo = new ContentValues();

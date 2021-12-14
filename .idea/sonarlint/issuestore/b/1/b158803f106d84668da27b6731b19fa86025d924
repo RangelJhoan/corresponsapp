@@ -1,6 +1,6 @@
 
 N
-java:S1602+",Remove useless curly braces around statement(üáÀ»ûÿÿÿÿ8õ’’Û/
+java:S16020",Remove useless curly braces around statement(üáÀ»ûÿÿÿÿ8õ’’Û/
 T
 java:S1128"2Remove this unused import 'android.text.Editable'.(À”áÈşÿÿÿÿ8’ÖòùÚ/
 R

@@ -23,6 +23,11 @@ public class LoginActivity extends AppCompatActivity implements LoginMVP.View {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
 
+    /**
+     * @author Jhoan Manuel Rangel Mariño
+     * @since 01/12/2021
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

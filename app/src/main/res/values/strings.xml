@@ -51,5 +51,6 @@
     <string name="contrasena_nueva">Contraseña nueva</string>
     <string name="consultas_de_saldo">Consultas de saldo</string>
     <string name="cuentas_creadas">Cuentas creadas</string>
+    <string name="historial_de_transacciones">Historial de transacciones</string>
 
 </resources>

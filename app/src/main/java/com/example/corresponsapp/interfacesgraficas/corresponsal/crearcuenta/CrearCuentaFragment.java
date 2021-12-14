@@ -93,27 +93,31 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
                         if(Utilidades.validarSoloNumeros(binding.etSaldoInicial.getText().toString())){
                             //Se valida la confirmación del PIN
                             if (binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())) {
+                                //Validar que el PIN sea de 4 dígitos
+                                if(binding.etPIN.getText().toString().length() == 4){
+                                    CuentaBancaria cuentaBancaria = new CuentaBancaria();
+                                    Cliente cliente = new Cliente();
+                                    Tarjeta tarjeta = new Tarjeta();
 
-                                CuentaBancaria cuentaBancaria = new CuentaBancaria();
-                                Cliente cliente = new Cliente();
-                                Tarjeta tarjeta = new Tarjeta();
+                                    //Crear cliente
+                                    cliente.setDocumento(binding.etDocumento.getText().toString());
+                                    cliente.setNombre_completo(binding.etNombreCompleto.getText().toString());
 
-                                //Crear cliente
-                                cliente.setDocumento(binding.etDocumento.getText().toString());
-                                cliente.setNombre_completo(binding.etNombreCompleto.getText().toString());
+                                    //Crear tarjeta
+                                    crearTarjeta(tarjeta);
 
-                                //Crear tarjeta
-                                crearTarjeta(tarjeta);
+                                    //Crear cuenta bancaria
+                                    String numeroTarjeta = crearNumeroTarjeta(binding.etDocumento.getText().toString()); //Generar el número de la cuenta/tarjeta
+                                    cuentaBancaria.setNumero_cuenta(numeroTarjeta);
+                                    cuentaBancaria.setPIN(binding.etPIN.getText().toString());
+                                    cuentaBancaria.setSaldo(Double.parseDouble(binding.etSaldoInicial.getText().toString()));
+                                    cuentaBancaria.setCliente(cliente);
+                                    cuentaBancaria.setTarjeta(tarjeta);
 
-                                //Crear cuenta bancaria
-                                String numeroTarjeta = crearNumeroTarjeta(binding.etDocumento.getText().toString()); //Generar el número de la cuenta/tarjeta
-                                cuentaBancaria.setNumero_cuenta(numeroTarjeta);
-                                cuentaBancaria.setPIN(binding.etPIN.getText().toString());
-                                cuentaBancaria.setSaldo(Double.parseDouble(binding.etSaldoInicial.getText().toString()));
-                                cuentaBancaria.setCliente(cliente);
-                                cuentaBancaria.setTarjeta(tarjeta);
-
-                                presenter.crearCuenta(getContext(), cuentaBancaria);
+                                    presenter.crearCuenta(getContext(), cuentaBancaria);
+                                }else{
+                                    Toast.makeText(getContext(), "El número PIN debe ser de 4 dígitos", Toast.LENGTH_SHORT).show();
+                                }
                             } else {
                                 Toast.makeText(getContext(), "El código PIN no coincide", Toast.LENGTH_SHORT).show();
                             }

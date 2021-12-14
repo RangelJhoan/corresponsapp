@@ -1,11 +1,11 @@
 
 œ
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¢á­şÿÿÿÿ
+java:S1186 "€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¢á­şÿÿÿÿ
 n
-java:S1450"XRemove the "presenter" field and declare it as a local variable in the relevant methods.(ùíÈç
+java:S1450"XRemove the "presenter" field and declare it as a local variable in the relevant methods.(ùíÈç
 N
-java:S1172""9Remove these unused method parameters "param1", "param2".(¨Ç©d
+java:S1172$"9Remove these unused method parameters "param1", "param2".(¨Ç©d
 >
-java:S1185("(Remove this method to simply inherit it.(ßìê¯
+java:S1185*"(Remove this method to simply inherit it.(ßìê¯
 {
-java:S1488#"`Immediately return this expression instead of assigning it to the temporary variable "fragment".(ªñâŠúÿÿÿÿ
+java:S1488%"`Immediately return this expression instead of assigning it to the temporary variable "fragment".(ªñâŠúÿÿÿÿ
