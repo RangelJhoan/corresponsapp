@@ -27,11 +27,11 @@ public class RetirarModelImpl implements RetirarMVP.Model {
                 //Consultar que el cliente tenga asignada una cuenta bancaria
                 int idCuenta = baseDatos.consultarIdCuentaDocumento(retiro.getCuentaBancaria().getCliente().getDocumento());
                 if (idCuenta > 0) {
-                    //Retirar el monto de la cuenta del cliente
-                    long resultadoRetiroCliente = baseDatos.retirarDinero(idCuenta, retiro.getMonto(), Constantes.COMISION_RETIRAR);
-                    if (resultadoRetiroCliente > 0) {
-                        //Validamos que se le reste el valor al corresponsal
-                        if (baseDatos.retirarCorresponsal(Sesion.corresponsalSesion.getId(), retiro.getMonto()) > 0) {
+                    //Validamos que se le reste el valor al corresponsal
+                    if (baseDatos.retirarCorresponsal(Sesion.corresponsalSesion.getId(), retiro.getMonto()) > 0) {
+                        //Retirar el monto de la cuenta del cliente
+                        long resultadoRetiroCliente = baseDatos.retirarDinero(idCuenta, retiro.getMonto(), Constantes.COMISION_RETIRAR);
+                        if (resultadoRetiroCliente > 0) {
                             //Verificamos que se realice el registro de la comisión
                             long respuestaComision = baseDatos.registrarComision(Sesion.corresponsalSesion.getId(), Constantes.COMISION_RETIRAR);
                             if (respuestaComision > 0) {
@@ -46,10 +46,10 @@ public class RetirarModelImpl implements RetirarMVP.Model {
                                 presenter.mostrarError("¡Error! No se pudo registrar la comisión");
                             }
                         } else {
-                            presenter.mostrarError("¡Error! Saldo insuficiente en el corresponsal");
+                            presenter.mostrarError("¡Error! Saldo insuficiente para el retiro");
                         }
                     } else {
-                        presenter.mostrarError("¡Error! Saldo insuficiente para el retiro");
+                        presenter.mostrarError("¡Error! Saldo insuficiente en el corresponsal");
                     }
                 } else {
                     presenter.mostrarError("¡Error! Cliente sin una cuenta bancaria asociada");
