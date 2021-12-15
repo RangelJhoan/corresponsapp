@@ -25,7 +25,7 @@ public class ConsultarSaldoModelImpl implements ConsultarSaldoMVP.Model {
         int idCliente = baseDatos.consultarIdCliente(cuentaBancaria.getCliente().getDocumento());
         if (idCliente > 0) {
             //Validar que el PIN de la cuenta sea igual al ingresado
-            if (cuentaBancaria.getPIN().equals(baseDatos.consultarPINCuenta(cuentaBancaria.getCliente().getDocumento()))) {
+            if (cuentaBancaria.getPin().equals(baseDatos.consultarPINCuenta(cuentaBancaria.getCliente().getDocumento()))) {
                 //Validar que el cliente tenga asignada una cuenta bancaria
                 int idCuenta = baseDatos.consultarIdCuentaDocumento(cuentaBancaria.getCliente().getDocumento());
                 if (idCuenta > 0) {

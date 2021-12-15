@@ -1,23 +1,25 @@
 
 j
-java:S1192¥"GDefine a constant instead of duplicating this literal "JOIN " 14 times.(êÔÌÓüÿÿÿÿ8±±î¡Û/
+java:S1192Ü"GDefine a constant instead of duplicating this literal "JOIN " 14 times.(êÔÌÓüÿÿÿÿ8±±î¡Û/
+j
+java:S1192Ñ"GDefine a constant instead of duplicating this literal "sesion" 3 times.(Ïëíºùÿÿÿÿ8ÂÅ¹ÚÛ/
 y
-java:S1192¦"[Define a constant instead of duplicating this literal "WHERE cu.numero_cuenta = ?" 3 times.(“ËÖ 8Å†ó³Û/
+java:S1192İ"[Define a constant instead of duplicating this literal "WHERE cu.numero_cuenta = ?" 3 times.(“ËÖ 8Å†ó³Û/
 e
-java:S1192“"GDefine a constant instead of duplicating this literal "FROM " 15 times.(˜î«¡8±±î¡Û/
+java:S1192Ê"GDefine a constant instead of duplicating this literal "FROM " 15 times.(˜î«¡8±±î¡Û/
 “
-java:S1319ı"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÿæÃ²ıÿÿÿÿ8È†ó³Û/
+java:S1319´"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÿæÃ²ıÿÿÿÿ8È†ó³Û/
 
-java:S1319 "pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(­Ì‡ñ8É†ó³Û/
+java:S1319×"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(­Ì‡ñ8É†ó³Û/
 “
-java:S1319Ä"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(åÇ¸üùÿÿÿÿ8Ê†ó³Û/
+java:S1319û"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(åÇ¸üùÿÿÿÿ8Ê†ó³Û/
 “
-java:S1319é"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ø†æ¡ûÿÿÿÿ8Ê†ó³Û/
+java:S1319 "pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ø†æ¡ûÿÿÿÿ8Ê†ó³Û/
 “
-java:S1319’"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¶Ğ–ùÿÿÿÿ8Ë†ó³Û/
+java:S1319Í"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¶Ğ–ùÿÿÿÿ8Ë†ó³Û/
 “
-java:S1319¬"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¼é©¬üÿÿÿÿ8Ì†ó³Û/
-m	java:S117ì"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú—˜U8Î†ó³Û/
+java:S1319ë"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¼é©¬üÿÿÿÿ8Ì†ó³Û/
+m	java:S117£"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú—˜U8Î†ó³Û/
 ‹
 java:S1488‰"hImmediately return this expression instead of assigning it to the temporary variable "resultadoCliente".(µÚ„µÿÿÿÿÿ8ú° Û/
 ‹

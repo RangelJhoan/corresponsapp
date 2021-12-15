@@ -112,7 +112,7 @@ public class ConsultarSaldoFragment extends Fragment implements ConsultarSaldoMV
         Cliente cliente = new Cliente();
 
         cliente.setDocumento(binding.etDocumento.getText().toString());
-        cuentaBancaria.setPIN(binding.etPIN.getText().toString());
+        cuentaBancaria.setPin(binding.etPIN.getText().toString());
         cuentaBancaria.setCliente(cliente);
 
         presenter.consultarSaldo(getContext(), cuentaBancaria);

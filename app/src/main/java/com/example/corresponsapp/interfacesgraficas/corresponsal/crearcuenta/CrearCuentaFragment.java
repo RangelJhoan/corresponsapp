@@ -91,15 +91,15 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
 
                                     //Crear cliente
                                     cliente.setDocumento(binding.etDocumento.getText().toString());
-                                    cliente.setNombre_completo(binding.etNombreCompleto.getText().toString());
+                                    cliente.setNombreCompleto(binding.etNombreCompleto.getText().toString());
 
                                     //Crear tarjeta
                                     crearTarjeta(tarjeta);
 
                                     //Crear cuenta bancaria
                                     String numeroTarjeta = crearNumeroTarjeta(binding.etDocumento.getText().toString()); //Generar el número de la cuenta/tarjeta
-                                    cuentaBancaria.setNumero_cuenta(numeroTarjeta);
-                                    cuentaBancaria.setPIN(binding.etPIN.getText().toString());
+                                    cuentaBancaria.setNumeroCuenta(numeroTarjeta);
+                                    cuentaBancaria.setPin(binding.etPIN.getText().toString());
                                     cuentaBancaria.setSaldo(Double.parseDouble(binding.etSaldoInicial.getText().toString()));
                                     cuentaBancaria.setCliente(cliente);
                                     cuentaBancaria.setTarjeta(tarjeta);
@@ -134,7 +134,7 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
      */
     private void crearTarjeta(Tarjeta tarjeta) {
         //La fecha de expiración se crea con 5 años de validez
-        tarjeta.setFecha_expiracion(Utilidades.obtenerFechaExpiracion());
+        tarjeta.setFechaExpiracion(Utilidades.obtenerFechaExpiracion());
         //El código CVV es de 4 dígitos asignados aleatoriamente
         tarjeta.setCvv(crearCVV());
     }

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Tarjeta{
 
     private int id;
-    private String fecha_expiracion;
+    private String fechaExpiracion;
     private String cvv;
 
     public Tarjeta() {
@@ -19,12 +19,12 @@ public class Tarjeta{
         this.id = id;
     }
 
-    public String getFecha_expiracion() {
-        return fecha_expiracion;
+    public String getFechaExpiracion() {
+        return fechaExpiracion;
     }
 
-    public void setFecha_expiracion(String fecha_expiracion) {
-        this.fecha_expiracion = fecha_expiracion;
+    public void setFechaExpiracion(String fechaExpiracion) {
+        this.fechaExpiracion = fechaExpiracion;
     }
 
     public String getCvv() {

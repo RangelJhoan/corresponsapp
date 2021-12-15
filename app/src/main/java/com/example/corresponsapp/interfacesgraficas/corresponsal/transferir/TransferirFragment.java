@@ -141,7 +141,7 @@ public class TransferirFragment extends Fragment implements TransferirMVP.View, 
         Cliente clienteRecibe = new Cliente();
         clienteTransfiere.setDocumento(binding.etDocumentoTransfiere.getText().toString());
         cuentaBancariaTransfiere.setCliente(clienteTransfiere);
-        cuentaBancariaTransfiere.setPIN(binding.etPIN.getText().toString());
+        cuentaBancariaTransfiere.setPin(binding.etPIN.getText().toString());
         clienteRecibe.setDocumento(binding.etDocumentoRecibe.getText().toString());
         cuentaBancariaRecibe.setCliente(clienteRecibe);
 

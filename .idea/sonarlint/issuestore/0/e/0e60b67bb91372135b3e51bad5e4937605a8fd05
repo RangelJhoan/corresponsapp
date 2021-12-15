@@ -1,0 +1,23 @@
+
+^
+java:S1659‰"BDeclare "monto" and all following declarations on a separate line.(ñ¶áìÿÿÿÿÿ
+^
+java:S1192="HDefine a constant instead of duplicating this literal "Fecha: " 6 times.(åÓç¹
+c
+java:S1192>"HDefine a constant instead of duplicating this literal "Monto: " 6 times.(¢ƒø™úÿÿÿÿ
+‡
+java:S1319'"lThe type of "listaRetiros" should be an interface such as "List" rather than the implementation "ArrayList".(Âşçèşÿÿÿÿ
+‰
+java:S1319'"nThe type of "listaDepositos" should be an interface such as "List" rather than the implementation "ArrayList".(Âşçèşÿÿÿÿ
+Œ
+java:S1319'"qThe type of "listaPagosTarjeta" should be an interface such as "List" rather than the implementation "ArrayList".(Âşçèşÿÿÿÿ
+
+java:S1319'"sThe type of "listaTransferencias" should be an interface such as "List" rather than the implementation "ArrayList".(Âşçèşÿÿÿÿ
+
+java:S1319'"sThe type of "listaConsultasSaldo" should be an interface such as "List" rather than the implementation "ArrayList".(Âşçèşÿÿÿÿ
+
+java:S1319'"rThe type of "listaCuentasCreada" should be an interface such as "List" rather than the implementation "ArrayList".(Âşçèşÿÿÿÿ
+S
+java:S1153>"1Directly append the argument of String.valueOf().(¢ƒø™úÿÿÿÿ8ÁšÊèÛ/
+N
+java:S1153G"1Directly append the argument of String.valueOf().(åŸÀ 8ÂšÊèÛ/

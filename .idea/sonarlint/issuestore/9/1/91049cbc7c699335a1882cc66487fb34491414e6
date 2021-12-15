@@ -1,17 +1,17 @@
 
 œ
-java:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ð•ÞÚùÿÿÿÿ
+java:S1186%"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ð•ÞÚùÿÿÿÿ
 s
-java:S1450#"XRemove the "actividad" field and declare it as a local variable in the relevant methods.(äß‰³øÿÿÿÿ
+java:S1450""XRemove the "actividad" field and declare it as a local variable in the relevant methods.(äß‰³øÿÿÿÿ
 x
-java:S1149Q"VReplace the synchronized class "Hashtable" by an unsynchronized one such as "HashMap".(Ö–Ýøÿÿÿÿ8¼Ñ©àÚ/
+java:S1149Z"VReplace the synchronized class "Hashtable" by an unsynchronized one such as "HashMap".(Ö–Ýøÿÿÿÿ8¼Ñ©àÚ/
 O
-java:S1172*"9Remove these unused method parameters "param1", "param2".(Ž…ì
+java:S1172)"9Remove these unused method parameters "param1", "param2".(Ž…ì
 >
-java:S11850"(Remove this method to simply inherit it.(ßìê¯
+java:S1185/"(Remove this method to simply inherit it.(ßìê¯
 A
-java:S1602D",Remove useless curly braces around statement(¥Ô°
+java:S1602C",Remove useless curly braces around statement(¥Ô°
 t
-java:S3776J"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(çÈŽŠûÿÿÿÿ8€¤©àÚ/
+java:S3776L"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(çÈŽŠûÿÿÿÿ8€¤©àÚ/
 {
-java:S1488+"`Immediately return this expression instead of assigning it to the temporary variable "fragment".(¶¿ëÞùÿÿÿÿ
+java:S1488*"`Immediately return this expression instead of assigning it to the temporary variable "fragment".(¶¿ëÞùÿÿÿÿ

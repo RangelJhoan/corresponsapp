@@ -11,19 +11,6 @@ import java.util.regex.Pattern;
 public class Utilidades {
 
     @SuppressLint("SimpleDateFormat")
-    public static String obtenerFechaDMYHMS(Date fecha){
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(fecha);
-        return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(calendar.getTime());
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    public static String obtenerFechaDMY(){
-        Calendar calendar = Calendar.getInstance();
-        return new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
-    }
-
-    @SuppressLint("SimpleDateFormat")
     public static String obtenerFechaExpiracion(){
         Date fechaActual = new Date();
         Calendar calendar = Calendar.getInstance();

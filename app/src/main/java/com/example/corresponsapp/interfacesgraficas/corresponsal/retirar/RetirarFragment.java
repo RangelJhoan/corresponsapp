@@ -122,7 +122,7 @@ public class RetirarFragment extends Fragment implements RetirarMVP.View, Confir
         Cliente cliente = new Cliente();
         CuentaBancaria cuentaBancaria = new CuentaBancaria();
         cuentaBancaria.setCliente(cliente);
-        cuentaBancaria.setPIN(binding.etPIN.getText().toString());
+        cuentaBancaria.setPin(binding.etPIN.getText().toString());
 
         cliente.setDocumento(binding.etDocumento.getText().toString());
         retiro.setMonto(Double.parseDouble(binding.etMonto.getText().toString()));

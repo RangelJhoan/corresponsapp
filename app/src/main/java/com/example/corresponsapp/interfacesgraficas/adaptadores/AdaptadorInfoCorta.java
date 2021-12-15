@@ -78,7 +78,7 @@ public class AdaptadorInfoCorta extends RecyclerView.Adapter<AdaptadorInfoCorta.
 
             holder.fecha.setText("Fecha: " + listaPagosTarjeta.get(position).getFecha());
             holder.monto.setText("Monto: " + listaPagosTarjeta.get(position).getValor());
-            String numeroTarjeta = listaPagosTarjeta.get(position).getCuentaBancaria().getNumero_cuenta();
+            String numeroTarjeta = listaPagosTarjeta.get(position).getCuentaBancaria().getNumeroCuenta();
             holder.numeroTarjeta.setText("Número tarjeta: ************" + numeroTarjeta.substring(12,16));
             holder.documento1.setText("Documento: " + listaPagosTarjeta.get(position).getCuentaBancaria().getCliente().getDocumento());
 

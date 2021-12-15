@@ -106,8 +106,8 @@ public class BaseDatos extends SQLiteOpenHelper {
     public long crearCuenta(CuentaBancaria cuentaBancaria) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues valuesCuenta = new ContentValues();
-        valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_NUMERO_CUENTA, cuentaBancaria.getNumero_cuenta());
-        valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_PIN, cuentaBancaria.getPIN());
+        valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_NUMERO_CUENTA, cuentaBancaria.getNumeroCuenta());
+        valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_PIN, cuentaBancaria.getPin());
         valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_SALDO, cuentaBancaria.getSaldo());
         valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_FK_CLIENTE, cuentaBancaria.getCliente().getId());
         valuesCuenta.put(UtilidadesBD.CUENTA_BANCARIA_FK_TARJETA, cuentaBancaria.getTarjeta().getId());
@@ -131,7 +131,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues valuesCliente = new ContentValues();
         valuesCliente.put(UtilidadesBD.CLIENTE_DOCUMENTO, cliente.getDocumento());
-        valuesCliente.put(UtilidadesBD.CLIENTE_NOMBRE_COMPLETO, cliente.getNombre_completo());
+        valuesCliente.put(UtilidadesBD.CLIENTE_NOMBRE_COMPLETO, cliente.getNombreCompleto());
 
         //Crea el cliente
         long resultadoCliente = db.insert(UtilidadesBD.CLIENTE_TABLA, UtilidadesBD.CLIENTE_ID, valuesCliente);
@@ -178,7 +178,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     public long crearTarjeta(Tarjeta tarjeta) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues valuesTarjeta = new ContentValues();
-        valuesTarjeta.put(UtilidadesBD.TARJETA_FECHA_EXPIRACION, tarjeta.getFecha_expiracion());
+        valuesTarjeta.put(UtilidadesBD.TARJETA_FECHA_EXPIRACION, tarjeta.getFechaExpiracion());
         valuesTarjeta.put(UtilidadesBD.TARJETA_CVV, tarjeta.getCvv());
 
         //Crea la tarjeta
@@ -641,7 +641,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             corresponsal.setId(cursor.getInt(0));
-            corresponsal.setNombre_completo(cursor.getString(1));
+            corresponsal.setNombreCompleto(cursor.getString(1));
             corresponsal.setSaldo(cursor.getDouble(2));
             corresponsal.setCorreo(correo);
             corresponsal.setClave(clave);
@@ -780,7 +780,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
             pagoTarjeta.setFecha(cursor.getString(0));
             pagoTarjeta.setValor(cursor.getDouble(1));
-            cuentaBancaria.setNumero_cuenta(cursor.getString(2));
+            cuentaBancaria.setNumeroCuenta(cursor.getString(2));
             cliente.setDocumento(cursor.getString(3));
 
             cuentaBancaria.setCliente(cliente);

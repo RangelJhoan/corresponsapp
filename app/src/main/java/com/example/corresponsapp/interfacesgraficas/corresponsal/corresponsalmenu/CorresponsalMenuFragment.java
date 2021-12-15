@@ -66,7 +66,7 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
 
         inicializarPreference();
 
-        String[] nombre = Sesion.corresponsalSesion.getNombre_completo().split(" ");
+        String[] nombre = Sesion.corresponsalSesion.getNombreCompleto().split(" ");
         binding.tvSaludo.setText("Hola, " + nombre[0]);
         binding.tvSaldo.setText("$"+ Sesion.corresponsalSesion.getSaldo());
 
@@ -82,7 +82,7 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
         sesionCorresponsal = new Corresponsal();
 
         sesionCorresponsal.setId(preferences.getInt(Sesion.LLAVE_ID,0));
-        sesionCorresponsal.setNombre_completo(preferences.getString(Sesion.LLAVE_NOMBRE, null));
+        sesionCorresponsal.setNombreCompleto(preferences.getString(Sesion.LLAVE_NOMBRE, null));
         sesionCorresponsal.setSaldo(preferences.getFloat(Sesion.LLAVE_SALDO, 0));
 
         Sesion.corresponsalSesion = new Corresponsal();

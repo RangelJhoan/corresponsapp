@@ -2,8 +2,8 @@ package com.example.corresponsapp.entidades;
 
 public class CuentaBancaria{
     private int id;
-    private String numero_cuenta;
-    private String PIN;
+    private String numeroCuenta;
+    private String pin;
     private double saldo;
     private Cliente cliente;
     private Tarjeta tarjeta;
@@ -19,20 +19,20 @@ public class CuentaBancaria{
         this.id = id;
     }
 
-    public String getNumero_cuenta() {
-        return numero_cuenta;
+    public String getNumeroCuenta() {
+        return numeroCuenta;
     }
 
-    public void setNumero_cuenta(String numero_cuenta) {
-        this.numero_cuenta = numero_cuenta;
+    public void setNumeroCuenta(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
     }
 
-    public String getPIN() {
-        return PIN;
+    public String getPin() {
+        return pin;
     }
 
-    public void setPIN(String PIN) {
-        this.PIN = PIN;
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 
     public double getSaldo() {

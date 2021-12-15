@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements LoginMVP.View {
     /**
      * @author Jhoan Manuel Rangel Mariño
      * @since 01/12/2021
+     * @version 1.0
      */
 
     @Override
@@ -35,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements LoginMVP.View {
         setContentView(binding.getRoot());
         presenter = new LoginPresenterImpl(this);
 
-        //Se el shared preference para almacenar la sesion
+        //Se inicializa el shared preference para almacenar la sesion
         iniciarlizarPreference();
 
         //Se valida que haya una sesión activa para redirigir automáticamente al menú principal
@@ -78,7 +79,7 @@ public class LoginActivity extends AppCompatActivity implements LoginMVP.View {
     public void mostrarResultado(Corresponsal corresponsal, String resultado) {
         editor.putBoolean(Sesion.LLAVE_SESION_INICIADA, true);
         editor.putInt(Sesion.LLAVE_ID,corresponsal.getId());
-        editor.putString(Sesion.LLAVE_NOMBRE, corresponsal.getNombre_completo());
+        editor.putString(Sesion.LLAVE_NOMBRE, corresponsal.getNombreCompleto());
         editor.putFloat(Sesion.LLAVE_SALDO, (float) corresponsal.getSaldo());
         editor.apply();
         Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();

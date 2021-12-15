@@ -198,10 +198,10 @@ public class PagoTarjetaFragment extends Fragment implements PagoTarjetaMVP.View
         Tarjeta tarjeta = new Tarjeta();
         Cliente cliente = new Cliente();
 
-        cuentaBancaria.setNumero_cuenta(binding.etNumeroTarjeta.getText().toString());
-        tarjeta.setFecha_expiracion(binding.etFechaExpiracion.getText().toString());
+        cuentaBancaria.setNumeroCuenta(binding.etNumeroTarjeta.getText().toString());
+        tarjeta.setFechaExpiracion(binding.etFechaExpiracion.getText().toString());
         tarjeta.setCvv(binding.etCVV.getText().toString());
-        cliente.setNombre_completo(binding.etNombre.getText().toString());
+        cliente.setNombreCompleto(binding.etNombre.getText().toString());
         pagoTarjeta.setValor(Double.parseDouble(binding.etValor.getText().toString()));
         pagoTarjeta.setNumeroCuotas(Integer.parseInt(binding.etCuotas.getText().toString()));
 

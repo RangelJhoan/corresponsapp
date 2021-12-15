@@ -1,17 +1,19 @@
 package com.example.corresponsapp.interfacesgraficas.corresponsal.historialtransacciones;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.corresponsapp.R;
 import com.example.corresponsapp.databinding.FragmentHistorialTransaccionesBinding;
 import com.example.corresponsapp.entidades.ConsultaSaldo;
 import com.example.corresponsapp.entidades.CuentaCreada;
@@ -20,6 +22,7 @@ import com.example.corresponsapp.entidades.PagoTarjeta;
 import com.example.corresponsapp.entidades.Retiro;
 import com.example.corresponsapp.entidades.Transferencia;
 import com.example.corresponsapp.interfacesgraficas.adaptadores.AdaptadorInfoCorta;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -56,11 +59,75 @@ public class HistorialTransaccionesFragment extends Fragment implements Historia
         presenter = new HistorialPresenterImpl(this);
         presenter.consultarHistorialTransacciones(getContext());
 
+        extenderRecyclers();
+
+    }
+
+    private void extenderRecyclers() {
+        binding.tvRetiros.setOnClickListener(view1 -> {
+            esconderRecyclers();
+            limpiarTextViews();
+            binding.rvRetiro.setVisibility(View.VISIBLE);
+            binding.tvRetiros.setBackgroundColor(Color.GRAY);
+        });
+
+        binding.tvDepositos.setOnClickListener(view -> {
+            esconderRecyclers();
+            limpiarTextViews();
+            binding.rvDeposito.setVisibility(View.VISIBLE);
+            binding.tvDepositos.setBackgroundColor(Color.GRAY);
+        });
+
+        binding.tvConsultasSaldo.setOnClickListener(view -> {
+            esconderRecyclers();
+            limpiarTextViews();
+            binding.rvConsultasSaldo.setVisibility(View.VISIBLE);
+            binding.tvConsultasSaldo.setBackgroundColor(Color.GRAY);
+        });
+
+        binding.tvCuentasCreadas.setOnClickListener(view -> {
+            esconderRecyclers();
+            limpiarTextViews();
+            binding.rvCuentasCreada.setVisibility(View.VISIBLE);
+            binding.tvCuentasCreadas.setBackgroundColor(Color.GRAY);
+        });
+
+        binding.tvTransferencias.setOnClickListener(view -> {
+            esconderRecyclers();
+            limpiarTextViews();
+            binding.rvTransferencia.setVisibility(View.VISIBLE);
+            binding.tvTransferencias.setBackgroundColor(Color.GRAY);
+        });
+
+        binding.tvPagosTarjeta.setOnClickListener(view -> {
+            esconderRecyclers();
+            limpiarTextViews();
+            binding.rvPagoTarjeta.setVisibility(View.VISIBLE);
+            binding.tvPagosTarjeta.setBackgroundColor(Color.GRAY);
+        });
+
+    }
+
+    private void limpiarTextViews() {
+        binding.tvRetiros.setBackgroundColor(Color.TRANSPARENT);
+        binding.tvDepositos.setBackgroundColor(Color.TRANSPARENT);
+        binding.tvConsultasSaldo.setBackgroundColor(Color.TRANSPARENT);
+        binding.tvCuentasCreadas.setBackgroundColor(Color.TRANSPARENT);
+        binding.tvTransferencias.setBackgroundColor(Color.TRANSPARENT);
+        binding.tvPagosTarjeta.setBackgroundColor(Color.TRANSPARENT);
+    }
+
+    private void esconderRecyclers() {
+        binding.rvRetiro.setVisibility(View.GONE);
+        binding.rvDeposito.setVisibility(View.GONE);
+        binding.rvConsultasSaldo.setVisibility(View.GONE);
+        binding.rvCuentasCreada.setVisibility(View.GONE);
+        binding.rvTransferencia.setVisibility(View.GONE);
+        binding.rvPagoTarjeta.setVisibility(View.GONE);
     }
 
     /**
      * Método que recibe una lista de Libros enviada desde el Modelo
-     *
      * @param listaRetiros
      */
     @Override

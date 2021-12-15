@@ -24,18 +24,18 @@ public class PagoTarjetaModelImpl implements PagoTarjetaMVP.Model {
         baseDatos = BaseDatos.getInstance(context);
 
         //Verificar que el número de cuenta sea correcto
-        int idCuenta = baseDatos.consultarIdCuentaNumero(pagoTarjeta.getCuentaBancaria().getNumero_cuenta());
+        int idCuenta = baseDatos.consultarIdCuentaNumero(pagoTarjeta.getCuentaBancaria().getNumeroCuenta());
         if (idCuenta > 0) {
             //Verificar que el código CVV es igual al digitado
-            String respuestaCVV = baseDatos.consultarCVVCuenta(pagoTarjeta.getCuentaBancaria().getNumero_cuenta());
+            String respuestaCVV = baseDatos.consultarCVVCuenta(pagoTarjeta.getCuentaBancaria().getNumeroCuenta());
             if (pagoTarjeta.getCuentaBancaria().getTarjeta().getCvv().equals(respuestaCVV)) {
                 //Verificamos que el nombre ingresado sea correcto
-                if (pagoTarjeta.getCuentaBancaria().getCliente().getNombre_completo().equals(baseDatos.consultarNombreCliente(pagoTarjeta.getCuentaBancaria().getNumero_cuenta()))) {
+                if (pagoTarjeta.getCuentaBancaria().getCliente().getNombreCompleto().equals(baseDatos.consultarNombreCliente(pagoTarjeta.getCuentaBancaria().getNumeroCuenta()))) {
                     //Verificamos que la fecha ingresada sea correcta
-                    String fechaTarjeta = baseDatos.consultarFechaExpiracion(pagoTarjeta.getCuentaBancaria().getNumero_cuenta());
-                    if (fechaTarjeta.equals(pagoTarjeta.getCuentaBancaria().getTarjeta().getFecha_expiracion())) {
+                    String fechaTarjeta = baseDatos.consultarFechaExpiracion(pagoTarjeta.getCuentaBancaria().getNumeroCuenta());
+                    if (fechaTarjeta.equals(pagoTarjeta.getCuentaBancaria().getTarjeta().getFechaExpiracion())) {
                         //Verificamos que la fecha de expiración sea mayor a la actual
-                        if (verificarFecha(pagoTarjeta.getCuentaBancaria().getTarjeta().getFecha_expiracion())) {
+                        if (verificarFecha(pagoTarjeta.getCuentaBancaria().getTarjeta().getFechaExpiracion())) {
                             //Retiramos el dinero que pagó el cliente
                             long respuestaRetiro = baseDatos.retirarDinero(idCuenta, pagoTarjeta.getValor(), 0);
                             if (respuestaRetiro > 0) {

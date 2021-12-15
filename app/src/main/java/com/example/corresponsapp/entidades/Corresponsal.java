@@ -2,7 +2,7 @@ package com.example.corresponsapp.entidades;
 
 public class Corresponsal {
     private int id;
-    private String nombre_completo;
+    private String nombreCompleto;
     private double saldo;
     private String correo;
     private String clave;
@@ -18,12 +18,12 @@ public class Corresponsal {
         this.id = id;
     }
 
-    public String getNombre_completo() {
-        return nombre_completo;
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
-    public void setNombre_completo(String nombre_completo) {
-        this.nombre_completo = nombre_completo;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
     public double getSaldo() {

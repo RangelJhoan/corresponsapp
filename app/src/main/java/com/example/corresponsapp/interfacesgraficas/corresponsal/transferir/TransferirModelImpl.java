@@ -24,7 +24,7 @@ public class TransferirModelImpl implements TransferirMVP.Model {
             //Verificamos que el cliente que recibe exista
             if (baseDatos.consultarIdCliente(transferencia.getCuentaRecibe().getCliente().getDocumento()) > 0) {
                 //Verificamos que el PIN ingresado sea el mismo de la cuenta
-                if (baseDatos.consultarPINCuenta(transferencia.getCuentaTransfiere().getCliente().getDocumento()).equals(transferencia.getCuentaTransfiere().getPIN())) {
+                if (baseDatos.consultarPINCuenta(transferencia.getCuentaTransfiere().getCliente().getDocumento()).equals(transferencia.getCuentaTransfiere().getPin())) {
                     //Verificamos que el cliente a transferir tenga cuenta bancaria
                     long idCuentaTransfiere = baseDatos.consultarIdCuentaDocumento(transferencia.getCuentaTransfiere().getCliente().getDocumento());
                     if ( idCuentaTransfiere > 0) {
