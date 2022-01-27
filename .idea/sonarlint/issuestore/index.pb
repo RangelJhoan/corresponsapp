@@ -103,5 +103,3 @@ tapp/src/main/java/com/example/corresponsapp/interfacesgraficas/corresponsal/his
 happ/src/main/java/com/example/corresponsapp/interfacesgraficas/corresponsal/retirar/RetirarFragment.java,9\1\91049cbc7c699335a1882cc66487fb34491414e6
 ’
 bapp/src/main/java/com/example/corresponsapp/interfacesgraficas/adaptadores/AdaptadorInfoCorta.java,0\e\0e60b67bb91372135b3e51bad5e4937605a8fd05
-·
-†app/src/main/java/com/example/corresponsapp/interfacesgraficas/corresponsal/historialtransacciones/HistorialTransaccionesFragment.java,0\7\072cf83ff91cb454abd99d63674836d99650b38a

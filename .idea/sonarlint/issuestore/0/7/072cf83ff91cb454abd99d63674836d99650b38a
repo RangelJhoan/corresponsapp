@@ -1,17 +1,0 @@
-
-œ
-java:S1186#"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¢á­şÿÿÿÿ
-n
-java:S1450 "XRemove the "presenter" field and declare it as a local variable in the relevant methods.(ùíÈç
-N
-java:S1172'"9Remove these unused method parameters "param1", "param2".(¨Ç©d
->
-java:S1185-"(Remove this method to simply inherit it.(ßìê¯
-d
-java:S1128	"BRemove this unused import 'androidx.fragment.app.FragmentManager'.(¯­ë‹ıÿÿÿÿ8¡¦éÛ/
-_
-java:S1128"BRemove this unused import 'androidx.viewpager2.widget.ViewPager2'.(Âè½8¡¦éÛ/
-i
-java:S1128"GRemove this unused import 'com.google.android.material.tabs.TabLayout'.(é‘™Òıÿÿÿÿ8¢¦éÛ/
-{
-java:S1488("`Immediately return this expression instead of assigning it to the temporary variable "fragment".(ªñâŠúÿÿÿÿ
