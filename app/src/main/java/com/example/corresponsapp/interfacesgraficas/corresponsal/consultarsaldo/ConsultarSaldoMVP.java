@@ -2,7 +2,6 @@ package com.example.corresponsapp.interfacesgraficas.corresponsal.consultarsaldo
 
 import android.content.Context;
 
-import com.example.corresponsapp.entidades.Cliente;
 import com.example.corresponsapp.entidades.CuentaBancaria;
 
 public interface ConsultarSaldoMVP {

@@ -34,14 +34,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvRetiros"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="@string/retiros"
                 android:textAlignment="center"
                 android:textSize="18sp"
@@ -51,7 +52,7 @@
                 android:id="@+id/rvRetiro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -66,6 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:padding="5dp"
                 android:text="@string/depositos"
                 android:textAlignment="center"
                 android:textSize="18sp"
@@ -75,7 +77,7 @@
                 android:id="@+id/rvDeposito"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -90,6 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:padding="5dp"
                 android:text="@string/pago_con_tarjeta"
                 android:textAlignment="center"
                 android:textSize="18sp"
@@ -99,7 +102,7 @@
                 android:id="@+id/rvPagoTarjeta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -114,6 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:padding="5dp"
                 android:text="@string/transferencias"
                 android:textAlignment="center"
                 android:textSize="18sp"
@@ -123,7 +127,7 @@
                 android:id="@+id/rvTransferencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -138,6 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:padding="5dp"
                 android:text="@string/consultas_de_saldo"
                 android:textAlignment="center"
                 android:textSize="18sp"
@@ -147,7 +152,7 @@
                 android:id="@+id/rvConsultasSaldo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -162,6 +167,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:padding="5dp"
                 android:text="@string/cuentas_creadas"
                 android:textAlignment="center"
                 android:textSize="18sp"
@@ -171,7 +177,7 @@
                 android:id="@+id/rvCuentasCreada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </LinearLayout>
     </LinearLayout>

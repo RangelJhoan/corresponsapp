@@ -2,12 +2,8 @@ package com.example.corresponsapp.interfacesgraficas.dialogos;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,8 +18,8 @@ import java.util.Hashtable;
 public class DialogConfirmarFragment extends DialogFragment {
 
     private FragmentDialogConfirmarBinding binding;
-    private ConfirmacionCallback callback;
-    private Hashtable<String, String> informacion;
+    private final ConfirmacionCallback callback;
+    private final Hashtable<String, String> informacion;
 
     public DialogConfirmarFragment(Hashtable<String, String> informacion, ConfirmacionCallback callback) {
         this.callback = callback;

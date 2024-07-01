@@ -16,7 +16,8 @@
             android:id="@+id/ivAccion"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/retirar_128"/>
+            android:contentDescription="@string/retirar"
+            android:src="@drawable/retirar_128" />
 
         <LinearLayout
             android:layout_width="wrap_content"

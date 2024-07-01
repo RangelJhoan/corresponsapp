@@ -6,8 +6,8 @@ import com.example.corresponsapp.entidades.Corresponsal;
 
 public class LoginPresenterImpl implements LoginMVP.Presenter {
 
-    private LoginMVP.Model model;
-    private LoginMVP.View view;
+    private final LoginMVP.Model model;
+    private final LoginMVP.View view;
 
     public LoginPresenterImpl(LoginMVP.View view) {
         this.view = view;

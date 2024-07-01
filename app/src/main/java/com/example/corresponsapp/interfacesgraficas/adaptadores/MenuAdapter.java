@@ -1,11 +1,9 @@
 package com.example.corresponsapp.interfacesgraficas.adaptadores;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,8 +18,8 @@ import java.util.ArrayList;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolderDatos> {
 
-    ArrayList<Menu> listaMenu;
-    MenuCallback callback;
+    final ArrayList<Menu> listaMenu;
+    final MenuCallback callback;
 
     public MenuAdapter(ArrayList<Menu> listaMenu, MenuCallback callback) {
         this.listaMenu = listaMenu;
@@ -31,7 +29,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolderDato
     @NonNull
     @Override
     public ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_botonesmenu, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_botonesmenu, parent, false);
         return new ViewHolderDatos(view);
     }
 
@@ -40,12 +38,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolderDato
         Menu menu = listaMenu.get(position);
         holder.ibBoton.setImageResource(listaMenu.get(position).getIdentificadorRecurso());
         holder.tvBoton.setText(listaMenu.get(position).getNombre());
-        holder.ibBoton.setOnClickListener(view -> {
-            callback.navegarFragment(menu);
-        });
-        holder.llItemList.setOnClickListener(view -> {
-            callback.navegarFragment(menu);
-        });
+        holder.ibBoton.setOnClickListener(view -> callback.navegarFragment(menu));
+        holder.llItemList.setOnClickListener(view -> callback.navegarFragment(menu));
     }
 
     @Override
@@ -55,9 +49,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolderDato
 
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
 
-        ImageButton ibBoton;
-        TextView tvBoton;
-        CardView llItemList;
+        final ImageButton ibBoton;
+        final TextView tvBoton;
+        final CardView llItemList;
 
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);

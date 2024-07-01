@@ -1,7 +1,5 @@
 package com.example.corresponsapp.entidades;
 
-import java.util.Date;
-
 public class Tarjeta{
 
     private int id;

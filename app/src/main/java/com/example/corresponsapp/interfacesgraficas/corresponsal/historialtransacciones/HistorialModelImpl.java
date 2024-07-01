@@ -6,8 +6,7 @@ import com.example.corresponsapp.basedatos.BaseDatos;
 
 public class HistorialModelImpl implements HistorialMVP.Model{
 
-    private HistorialMVP.Presenter presenter;
-    private BaseDatos baseDatos;
+    private final HistorialMVP.Presenter presenter;
 
     public HistorialModelImpl(HistorialMVP.Presenter presenter) {
         this.presenter = presenter;
@@ -15,7 +14,7 @@ public class HistorialModelImpl implements HistorialMVP.Model{
 
     @Override
     public void consultarHistorialTransacciones(Context context) {
-        baseDatos = BaseDatos.getInstance(context);
+        BaseDatos baseDatos = BaseDatos.getInstance(context);
 
         presenter.mostrarRetiros(baseDatos.consultarRetiros());
         presenter.mostrarDepositos(baseDatos.consultarDepositos());

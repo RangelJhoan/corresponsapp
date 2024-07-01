@@ -13,15 +13,15 @@ import java.util.Date;
 
 public class PagoTarjetaModelImpl implements PagoTarjetaMVP.Model {
 
-    private PagoTarjetaMVP.Presenter presenter;
-    private BaseDatos baseDatos;
+    private final PagoTarjetaMVP.Presenter presenter;
 
     public PagoTarjetaModelImpl(PagoTarjetaMVP.Presenter presenter) {
         this.presenter = presenter;
     }
+
     @Override
     public void pagarTarjeta(Context context, PagoTarjeta pagoTarjeta) {
-        baseDatos = BaseDatos.getInstance(context);
+        BaseDatos baseDatos = BaseDatos.getInstance(context);
 
         //Verificar que el número de cuenta sea correcto
         int idCuenta = baseDatos.consultarIdCuentaNumero(pagoTarjeta.getCuentaBancaria().getNumeroCuenta());
@@ -56,7 +56,7 @@ public class PagoTarjetaModelImpl implements PagoTarjetaMVP.Model {
                             } else {
                                 presenter.mostrarError("¡Error! Saldo no disponible para el pago");
                             }
-                        }else{
+                        } else {
                             presenter.mostrarError("¡Error! La tarjeta se encuentra expirada");
                         }
                     } else {
@@ -77,11 +77,7 @@ public class PagoTarjetaModelImpl implements PagoTarjetaMVP.Model {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date srtDate = sdf.parse(fecha_expiracion);
-            if (new Date().after(srtDate)) {
-                return false;
-            } else {
-                return true;
-            }
+            return !new Date().after(srtDate);
         } catch (ParseException e) {
             e.printStackTrace();
             return false;

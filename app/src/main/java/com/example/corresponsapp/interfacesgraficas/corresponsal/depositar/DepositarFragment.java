@@ -32,15 +32,9 @@ public class DepositarFragment extends Fragment implements DepositarMVP.View, Co
     private DepositarMVP.Presenter presenter;
     private NavController navController;
     private IAbrirDialogo iAbrirDialogo;
-    private Activity actividad;
 
     public DepositarFragment() {
 
-    }
-
-    public static DepositarFragment newInstance(String param1, String param2) {
-        DepositarFragment fragment = new DepositarFragment();
-        return fragment;
     }
 
     @Override
@@ -64,9 +58,7 @@ public class DepositarFragment extends Fragment implements DepositarMVP.View, Co
         binding.menuToolbar.ivPantalla.setImageResource(R.drawable.banco_128);
         binding.menuToolbar.tvTitulo.setText(Constantes.DEPOSITAR);
 
-        binding.btnDepositar.setOnClickListener(v -> {
-            validarCampos();
-        });
+        binding.btnDepositar.setOnClickListener(v -> validarCampos());
 
     }
 
@@ -84,7 +76,7 @@ public class DepositarFragment extends Fragment implements DepositarMVP.View, Co
                     //Valida que el monto sea de tipo numérico
                     if (Utilidades.validarSoloNumeros(binding.etMonto.getText().toString())) {
                         //El valor mínimo de la transacción son 2000 pesos
-                        if(Double.parseDouble(binding.etMonto.getText().toString()) >= 2000){
+                        if (Double.parseDouble(binding.etMonto.getText().toString()) >= 2000) {
                             Hashtable<String, String> informacion = new Hashtable<>();
                             informacion.put("accion", Constantes.DEPOSITAR);
                             informacion.put("documentoAccion", binding.etDocumentoEnvia.getText().toString());
@@ -93,7 +85,7 @@ public class DepositarFragment extends Fragment implements DepositarMVP.View, Co
                             informacion.put("comision", String.valueOf(Constantes.COMISION_DEPOSITAR));
 
                             iAbrirDialogo.abrirDialogo(informacion, this);
-                        }else{
+                        } else {
                             Toast.makeText(getContext(), "Depósito mínimo: 1000", Toast.LENGTH_LONG).show();
                         }
                     } else {
@@ -158,7 +150,7 @@ public class DepositarFragment extends Fragment implements DepositarMVP.View, Co
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof Activity) {
-            this.actividad = (Activity) context;
+            Activity actividad = (Activity) context;
             iAbrirDialogo = (IAbrirDialogo) actividad;
         }
     }

@@ -21,20 +21,11 @@ import com.example.corresponsapp.utilidades.Constantes;
 import com.example.corresponsapp.utilidades.Sesion;
 import com.example.corresponsapp.utilidades.Utilidades;
 
-public class CorresponsalCambiarClaveFragment extends Fragment implements CorresponsalCambiarClaveMVP.View{
+public class CorresponsalCambiarClaveFragment extends Fragment implements CorresponsalCambiarClaveMVP.View {
 
     private FragmentCorresponsalCambiarClaveBinding binding;
     private CorresponsalCambiarClaveMVP.Presenter presenter;
     private NavController navController;
-
-    public CorresponsalCambiarClaveFragment() {
-
-    }
-
-    public static CorresponsalCambiarClaveFragment newInstance() {
-        CorresponsalCambiarClaveFragment fragment = new CorresponsalCambiarClaveFragment();
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +35,7 @@ public class CorresponsalCambiarClaveFragment extends Fragment implements Corres
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentCorresponsalCambiarClaveBinding.inflate(inflater,container,false);
+        binding = FragmentCorresponsalCambiarClaveBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -56,9 +47,7 @@ public class CorresponsalCambiarClaveFragment extends Fragment implements Corres
         binding.menuToolbar.ivPantalla.setImageResource(R.drawable.clave_128);
         navController = Navigation.findNavController(view);
 
-        binding.btnCambiarClave.setOnClickListener(view1 -> {
-            validarCampos();
-        });
+        binding.btnCambiarClave.setOnClickListener(view1 -> validarCampos());
     }
 
     /**
@@ -67,24 +56,25 @@ public class CorresponsalCambiarClaveFragment extends Fragment implements Corres
     private void validarCampos() {
         EditText[] editTexts = {binding.etCorreo, binding.etClave, binding.etConfirmarClave};
         //Se valida que los campos estén llenos
-        if(Utilidades.validarCampos(editTexts)){
+        if (Utilidades.validarCampos(editTexts)) {
             //Se valida la confirmación de la nueva clave
-            if(binding.etClave.getText().toString().equals(binding.etConfirmarClave.getText().toString())){
+            if (binding.etClave.getText().toString().equals(binding.etConfirmarClave.getText().toString())) {
                 Corresponsal corresponsal = new Corresponsal();
                 corresponsal.setId(Sesion.corresponsalSesion.getId());
                 corresponsal.setCorreo(binding.etCorreo.getText().toString());
                 corresponsal.setClave(binding.etClave.getText().toString());
                 presenter.cambiarClave(getContext(), corresponsal);
-            }else{
+            } else {
                 Toast.makeText(getContext(), "Las claves no coinciden", Toast.LENGTH_LONG).show();
             }
-        }else{
+        } else {
             Toast.makeText(getContext(), "Por favor llene todos los campos", Toast.LENGTH_LONG).show();
         }
     }
 
     /**
      * Muestra un mensaje en pantalla con el resultado obtenido en el modelo
+     *
      * @param resultado Resultado obtenido en el modelo luego de realizar las distintas validaciones y operaciones
      */
     @Override
@@ -95,7 +85,8 @@ public class CorresponsalCambiarClaveFragment extends Fragment implements Corres
 
     /**
      * Muestra un mensaje en pantalla si el Modelo indica que hubo algún error
-     * @param error
+     *
+     * @param error Descripción del error ocurrido al realizarse el proceso
      */
     @Override
     public void mostrarError(String error) {

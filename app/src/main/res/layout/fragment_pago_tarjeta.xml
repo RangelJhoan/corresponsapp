@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    >
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context=".interfacesgraficas.corresponsal.pagotarjeta.PagoTarjetaFragment">
 
         <include
             android:id="@+id/menu_toolbar"
+            layout="@layout/menu_toolbar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
-            layout="@layout/menu_toolbar"
-            />
+            android:layout_weight="3" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,10 +30,9 @@
                 android:id="@+id/tilTarjeta"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_weight="1"
                 android:hint="@string/numero_de_la_tarjeta"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -45,28 +42,26 @@
                     android:id="@+id/etNumeroTarjeta"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:maxLength="16"
                     android:inputType="number"
-                    android:paddingStart="30dp" />
+                    android:maxLength="16" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-                >
+                android:baselineAligned="false">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/itlExpiracion"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:hint="@string/fecha_expiracion"
                     android:layout_marginStart="40dp"
                     android:layout_marginEnd="10dp"
+                    android:layout_weight="6"
+                    android:hint="@string/fecha_expiracion"
                     app:boxBackgroundMode="outline"
                     app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
                     app:errorEnabled="true">
@@ -75,7 +70,8 @@
                         android:id="@+id/etFechaExpiracion"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingStart="30dp" />
+                        android:focusable="false"
+                        android:inputType="date"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -106,10 +102,9 @@
                 android:id="@+id/textInputLayout4"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
                 android:hint="@string/nombre"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -119,20 +114,18 @@
                     android:id="@+id/etNombre"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textAllCaps="true"
-                    android:maxLength="50"
                     android:inputType="textPersonName|textCapCharacters"
-                    android:paddingStart="30dp" />
+                    android:maxLength="50"
+                    android:textAllCaps="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout5"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
                 android:hint="@string/valor_a_pagar"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -143,18 +136,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="number"
-                    android:maxLength="7"
-                    android:paddingStart="30dp" />
+                    android:maxLength="7" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout6"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
                 android:hint="@string/numero_de_cuotas"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -165,19 +156,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="number"
-                    android:maxLength="2"
-                    android:paddingStart="30dp" />
+                    android:maxLength="2" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnPagar"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:paddingHorizontal="60dp"
-                android:layout_weight="1"
                 android:backgroundTint="#0100C1"
+                android:paddingHorizontal="60dp"
                 android:text="@string/pagar" />
 
         </LinearLayout>

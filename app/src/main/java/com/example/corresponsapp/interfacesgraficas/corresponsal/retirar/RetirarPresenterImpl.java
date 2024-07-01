@@ -6,8 +6,8 @@ import com.example.corresponsapp.entidades.Retiro;
 
 public class RetirarPresenterImpl implements RetirarMVP.Presenter {
 
-    private RetirarMVP.Model model;
-    private RetirarMVP.View view;
+    private final RetirarMVP.Model model;
+    private final RetirarMVP.View view;
 
     public RetirarPresenterImpl(RetirarMVP.View view) {
         this.view = view;

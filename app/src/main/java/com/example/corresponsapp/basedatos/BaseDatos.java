@@ -26,8 +26,8 @@ import com.example.corresponsapp.utilidades.UtilidadesBD;
 import java.util.ArrayList;
 
 public class BaseDatos extends SQLiteOpenHelper {
-    private static BaseDatos instancia = null;
-    private Context mCxt;
+    public static BaseDatos instancia = null;
+    private final Context mCxt;
 
     //PARAMETROS CONEXIÓN
     private static final String DATABASE_NAME = "corresponsapp";
@@ -37,6 +37,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método diseñado con patrón Singleton el cual inicializa la conexión con la base de datos
+     *
      * @param ctx parámetro que recibe el contexto donde es llamado
      * @return regresa la instancia del objeto de esta clase
      */
@@ -49,6 +50,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método para instanciar el objeto de la base de datos e inicilizar la conexión
+     *
      * @param ctx parámetro que recibe el conexto donde es llamado
      */
     private BaseDatos(@Nullable Context ctx) {
@@ -58,6 +60,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método utilizado para la creación de las tablas de la base de datos
+     *
      * @param db parámetro que recibe la instancia de la base de datos
      */
     @Override
@@ -77,8 +80,9 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método que se ejecuta cuando la versión de la base de datos sufre algún cambio
+     *
      * @param db obtiene la isntancia del objeto de la base de datos
-     * @param i parámetro que obtiene la versión antigua de la base de datos
+     * @param i  parámetro que obtiene la versión antigua de la base de datos
      * @param i1 parámetro que obtiene la versión nueva de la base de datos
      */
     @Override
@@ -100,6 +104,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método que inserta una cuenta bancaria de un cliente a la base de datos
+     *
      * @param cuentaBancaria parámetro que recibe un objeto Cuenta Bancaria que almacena la información de la cuenta bancaria, el cliente y la tarjeta
      * @return El método retorna el id de la cuenta bancaria si es exitoso el registro, sino retorna -1 indicando que no se realizó el registro
      */
@@ -124,6 +129,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método que inserta la información del cliente en la base de datos
+     *
      * @param cliente parámetro que recibe un objeto Cliente con la información personal del cliente
      * @return retorna el id del cliente. Si no se crea el registro, se retorna -1 como error
      */
@@ -134,44 +140,44 @@ public class BaseDatos extends SQLiteOpenHelper {
         valuesCliente.put(UtilidadesBD.CLIENTE_NOMBRE_COMPLETO, cliente.getNombreCompleto());
 
         //Crea el cliente
-        long resultadoCliente = db.insert(UtilidadesBD.CLIENTE_TABLA, UtilidadesBD.CLIENTE_ID, valuesCliente);
-        return resultadoCliente;
+        return db.insert(UtilidadesBD.CLIENTE_TABLA, UtilidadesBD.CLIENTE_ID, valuesCliente);
     }
 
     /**
      * Crea el registro de la cuenta que creó el corresponsal
+     *
      * @param cuentaCreada Parámetro que recibe un objeto CuentaCreada con la información de la cuenta del cliente que se creó
      * @return Retorna el ID del registro de la cuenta del cliente
      */
-    public long crearCuentaCreada(CuentaCreada cuentaCreada){
+    public long crearCuentaCreada(CuentaCreada cuentaCreada) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues valuesCuentaCreada = new ContentValues();
         valuesCuentaCreada.put(UtilidadesBD.CUENTA_CREADA_FK_CLIENTE, cuentaCreada.getCliente().getId());
         valuesCuentaCreada.put(UtilidadesBD.CUENTA_CREADA_MONTO, cuentaCreada.getMontoInicial());
 
         //Crea el registro de la creación del cliente
-        long resultadoCliente = db.insert(UtilidadesBD.CUENTA_CREADA_TABLA, UtilidadesBD.CUENTA_CREADA_ID, valuesCuentaCreada);
-        return resultadoCliente;
+        return db.insert(UtilidadesBD.CUENTA_CREADA_TABLA, UtilidadesBD.CUENTA_CREADA_ID, valuesCuentaCreada);
     }
 
     /**
      * Crea el registro del cliente que consulta su saldo en la cuenta bancaria
+     *
      * @param consultaSaldo Parámetro que recibe un objeto Consulta Saldo con la información de la acción realizada por el usuario de consultar saldo
      * @return Retorna el ID del registro de la consulta del saldo de la cuenta bancaria del cliente
      */
-    public long crearConsultaSaldo(ConsultaSaldo consultaSaldo){
+    public long crearConsultaSaldo(ConsultaSaldo consultaSaldo) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues valuesConsultarSaldo = new ContentValues();
         valuesConsultarSaldo.put(UtilidadesBD.CONSULTA_SALDO_FK_CLIENTE, consultaSaldo.getCliente().getId());
         valuesConsultarSaldo.put(UtilidadesBD.CONSULTA_SALDO_SALDO, consultaSaldo.getSaldo());
 
         //Crea el registro de la consulta del saldo
-        long resultadoConsultaSaldo = db.insert(UtilidadesBD.CONSULTA_SALDO_TABLA, UtilidadesBD.CONSULTA_SALDO_ID, valuesConsultarSaldo);
-        return resultadoConsultaSaldo;
+        return db.insert(UtilidadesBD.CONSULTA_SALDO_TABLA, UtilidadesBD.CONSULTA_SALDO_ID, valuesConsultarSaldo);
     }
 
     /**
      * Método que inserta la información de la tarjeta que se le asigna al cliente en la base de datos
+     *
      * @param tarjeta parámetro que recibe un objeto Tarjeta con la información de la tarjeta que se le asignó al cliente
      * @return retorna el id de la tarjeta. Si no se crea el registro, se retorna -1 como error
      */
@@ -182,12 +188,12 @@ public class BaseDatos extends SQLiteOpenHelper {
         valuesTarjeta.put(UtilidadesBD.TARJETA_CVV, tarjeta.getCvv());
 
         //Crea la tarjeta
-        long resultadoTarjeta = db.insert(UtilidadesBD.TARJETA_TABLA, UtilidadesBD.TARJETA_ID, valuesTarjeta);
-        return resultadoTarjeta;
+        return db.insert(UtilidadesBD.TARJETA_TABLA, UtilidadesBD.TARJETA_ID, valuesTarjeta);
     }
 
     /**
      * Método que inserta la información del depósito que realizó el usuario en la base de datos
+     *
      * @param deposito parámetro que recibe un objeto Deposito con la información del depósito que realizó el cliente
      * @return retorna el id del registro del depósito. Si no se crea el registro, se retorna -1 como error
      */
@@ -210,6 +216,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método usado para sumar dinero a la cuenta de un cliente y registrar la comisión en la cuenta del corresponsal
+     *
      * @param idCuenta parámetro que recibe el id de la cuenta a depositar el dinero
      * @param deposito parámetro que recibe el valor a depositar en la cuenta del cliente
      * @param comision parámetro que recibe el valor de la comisión según la acción a realizar
@@ -239,6 +246,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método que inserta en la base de datos la información del retiro realizada por el cliente
+     *
      * @param retiro Parámetro que recibe un objeto Retiro con la información del retiro que realizó el cliente
      * @return Retorna el id del registro del retiro. Si no se registra el retiro, se retornará -1 como error
      */
@@ -260,8 +268,9 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método usado para restar dinero de una cuenta bancaria y sumar el valor de la comisión de esta acción a la cuenta del corresponsal
+     *
      * @param idCuenta Parámetro que recibe el id de la cuenta bancaria del cliente a la que se le retira el dinero
-     * @param retiro Parámetro que recibe el valor a retirar de la cuenta bancaria del cliente
+     * @param retiro   Parámetro que recibe el valor a retirar de la cuenta bancaria del cliente
      * @param comision Parámetro que recibe el valor de la comisión de la acción realizada por el cliente
      * @return Retorna el id del registro del retiro. Si no se registra el retiro, se retorna -1 indicando que no se retiró el dinero y -2 si el cliente no tiene suficiente saldo para el retiro
      */
@@ -293,6 +302,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método que inserta el registro de un pago con tarjeta realizado por un cliente a la base de datos
+     *
      * @param pagoTarjeta Parámetro que recibe un objeto la información del pago con tarjeta realizada por el cliente
      * @return Retorna el id del registro del pago con tarjeta. Si no se registra el pago, retorna -1 indicando que hubo un error
      */
@@ -316,8 +326,9 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método que inserta en la base de datos la suma del saldo actual del corresponsal y el valor de la comisión de la acción realizada por el cliente. El saldo del corresponsal es cambiado al nuevo saldo
+     *
      * @param idCorresponsal Parámetro que recibe el id del corresponsal que tiene la sesión activa en el dispositivo
-     * @param comision Parámetro que recibe el valor de la comisión de la acción realizada por el cliente
+     * @param comision       Parámetro que recibe el valor de la comisión de la acción realizada por el cliente
      * @return Retorna el ID del registro de la comisión. Si no se hace el registro, se retorna -1 indicando que hubo un error
      */
     public long registrarComision(int idCorresponsal, double comision) {
@@ -375,7 +386,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         ContentValues valuesRetiro = new ContentValues();
         //Sumarle al saldo del corresponsal el valor de la comisión
         double nuevoSaldo = consultarSaldoCorresponsal(idCorresponsal) - valor;
-        if(nuevoSaldo >= 0){
+        if (nuevoSaldo >= 0) {
             valuesRetiro.put(UtilidadesBD.CORRESPONSAL_SALDO, nuevoSaldo);
 
             //Asignarle el nuevo saldo a la cuenta del corresponsal
@@ -394,7 +405,7 @@ public class BaseDatos extends SQLiteOpenHelper {
                 //Retornar -1: No se registró la comisión
                 return -1;
             }
-        }else{
+        } else {
             //Retornar -2: Saldo insuficiente en el corresponsal
             return -2;
         }
@@ -402,6 +413,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método que inserta en la base de datos el registro con la información de la transferencia que realiza el cliente
+     *
      * @param transferencia Parámetro que recibe un objeto Transferencia con la información de la transferencia
      * @return Retorna el ID del registro de la transferencia. Si no se hace el registro, retorna -1 indicando que hubo un error
      */
@@ -424,8 +436,9 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método para cambiar la clave del corresponsal
+     *
      * @param idCorresponsal Parámetro que recibe el id del corresponsal
-     * @param clave Párametro que recibe la nueva clave
+     * @param clave          Párametro que recibe la nueva clave
      * @return Retorna el resultado del cambio de clave. Si no se realiza el cambio, se retorna -1 indicando que hubo un error
      */
     public long cambiarClave(int idCorresponsal, String clave) {
@@ -449,6 +462,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Método que consulta el saldo actual del corresponsal
+     *
      * @param idCorresponsal Parámetro que recibe el id del corresponsal a consultar
      * @return Retorna un dato de tipo Double con el saldo actual del corresponsal. Si no se encuentra el corresponsal, se retorna -1
      */
@@ -466,10 +480,11 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta el nombre del cliente
+     *
      * @param numeroCuenta Parámetro que recibe el número de la cuenta del cliente a consultar el nombre
      * @return Retorna una cadena de caracteres con el nombre del cliente. Si no se encuentra el registro, se retorna una cadena nula
      */
-    public String consultarNombreCliente(String numeroCuenta){
+    public String consultarNombreCliente(String numeroCuenta) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT c.nombre_completo " +
                 "FROM " + UtilidadesBD.CLIENTE_TABLA + " c " +
@@ -487,6 +502,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta el saldo actual del cliente
+     *
      * @param cuentaBancaria Parámetro que recibe un objeto Cuenta Bancaria con la información de la cuenta bancaria a consultar el saldo
      * @return Retorna un dato long con el saldo actual del cliente. Si no encuentra el cliente, retorna -1
      */
@@ -508,6 +524,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta el código PIN de la cuenta bancaria del cliente
+     *
      * @param documento Parámetro que recibe una cadena de texto con el documento del cliente a consultar
      * @return Retorna una cadena de caracteres con el código PIN de la cuenta bancaria del cliente. Si no se encuentra el registro devuelve una cadena nula.
      */
@@ -528,6 +545,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta el CVV de la tarjeta asociada a la cuenta bancaria del cliente
+     *
      * @param numeroCuenta Recibe una cadena de texto con el número de cuenta a consultar
      * @return Retorna una cadena de caracteres con el código CVV de la tarjeta
      */
@@ -550,6 +568,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta el saldo de la cuenta bancaria del cliente
+     *
      * @param idCuenta Recibe el ID de la cuenta bancaria a consultar
      * @return Retorna un dato de tipo double con el saldo de la cuenta bancaria del cliente
      */
@@ -568,6 +587,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta el ID del cliente según su documento
+     *
      * @param documento Recibe el número de documento del cliente a consultar
      * @return Retorna un entero con el ID del cliente. Si no se encuentra el cliente retorna -1
      */
@@ -586,6 +606,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta el ID de la cuenta bancaria del cliente según su número de documento
+     *
      * @param documento Recibe una cadena de caracteres con el número de documento del cliente
      * @return Retorna un entero con el ID de la cuenta bancaria. Si no es encontrada, retorna -1
      */
@@ -607,6 +628,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta el ID de la cuenta bancaria segun el número de la cuenta del cliente
+     *
      * @param numeroCuenta Recibe el número de la cuenta bancaria del cliente
      * @return Retorna un entero con el ID de la cuenta bancaria del cliente
      */
@@ -627,8 +649,9 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta en la base de datos la existencia del usuario según el correo y la clave ingresada
+     *
      * @param correo Recibe una cadena de texto con el correo ingresado en el login
-     * @param clave Recibe una cadena de texto con la clave ingresada en el login
+     * @param clave  Recibe una cadena de texto con la clave ingresada en el login
      * @return Retorna un objeto Corresponsal con la información encontrada del corresponsal
      */
     public Corresponsal iniciarSesion(String correo, String clave) {
@@ -652,6 +675,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta el correo electrónico del corresponsal según el ID de este
+     *
      * @param idCorresponsal Recibe un entero con el ID del corresponsal
      * @return Retorna una cadena de texto con el correo electrónico del corresponsal
      */
@@ -669,6 +693,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta la fecha de expiración de la tarjeta del cliente
+     *
      * @param numero_cuenta Recibe el número de la cuenta bancaria del cliente
      * @return Retorna una cadena de caracteres con la fecha de expiración de la tarjeta. Si no se encuentra, retorna una cadena de caracteres nula
      */
@@ -687,14 +712,15 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta todos los registros en la base de datos de la acción de Retiros
+     *
      * @return Retorna una lista con los retiros que encontró en la consulta
      */
     public ArrayList<Retiro> consultarRetiros() {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<Retiro> listaRetiros = new ArrayList<>();
-        Retiro retiro = null;
-        CuentaBancaria cuentaBancaria = null;
-        Cliente cliente = null;
+        Retiro retiro;
+        CuentaBancaria cuentaBancaria;
+        Cliente cliente;
 
         Cursor cursor = db.rawQuery("SELECT r.fecha, r.monto, c.documento " +
                 "FROM " + UtilidadesBD.RETIRO_TABLA + " r " +
@@ -722,14 +748,15 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta todos los registros de los depósitos realizados
+     *
      * @return Retorna una lista de depósitos
      */
     public ArrayList<Deposito> consultarDepositos() {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<Deposito> listaDepositos = new ArrayList<>();
-        Deposito deposito = null;
-        CuentaBancaria cuentaBancaria = null;
-        Cliente cliente = null;
+        Deposito deposito;
+        CuentaBancaria cuentaBancaria;
+        Cliente cliente;
 
         Cursor cursor = db.rawQuery("SELECT d.fecha, d.monto, d.documento, c.documento " +
                 "FROM " + UtilidadesBD.DEPOSITO_TABLA + " d " +
@@ -758,14 +785,15 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta todos los pagos con tarjeta realizaddos en la plataforma
+     *
      * @return Retorna una lista de Pagos con Tarjeta
      */
     public ArrayList<PagoTarjeta> consultarPagosTarjeta() {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<PagoTarjeta> listaPagosTarjeta = new ArrayList<>();
-        PagoTarjeta pagoTarjeta = null;
-        CuentaBancaria cuentaBancaria = null;
-        Cliente cliente = null;
+        PagoTarjeta pagoTarjeta;
+        CuentaBancaria cuentaBancaria;
+        Cliente cliente;
 
         Cursor cursor = db.rawQuery("SELECT pt.fecha, pt.valor, cu.numero_cuenta, c.documento " +
                 "FROM " + UtilidadesBD.PAGO_TARJETA_TABLA + " pt " +
@@ -795,16 +823,17 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta todos los registros de transferencias realizadas por los clientes
+     *
      * @return Retorna una lista de Transferencias
      */
     public ArrayList<Transferencia> consultarTransferencias() {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<Transferencia> listaTransferencia = new ArrayList<>();
-        Transferencia transferencia = null;
-        CuentaBancaria cuentaBancariaRecibe = null;
-        CuentaBancaria cuentaBancariaTransfiere = null;
-        Cliente clienteRecibe = null;
-        Cliente clienteTransfiere = null;
+        Transferencia transferencia;
+        CuentaBancaria cuentaBancariaRecibe;
+        CuentaBancaria cuentaBancariaTransfiere;
+        Cliente clienteRecibe;
+        Cliente clienteTransfiere;
 
         Cursor cursor = db.rawQuery("SELECT t.fecha, t.monto, cr.documento, ct.documento " +
                 "FROM " + UtilidadesBD.TRANSFERENCIA_TABLA + " t " +
@@ -840,6 +869,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta los registros de las consultas de saldo que ha realizado el corresponsal
+     *
      * @return Retorna una lista con las cuentas creadas
      */
     public ArrayList<CuentaCreada> consultarCuentasCreadas() {
@@ -870,6 +900,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     /**
      * Consulta los registros de las consultas de saldo que ha realizado el corresponsal
+     *
      * @return Retorna una lista con los registros de las consultas de saldo
      */
     public ArrayList<ConsultaSaldo> consultarConsultasSaldo() {

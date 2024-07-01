@@ -2,13 +2,12 @@ package com.example.corresponsapp.interfacesgraficas.corresponsal.consultarsaldo
 
 import android.content.Context;
 
-import com.example.corresponsapp.entidades.Cliente;
 import com.example.corresponsapp.entidades.CuentaBancaria;
 
 public class ConsultarSaldoPresenterImpl implements ConsultarSaldoMVP.Presenter{
 
-    private ConsultarSaldoMVP.Model model;
-    private ConsultarSaldoMVP.View view;
+    private final ConsultarSaldoMVP.Model model;
+    private final ConsultarSaldoMVP.View view;
 
     public ConsultarSaldoPresenterImpl(ConsultarSaldoMVP.View view) {
         this.view = view;

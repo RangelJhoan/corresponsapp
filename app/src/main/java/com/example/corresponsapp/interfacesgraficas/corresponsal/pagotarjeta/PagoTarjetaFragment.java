@@ -9,7 +9,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -37,18 +36,12 @@ public class PagoTarjetaFragment extends Fragment implements PagoTarjetaMVP.View
 
     private FragmentPagoTarjetaBinding binding;
     private IAbrirDialogo iAbrirDialogo;
-    private Activity actividad;
     private PagoTarjetaMVP.Presenter presenter;
     private NavController navController;
-    private DatePickerDialog.OnDateSetListener dateSetListener;
     private char numeroInicialtarjeta;
 
     public PagoTarjetaFragment() {
         //Constructor vacío para iniciar el fragmento
-    }
-
-    public static PagoTarjetaFragment newInstance() {
-        return new PagoTarjetaFragment();
     }
 
     @Override
@@ -82,23 +75,22 @@ public class PagoTarjetaFragment extends Fragment implements PagoTarjetaMVP.View
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(editable.toString().length() > 0){
+                if (editable.toString().length() > 0) {
                     char[] charArray = editable.toString().toCharArray();
-                    numeroInicialtarjeta = charArray[0];
-                    if(charArray[0] == '3'){
+                    if (charArray[0] == '3') {
                         numeroInicialtarjeta = charArray[0];
                         binding.tilTarjeta.setHint("Franquicia: American Express");
-                    }else if(charArray[0] == '4'){
+                    } else if (charArray[0] == '4') {
                         binding.tilTarjeta.setHint("Franquicia: VISA");
-                    }else if(charArray[0] == '5'){
+                    } else if (charArray[0] == '5') {
                         binding.tilTarjeta.setHint("Franquicia: MasterCard");
-                    }else if(charArray[0] == '6'){
+                    } else if (charArray[0] == '6') {
                         binding.tilTarjeta.setHint("Franquicia: UnionPay");
-                    }else{
+                    } else {
                         binding.tilTarjeta.setHint("Número de tarjeta");
                         binding.etNumeroTarjeta.setError("Franquicia incorrecta");
                     }
-                }else{
+                } else {
                     binding.tilTarjeta.setHint("Número de tarjeta");
                 }
             }
@@ -113,14 +105,11 @@ public class PagoTarjetaFragment extends Fragment implements PagoTarjetaMVP.View
 
         binding.etFechaExpiracion.setKeyListener(null);
         binding.etFechaExpiracion.setOnClickListener(view -> {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                    month = month + 1;
-                    String fecha = day+"/"+month+"/"+year;
-                    binding.etFechaExpiracion.setText(fecha);
-                }
-            },year,month,day);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (datePicker, year1, month1, day1) -> {
+                month1 = month1 + 1;
+                String fecha = day1 + "/" + month1 + "/" + year1;
+                binding.etFechaExpiracion.setText(fecha);
+            }, year, month, day);
             datePickerDialog.show();
         });
 
@@ -135,16 +124,14 @@ public class PagoTarjetaFragment extends Fragment implements PagoTarjetaMVP.View
         binding.menuToolbar.ivPantalla.setImageResource(R.drawable.pagotarjeta_128);
         binding.menuToolbar.tvTitulo.setText(Constantes.PAGOTARJETA);
 
-        binding.btnPagar.setOnClickListener(v -> {
-            abrirDialogo();
-        });
+        binding.btnPagar.setOnClickListener(v -> abrirDialogo());
 
     }
 
     private void abrirDialogo() {
         EditText[] editTexts = {binding.etNumeroTarjeta, binding.etCVV, binding.etNombre, binding.etValor, binding.etCuotas};
         if (Utilidades.validarCampos(editTexts)) {
-            if(numeroInicialtarjeta == '3' || numeroInicialtarjeta == '4' || numeroInicialtarjeta == '5' || numeroInicialtarjeta == '6'){
+            if (numeroInicialtarjeta == '3' || numeroInicialtarjeta == '4' || numeroInicialtarjeta == '5' || numeroInicialtarjeta == '6') {
                 if (Utilidades.validarSoloNumeros(binding.etNumeroTarjeta.getText().toString())) {
                     if (Utilidades.validarSoloNumeros(binding.etCVV.getText().toString())) {
                         if (Utilidades.validarTextoMayuscula(binding.etNombre.getText().toString())) {
@@ -184,7 +171,7 @@ public class PagoTarjetaFragment extends Fragment implements PagoTarjetaMVP.View
                 } else {
                     Toast.makeText(getContext(), "Digite Número de Tarjeta sólo números", Toast.LENGTH_LONG).show();
                 }
-            }else{
+            } else {
                 Toast.makeText(getContext(), "Número de franquicia no es válido", Toast.LENGTH_LONG).show();
             }
         } else {
@@ -243,7 +230,7 @@ public class PagoTarjetaFragment extends Fragment implements PagoTarjetaMVP.View
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof Activity) {
-            actividad = (Activity) context;
+            Activity actividad = (Activity) context;
             iAbrirDialogo = (IAbrirDialogo) actividad;
         }
     }

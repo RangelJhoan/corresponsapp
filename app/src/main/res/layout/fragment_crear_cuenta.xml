@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         tools:context=".interfacesgraficas.corresponsal.crearcuenta.CrearCuentaFragment">
@@ -17,13 +17,11 @@
             android:id="@+id/menu_toolbar"
             layout="@layout/menu_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="7"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -31,10 +29,9 @@
                 android:id="@+id/tilNombreCompleto"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_weight="1"
                 android:hint="@string/nombre"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -46,7 +43,6 @@
                     android:layout_height="match_parent"
                     android:inputType="textCapCharacters"
                     android:maxLines="1"
-                    android:paddingStart="30dp"
                     android:textAllCaps="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,14 +50,13 @@
                 android:id="@+id/tilDocumento"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:gravity="center"
+                android:layout_marginTop="10dp"
                 android:hint="@string/documento"
                 app:boxBackgroundMode="outline"
-                app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color">
+                app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etDocumento"
@@ -69,18 +64,16 @@
                     android:layout_height="match_parent"
                     android:inputType="number"
                     android:maxLength="11"
-                    android:maxLines="1"
-                    android:paddingStart="30dp" />
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilPIN"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
                 android:hint="@string/pin"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -95,22 +88,20 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberPassword"
                     android:maxLength="4"
-                    android:maxLines="1"
-                    android:paddingStart="30dp" />
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilConfirmarPIN"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
                 android:hint="@string/confirmar_pin"
-
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
+                app:counterEnabled="true"
                 app:counterMaxLength="4"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="true">
@@ -121,18 +112,16 @@
                     android:layout_height="match_parent"
                     android:inputType="numberPassword"
                     android:maxLength="4"
-                    android:maxLines="1"
-                    android:paddingStart="30dp" />
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilSaldoInicial"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
                 android:hint="@string/saldo"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -143,18 +132,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="number"
-                    android:maxLines="1"
-                    android:paddingStart="30dp" />
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnCrearCuenta"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
                 android:layout_marginHorizontal="100dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_weight="1"
+                android:layout_marginTop="40dp"
+                android:minHeight="48dp"
                 android:backgroundTint="#0100C1"
                 android:text="@string/crear_cuenta" />
 

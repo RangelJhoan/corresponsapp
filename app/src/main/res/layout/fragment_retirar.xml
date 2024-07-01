@@ -5,19 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context=".interfacesgraficas.corresponsal.retirar.RetirarFragment">
 
         <include
             android:id="@+id/menu_toolbar"
+            layout="@layout/menu_toolbar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
-            layout="@layout/menu_toolbar"
-            />
+            android:layout_weight="3" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,10 +30,9 @@
                 android:id="@+id/textInputLayout1"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_weight="1"
                 android:hint="@string/documento"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -43,18 +42,16 @@
                     android:id="@+id/etDocumento"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="number"
-                    android:paddingStart="30dp" />
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout2"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
                 android:hint="@string/pin"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -66,18 +63,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="numberPassword"
-                    android:maxLength="4"
-                    android:paddingStart="30dp" />
+                    android:maxLength="4" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout3"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
                 android:hint="@string/confirmar_pin"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -89,18 +84,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="numberPassword"
-                    android:maxLength="4"
-                    android:paddingStart="30dp" />
+                    android:maxLength="4" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout4"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
                 android:hint="@string/monto_a_retirar"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -110,19 +103,17 @@
                     android:id="@+id/etMonto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="number"
-                    android:paddingStart="30dp" />
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnRetirar"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:paddingHorizontal="60dp"
-                android:layout_weight="1"
                 android:backgroundTint="#0100C1"
+                android:paddingHorizontal="60dp"
                 android:text="@string/retirar" />
 
         </LinearLayout>

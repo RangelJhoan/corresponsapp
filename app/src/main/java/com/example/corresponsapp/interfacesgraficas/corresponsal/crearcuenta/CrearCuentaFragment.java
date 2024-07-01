@@ -2,8 +2,6 @@ package com.example.corresponsapp.interfacesgraficas.corresponsal.crearcuenta;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,11 +31,6 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
 
     }
 
-    public static CrearCuentaFragment newInstance(String param1, String param2) {
-        CrearCuentaFragment fragment = new CrearCuentaFragment();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +53,7 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
         binding.menuToolbar.ivPantalla.setImageResource(R.drawable.anadir_128);
         binding.menuToolbar.tvTitulo.setText(Constantes.CREAR_CUENTA);
 
-        binding.btnCrearCuenta.setOnClickListener(view1 -> {
-            crearCuenta();
-        });
+        binding.btnCrearCuenta.setOnClickListener(view1 -> crearCuenta());
 
     }
 
@@ -76,15 +67,15 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
             //Nombre del cliente debe de estar en mayúscula
             if (Utilidades.validarTextoMayuscula(binding.etNombreCompleto.getText().toString())) {
                 //PIN debe ser tipo numérico
-                if(Utilidades.validarSoloNumeros(binding.etPIN.getText().toString())){
+                if (Utilidades.validarSoloNumeros(binding.etPIN.getText().toString())) {
                     //Número de cédula debe ser tipo numérico
-                    if(Utilidades.validarSoloNumeros(binding.etDocumento.getText().toString())){
+                    if (Utilidades.validarSoloNumeros(binding.etDocumento.getText().toString())) {
                         //Se valida que el saldo inicial sea de tipo numérico
-                        if(Utilidades.validarSoloNumeros(binding.etSaldoInicial.getText().toString())){
+                        if (Utilidades.validarSoloNumeros(binding.etSaldoInicial.getText().toString())) {
                             //Se valida la confirmación del PIN
                             if (binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())) {
                                 //Validar que el PIN sea de 4 dígitos
-                                if(binding.etPIN.getText().toString().length() == 4){
+                                if (binding.etPIN.getText().toString().length() == 4) {
                                     CuentaBancaria cuentaBancaria = new CuentaBancaria();
                                     Cliente cliente = new Cliente();
                                     Tarjeta tarjeta = new Tarjeta();
@@ -105,22 +96,22 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
                                     cuentaBancaria.setTarjeta(tarjeta);
 
                                     presenter.crearCuenta(getContext(), cuentaBancaria);
-                                }else{
+                                } else {
                                     Toast.makeText(getContext(), "El número PIN debe ser de 4 dígitos", Toast.LENGTH_SHORT).show();
                                 }
                             } else {
                                 Toast.makeText(getContext(), "El código PIN no coincide", Toast.LENGTH_SHORT).show();
                             }
-                        }else{
+                        } else {
                             Toast.makeText(getContext(), "Digite el saldo sólo números", Toast.LENGTH_SHORT).show();
                         }
-                    }else{
+                    } else {
                         Toast.makeText(getContext(), "Digite documento sólo números", Toast.LENGTH_LONG).show();
                     }
-                }else{
+                } else {
                     Toast.makeText(getContext(), "Digite PIN sólo números", Toast.LENGTH_LONG).show();
                 }
-            }else{
+            } else {
                 Toast.makeText(getContext(), "Digite el nombre en mayúsculas", Toast.LENGTH_LONG).show();
             }
         } else {
@@ -130,6 +121,7 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
 
     /**
      * Método para crear la tarjeta que luego será asignada al cliente que crea la cuenta
+     *
      * @param tarjeta Objeto tarjeta vacío que será llenado con la información creada en este método
      */
     private void crearTarjeta(Tarjeta tarjeta) {
@@ -141,12 +133,13 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
 
     /**
      * Método para crear el código CVV del cliente aleatoriamente
+     *
      * @return Retorna una cadena de caracteres con el código CVV que se creó
      */
     private String crearCVV() {
         StringBuilder cvv = new StringBuilder();
         for (int i = 0; i < 4; i++) {
-            cvv.append(String.valueOf((int) (Math.random() * 10)));
+            cvv.append((int) (Math.random() * 10));
         }
         return cvv.toString();
     }
@@ -154,22 +147,24 @@ public class CrearCuentaFragment extends Fragment implements CrearCuentaMVP.View
 
     /**
      * Crea el número de la tarjeta que será el mismo número de la cuenta bancaria. Se crea apartir de un número de franquicia, el número de documento y demás números aleatorios
+     *
      * @param documento Cadena de texto con el documento ingresado por el cliente
      * @return Retorna el número de la tarjeta
      */
     private String crearNumeroTarjeta(String documento) {
         int longitudDocumento = documento.length();
         //El primer número es un número aleatorio entre 3 y 6 y se concatena su número de documento
-        String numeroTarjeta = (int) (Math.random()*4+3) + documento;
+        StringBuilder numeroTarjeta = new StringBuilder((int) (Math.random() * 4 + 3) + documento);
         //A la cadena anterior se le concatenan el resto de números aleatorios para completar un total de 16 dígitos
         for (int i = longitudDocumento; i < 15; i++) {
-            numeroTarjeta += String.valueOf((int) (Math.random() * 10));
+            numeroTarjeta.append((int) (Math.random() * 10));
         }
-        return numeroTarjeta;
+        return numeroTarjeta.toString();
     }
 
     /**
      * Muestra el resultado enviado desde el Modelo si se cumplieron con las demás validaciones
+     *
      * @param resultado Cadena de texto con el resultado enviado desde el Modelo
      */
     @Override

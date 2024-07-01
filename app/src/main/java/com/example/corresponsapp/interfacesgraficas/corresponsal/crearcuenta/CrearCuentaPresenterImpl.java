@@ -2,13 +2,12 @@ package com.example.corresponsapp.interfacesgraficas.corresponsal.crearcuenta;
 
 import android.content.Context;
 
-import com.example.corresponsapp.entidades.Cliente;
 import com.example.corresponsapp.entidades.CuentaBancaria;
 
 public class CrearCuentaPresenterImpl implements CrearCuentaMVP.Presenter{
 
-    private CrearCuentaMVP.Model model;
-    private CrearCuentaMVP.View view;
+    private final CrearCuentaMVP.Model model;
+    private final CrearCuentaMVP.View view;
 
     public CrearCuentaPresenterImpl(CrearCuentaMVP.View view) {
         this.view = view;

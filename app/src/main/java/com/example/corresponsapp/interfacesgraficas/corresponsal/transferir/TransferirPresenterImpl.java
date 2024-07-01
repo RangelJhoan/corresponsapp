@@ -6,8 +6,8 @@ import com.example.corresponsapp.entidades.Transferencia;
 
 public class TransferirPresenterImpl implements TransferirMVP.Presenter{
 
-    private TransferirMVP.Model model;
-    private TransferirMVP.View view;
+    private final TransferirMVP.Model model;
+    private final TransferirMVP.View view;
 
     public TransferirPresenterImpl(TransferirMVP.View view) {
         this.view = view;

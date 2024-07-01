@@ -6,8 +6,8 @@ import com.example.corresponsapp.entidades.Deposito;
 
 public class DepositarPresenterImpl implements DepositarMVP.Presenter{
 
-    private DepositarMVP.Model model;
-    private DepositarMVP.View view;
+    private final DepositarMVP.Model model;
+    private final DepositarMVP.View view;
 
     public DepositarPresenterImpl(DepositarMVP.View view) {
         this.view = view;

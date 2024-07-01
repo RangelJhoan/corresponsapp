@@ -11,8 +11,7 @@ import com.example.corresponsapp.utilidades.Sesion;
 
 public class CrearCuentaModelImpl implements CrearCuentaMVP.Model {
 
-    private BaseDatos baseDatos;
-    private CrearCuentaMVP.Presenter presenter;
+    private final CrearCuentaMVP.Presenter presenter;
 
     public CrearCuentaModelImpl(CrearCuentaMVP.Presenter presenter) {
         this.presenter = presenter;
@@ -20,7 +19,7 @@ public class CrearCuentaModelImpl implements CrearCuentaMVP.Model {
 
     @Override
     public void crearCuenta(Context context, CuentaBancaria cuentaBancaria) {
-        baseDatos = BaseDatos.getInstance(context);
+        BaseDatos baseDatos = BaseDatos.getInstance(context);
         //Consultar el id del cliente apartir del documento para saber si ya se encuentra registrado
         long idCliente = baseDatos.consultarIdCliente(cuentaBancaria.getCliente().getDocumento());
         if (idCliente <= 0) {

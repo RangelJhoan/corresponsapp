@@ -1,73 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    >
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context=".interfacesgraficas.login.LoginActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
             android:layout_weight="4"
-            android:gravity="center_horizontal"
             android:background="@drawable/design_degradadoazul"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:padding="20dp">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:text="@string/app_name"
-                android:textSize="26sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:layout_weight="2"/>
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="26sp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/bienvenido"
                 android:textAlignment="center"
-                android:text="@string/bienvenido"/>
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="6"
-                android:src="@drawable/banco_128"/>
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/banco_128" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
+            android:layout_weight="6"
             android:gravity="center"
-            android:layout_weight="6">
+            android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginVertical="40dp"
-                android:paddingTop="40dp"
                 android:hint="@string/correo_electronico"
+                android:paddingTop="40dp"
                 app:boxBackgroundMode="outline"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
                 app:errorEnabled="true">
 
@@ -76,21 +74,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textEmailAddress"
-                    android:paddingStart="30dp" />
+                    android:paddingHorizontal="30dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginBottom="10dp"
-                app:boxBackgroundMode="outline"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
+                android:gravity="center"
                 android:hint="@string/contrasena"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -99,18 +96,16 @@
                     android:layout_height="match_parent"
                     android:layout_marginVertical="40dp"
                     android:inputType="textPassword"
-                    android:paddingStart="30dp" />
+                    android:paddingHorizontal="30dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnIniciarSesion"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:backgroundTint="@color/azul_terciario"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="@string/iniciar_sesion"
-                />
+                android:backgroundTint="@color/azul_terciario"
+                android:text="@string/iniciar_sesion" />
 
         </LinearLayout>
 

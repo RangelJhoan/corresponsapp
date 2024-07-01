@@ -9,8 +9,7 @@ import com.example.corresponsapp.utilidades.Sesion;
 
 public class TransferirModelImpl implements TransferirMVP.Model {
 
-    private TransferirMVP.Presenter presenter;
-    private BaseDatos baseDatos;
+    private final TransferirMVP.Presenter presenter;
 
     public TransferirModelImpl(TransferirMVP.Presenter presenter) {
         this.presenter = presenter;
@@ -18,7 +17,7 @@ public class TransferirModelImpl implements TransferirMVP.Model {
 
     @Override
     public void transferirDinero(Context context, Transferencia transferencia) {
-        baseDatos = BaseDatos.getInstance(context);
+        BaseDatos baseDatos = BaseDatos.getInstance(context);
         //Verificamos que el cliente a transferir exista
         if (baseDatos.consultarIdCliente(transferencia.getCuentaTransfiere().getCliente().getDocumento()) > 0) {
             //Verificamos que el cliente que recibe exista

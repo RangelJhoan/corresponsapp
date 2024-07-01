@@ -1,7 +1,5 @@
 package com.example.corresponsapp.entidades;
 
-import java.io.Serializable;
-
 public class Cliente {
 
     private int id;
@@ -34,4 +32,5 @@ public class Cliente {
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
     }
+
 }

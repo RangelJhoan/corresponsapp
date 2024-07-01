@@ -9,8 +9,7 @@ import com.example.corresponsapp.utilidades.Sesion;
 
 public class RetirarModelImpl implements RetirarMVP.Model {
 
-    private RetirarMVP.Presenter presenter;
-    private BaseDatos baseDatos;
+    private final RetirarMVP.Presenter presenter;
 
     public RetirarModelImpl(RetirarMVP.Presenter presenter) {
         this.presenter = presenter;
@@ -18,7 +17,7 @@ public class RetirarModelImpl implements RetirarMVP.Model {
 
     @Override
     public void retirarDinero(Context context, Retiro retiro) {
-        baseDatos = BaseDatos.getInstance(context);
+        BaseDatos baseDatos = BaseDatos.getInstance(context);
         //Consultar que el cliente exista
         int idCliente = baseDatos.consultarIdCliente(retiro.getCuentaBancaria().getCliente().getDocumento());
         if (idCliente > 0) {

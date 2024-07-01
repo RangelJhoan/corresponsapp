@@ -30,18 +30,12 @@ import java.util.Hashtable;
 public class TransferirFragment extends Fragment implements TransferirMVP.View, ConfirmacionCallback {
 
     private FragmentTransferirBinding binding;
-    private Activity actividad;
     private IAbrirDialogo iAbrirDialogo;
     private TransferirMVP.Presenter presenter;
     private NavController navController;
 
     public TransferirFragment() {
 
-    }
-
-    public static TransferirFragment newInstance(String param1, String param2) {
-        TransferirFragment fragment = new TransferirFragment();
-        return fragment;
     }
 
     @Override
@@ -65,9 +59,7 @@ public class TransferirFragment extends Fragment implements TransferirMVP.View, 
         binding.menuToolbar.ivPantalla.setImageResource(R.drawable.transferir_128);
         binding.menuToolbar.tvTitulo.setText(Constantes.TRANSFERIR);
 
-        binding.btnTransferir.setOnClickListener(view1 -> {
-            validarCampos();
-        });
+        binding.btnTransferir.setOnClickListener(view1 -> validarCampos());
 
     }
 
@@ -117,7 +109,7 @@ public class TransferirFragment extends Fragment implements TransferirMVP.View, 
 
     @Override
     public void confirmarTransaccion(String confirmacion) {
-        switch (confirmacion){
+        switch (confirmacion) {
             case "Confirmar":
                 transferirDinero();
                 break;
@@ -149,7 +141,7 @@ public class TransferirFragment extends Fragment implements TransferirMVP.View, 
         transferencia.setCuentaTransfiere(cuentaBancariaTransfiere);
         transferencia.setCuentaRecibe(cuentaBancariaRecibe);
 
-        presenter.transferirDinero(getContext(),transferencia);
+        presenter.transferirDinero(getContext(), transferencia);
     }
 
     @Override
@@ -167,7 +159,7 @@ public class TransferirFragment extends Fragment implements TransferirMVP.View, 
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof Activity) {
-            actividad = (Activity) context;
+            Activity actividad = (Activity) context;
             iAbrirDialogo = (IAbrirDialogo) actividad;
         }
     }

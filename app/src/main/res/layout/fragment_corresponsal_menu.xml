@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".interfacesgraficas.corresponsal.corresponsalmenu.CorresponsalMenuFragment">
 
@@ -11,14 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:padding="20dp"
         android:background="@drawable/design_degradadoazul"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -27,8 +26,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="8"
-                android:text="Hola, corresponsal"
                 android:maxLines="1"
+                android:text="@string/hola_corresponsal"
                 android:textColor="@color/white"
                 android:textSize="26sp"
                 android:textStyle="bold" />
@@ -38,28 +37,27 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                app:borderWidth="0dp"
                 android:adjustViewBounds="true"
+                android:background="@null"
+                android:contentDescription="@string/opciones"
                 android:padding="5dp"
                 android:scaleType="fitCenter"
-                android:background="@null"
-                android:src="@drawable/opciones_128"/>
+                android:src="@drawable/opciones_128"
+                app:borderWidth="0dp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="7"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="Saldo Corresponsal:"
+                android:layout_height="wrap_content"
                 android:gravity="bottom|center_horizontal"
+                android:text="@string/saldo_corresponsal"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="26sp"
@@ -68,10 +66,10 @@
             <TextView
                 android:id="@+id/tvSaldo"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="$300.000"
+                android:layout_height="wrap_content"
                 android:maxLines="1"
+                android:padding="12dp"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="22sp"
@@ -85,14 +83,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
-        android:padding="20dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Menú Principal"
+            android:text="@string/menu_principal"
             android:textAlignment="center"
             android:textSize="26sp"
             android:textStyle="bold" />
@@ -100,13 +98,13 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/black"/>
+            android:background="@color/black" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBotonesMenu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp" />
 
     </LinearLayout>
 

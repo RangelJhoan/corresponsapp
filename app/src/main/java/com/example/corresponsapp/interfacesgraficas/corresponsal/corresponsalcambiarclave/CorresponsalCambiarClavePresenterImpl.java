@@ -6,8 +6,8 @@ import com.example.corresponsapp.entidades.Corresponsal;
 
 public class CorresponsalCambiarClavePresenterImpl implements CorresponsalCambiarClaveMVP.Presenter {
 
-    private CorresponsalCambiarClaveMVP.View view;
-    private CorresponsalCambiarClaveMVP.Model model;
+    private final CorresponsalCambiarClaveMVP.View view;
+    private final CorresponsalCambiarClaveMVP.Model model;
 
     public CorresponsalCambiarClavePresenterImpl(CorresponsalCambiarClaveMVP.View view) {
         this.view = view;

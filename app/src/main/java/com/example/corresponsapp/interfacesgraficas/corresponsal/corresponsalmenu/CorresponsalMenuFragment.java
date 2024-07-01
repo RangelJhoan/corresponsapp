@@ -33,24 +33,9 @@ import java.util.ArrayList;
 public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
 
     private FragmentCorresponsalMenuBinding binding;
-    private ArrayList<Menu> listaMenu;
-    private MenuAdapter adapter;
     private IAbrirOpcCor iAbrirOpcCor;
-    private Activity actividad;
     private View view;
     private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
-    private Corresponsal sesionCorresponsal;
-
-
-    public CorresponsalMenuFragment() {
-
-    }
-
-    public static CorresponsalMenuFragment newInstance(String param1, String param2) {
-        CorresponsalMenuFragment fragment = new CorresponsalMenuFragment();
-        return fragment;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,30 +53,25 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
 
         String[] nombre = Sesion.corresponsalSesion.getNombreCompleto().split(" ");
         binding.tvSaludo.setText("Hola, " + nombre[0]);
-        binding.tvSaldo.setText("$"+ Sesion.corresponsalSesion.getSaldo());
+        binding.tvSaldo.setText("$" + Sesion.corresponsalSesion.getSaldo());
 
         cargarMenu();
 
-        binding.ibOpciones.setOnClickListener(view1 -> {
-            iAbrirOpcCor.abrirOpciones(view);
-        });
-
+        binding.ibOpciones.setOnClickListener(view1 -> iAbrirOpcCor.abrirOpciones(view));
     }
 
     private void inicializarPreference() {
-        sesionCorresponsal = new Corresponsal();
+        Corresponsal sesionCorresponsal = new Corresponsal();
 
-        sesionCorresponsal.setId(preferences.getInt(Sesion.LLAVE_ID,0));
+        sesionCorresponsal.setId(preferences.getInt(Sesion.LLAVE_ID, 0));
         sesionCorresponsal.setNombreCompleto(preferences.getString(Sesion.LLAVE_NOMBRE, null));
         sesionCorresponsal.setSaldo(preferences.getFloat(Sesion.LLAVE_SALDO, 0));
 
-        Sesion.corresponsalSesion = new Corresponsal();
         Sesion.corresponsalSesion = sesionCorresponsal;
-
     }
 
     private void cargarMenu() {
-        listaMenu = new ArrayList<>();
+        ArrayList<Menu> listaMenu = new ArrayList<>();
         listaMenu.add(new Menu(Constantes.PAGOTARJETA, R.drawable.pagotarjeta_128));
         listaMenu.add(new Menu(Constantes.RETIRAR, R.drawable.retirar_128));
         listaMenu.add(new Menu(Constantes.DEPOSITAR, R.drawable.depositar_128));
@@ -100,15 +80,15 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
         listaMenu.add(new Menu(Constantes.CREAR_CUENTA, R.drawable.usuario_128));
         listaMenu.add(new Menu(Constantes.HISTORIAL_TRANSACCIONES, R.drawable.historial_128));
 
-        binding.rvBotonesMenu.setLayoutManager(new GridLayoutManager(getContext(),3));
-        adapter = new MenuAdapter(listaMenu, this);
+        binding.rvBotonesMenu.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        MenuAdapter adapter = new MenuAdapter(listaMenu, this);
         binding.rvBotonesMenu.setAdapter(adapter);
     }
 
     @Override
     public void navegarFragment(Menu menu) {
         final NavController navController = Navigation.findNavController(view);
-        switch (menu.getNombre()){
+        switch (menu.getNombre()) {
             case Constantes.PAGOTARJETA:
                 navController.navigate(R.id.pagoTarjetaFragment);
                 break;
@@ -139,10 +119,9 @@ public class CorresponsalMenuFragment extends Fragment implements MenuCallback {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        preferences = context.getSharedPreferences("sesion",Context.MODE_PRIVATE);
-        editor = preferences.edit();
-        if(context instanceof Activity){
-            actividad = (Activity) context;
+        preferences = context.getSharedPreferences("sesion", Context.MODE_PRIVATE);
+        if (context instanceof Activity) {
+            Activity actividad = (Activity) context;
             iAbrirOpcCor = (IAbrirOpcCor) actividad;
         }
     }

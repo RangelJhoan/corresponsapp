@@ -19,8 +19,8 @@
             android:id="@+id/tvTitulo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/confirmar_transaccion"
             android:gravity="center"
+            android:text="@string/confirmar_transaccion"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -37,9 +37,9 @@
         <LinearLayout
             android:id="@+id/llAccion"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
+            android:layout_marginVertical="10dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -55,7 +55,7 @@
                 android:id="@+id/tvSetAccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Acción"
+                android:text="@string/accion"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -63,9 +63,9 @@
         <LinearLayout
             android:id="@+id/llNombre"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
+            android:layout_marginVertical="10dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -89,9 +89,9 @@
         <LinearLayout
             android:id="@+id/llDocumentoAccion"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
+            android:layout_marginVertical="10dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -115,9 +115,9 @@
         <LinearLayout
             android:id="@+id/llNumeroTarjeta"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
+            android:layout_marginVertical="10dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -141,9 +141,9 @@
         <LinearLayout
             android:id="@+id/llFechaExpiracion"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
+            android:layout_marginVertical="10dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -159,7 +159,7 @@
                 android:id="@+id/tvSetFecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fecha"
+                android:text="@string/fecha"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -167,9 +167,9 @@
         <LinearLayout
             android:id="@+id/llDocumentoRecibe"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
+            android:layout_marginVertical="10dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -185,7 +185,7 @@
                 android:id="@+id/tvSetDocumentoRecibe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Documento recibe"
+                android:text="@string/documento_recibe"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -193,9 +193,9 @@
         <LinearLayout
             android:id="@+id/llValor"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
+            android:layout_marginVertical="10dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -211,7 +211,7 @@
                 android:id="@+id/tvSetValor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Valor"
+                android:text="@string/valor"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -219,9 +219,9 @@
         <LinearLayout
             android:id="@+id/llCuotas"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
+            android:layout_marginVertical="10dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -237,7 +237,7 @@
                 android:id="@+id/tvSetCuotas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cuotas"
+                android:text="@string/cuotas"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -245,9 +245,9 @@
         <LinearLayout
             android:id="@+id/llComision"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
+            android:layout_marginVertical="10dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -263,7 +263,7 @@
                 android:id="@+id/tvSetComision"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Comision"
+                android:text="@string/comision"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -279,25 +279,27 @@
 
         <Button
             android:id="@+id/btnCancelar"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="10dp"
-            android:padding="10dp"
-            android:layout_weight="1"
+            android:textColor="@color/white"
             android:backgroundTint="@color/purpura_cancelar"
-            android:text="@string/cancelar" />
+            android:padding="10dp"
+            android:text="@string/cancelar"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/btnConfirmar"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:textColor="@color/white"
             android:layout_marginEnd="20dp"
-            android:layout_weight="1"
-            android:padding="10dp"
             android:backgroundTint="@color/azul_terciario"
-            android:text="@string/confirmar" />
+            android:padding="10dp"
+            android:text="@string/confirmar"
+            style="?android:attr/buttonBarButtonStyle" />
 
     </LinearLayout>
 

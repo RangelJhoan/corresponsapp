@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -46,9 +44,7 @@ public class LoginActivity extends AppCompatActivity implements LoginMVP.View {
             finish();
         }
 
-        binding.btnIniciarSesion.setOnClickListener(v -> {
-            iniciarSesion();
-        });
+        binding.btnIniciarSesion.setOnClickListener(v -> iniciarSesion());
 
     }
 

@@ -7,8 +7,7 @@ import com.example.corresponsapp.entidades.Corresponsal;
 
 public class LoginModelImpl implements LoginMVP.Model {
 
-    private BaseDatos baseDatos;
-    private LoginMVP.Presenter presenter;
+    private final LoginMVP.Presenter presenter;
 
     public LoginModelImpl(LoginMVP.Presenter presenter) {
         this.presenter = presenter;
@@ -16,7 +15,7 @@ public class LoginModelImpl implements LoginMVP.Model {
 
     @Override
     public void iniciarSesion(Context context, String correo, String clave) {
-        baseDatos = BaseDatos.getInstance(context);
+        BaseDatos baseDatos = BaseDatos.getInstance(context);
         //Se realiza la consulta del corresponsal con los datos ingresados en el login
         Corresponsal corresponsal = baseDatos.iniciarSesion(correo, clave);
 

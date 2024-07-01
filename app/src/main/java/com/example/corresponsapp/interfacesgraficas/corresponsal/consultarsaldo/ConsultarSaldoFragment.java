@@ -27,14 +27,9 @@ import java.util.Hashtable;
 public class ConsultarSaldoFragment extends Fragment implements ConsultarSaldoMVP.View, ConfirmacionCallback {
 
     private FragmentConsultarSaldoBinding binding;
-    private Activity actividad;
 
     private ConsultarSaldoMVP.Presenter presenter;
     private IAbrirDialogo iAbrirDialogo;
-
-    public ConsultarSaldoFragment() {
-
-    }
 
     public static ConsultarSaldoFragment newInstance() {
         return new ConsultarSaldoFragment();
@@ -59,9 +54,7 @@ public class ConsultarSaldoFragment extends Fragment implements ConsultarSaldoMV
         binding.menuToolbar.ivPantalla.setImageResource(R.drawable.consultar_saldo_128);
         presenter = new ConsultarSaldoPresenterImpl(this);
 
-        binding.btnConsultarSaldo.setOnClickListener(view1 -> {
-            validarInformacion();
-        });
+        binding.btnConsultarSaldo.setOnClickListener(view1 -> validarInformacion());
 
     }
 
@@ -160,13 +153,13 @@ public class ConsultarSaldoFragment extends Fragment implements ConsultarSaldoMV
 
     /**
      * Se inicializa la apertura del diálogo a través de la implementación en la actividad del corresponsal
-     * @param context
+     * @param context Contexto actual
      */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if(context instanceof Activity){
-            actividad = (Activity) context;
+            Activity actividad = (Activity) context;
             iAbrirDialogo = (IAbrirDialogo) actividad;
         }
     }

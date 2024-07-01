@@ -11,8 +11,7 @@ import com.example.corresponsapp.utilidades.Sesion;
 
 public class ConsultarSaldoModelImpl implements ConsultarSaldoMVP.Model {
 
-    private ConsultarSaldoMVP.Presenter presenter;
-    private BaseDatos baseDatos;
+    private final ConsultarSaldoMVP.Presenter presenter;
 
     public ConsultarSaldoModelImpl(ConsultarSaldoMVP.Presenter presenter) {
         this.presenter = presenter;
@@ -20,7 +19,7 @@ public class ConsultarSaldoModelImpl implements ConsultarSaldoMVP.Model {
 
     @Override
     public void consultarSaldo(Context context, CuentaBancaria cuentaBancaria) {
-        baseDatos = BaseDatos.getInstance(context);
+        BaseDatos baseDatos = BaseDatos.getInstance(context);
         //Validar que el cliente exista
         int idCliente = baseDatos.consultarIdCliente(cuentaBancaria.getCliente().getDocumento());
         if (idCliente > 0) {

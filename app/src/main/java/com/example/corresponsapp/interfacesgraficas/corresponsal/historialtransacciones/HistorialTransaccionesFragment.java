@@ -6,9 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,24 +20,18 @@ import com.example.corresponsapp.entidades.PagoTarjeta;
 import com.example.corresponsapp.entidades.Retiro;
 import com.example.corresponsapp.entidades.Transferencia;
 import com.example.corresponsapp.interfacesgraficas.adaptadores.AdaptadorInfoCorta;
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
 public class HistorialTransaccionesFragment extends Fragment implements HistorialMVP.View {
 
     private FragmentHistorialTransaccionesBinding binding;
-    private HistorialMVP.Presenter presenter;
     private AdaptadorInfoCorta adaptadorInfoCorta;
 
     public HistorialTransaccionesFragment() {
 
     }
 
-    public static HistorialTransaccionesFragment newInstance(String param1, String param2) {
-        HistorialTransaccionesFragment fragment = new HistorialTransaccionesFragment();
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +48,7 @@ public class HistorialTransaccionesFragment extends Fragment implements Historia
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter = new HistorialPresenterImpl(this);
+        HistorialMVP.Presenter presenter = new HistorialPresenterImpl(this);
         presenter.consultarHistorialTransacciones(getContext());
 
         extenderRecyclers();
@@ -126,10 +118,6 @@ public class HistorialTransaccionesFragment extends Fragment implements Historia
         binding.rvPagoTarjeta.setVisibility(View.GONE);
     }
 
-    /**
-     * Método que recibe una lista de Libros enviada desde el Modelo
-     * @param listaRetiros
-     */
     @Override
     public void mostrarRetiros(ArrayList<Retiro> listaRetiros) {
         binding.rvRetiro.setLayoutManager(new LinearLayoutManager(getContext()));

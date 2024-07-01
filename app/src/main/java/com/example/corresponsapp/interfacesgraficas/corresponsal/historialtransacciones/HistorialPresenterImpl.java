@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class HistorialPresenterImpl implements HistorialMVP.Presenter{
 
-    private HistorialMVP.Model model;
-    private HistorialMVP.View view;
+    private final HistorialMVP.Model model;
+    private final HistorialMVP.View view;
 
     public HistorialPresenterImpl(HistorialMVP.View view) {
         this.view = view;

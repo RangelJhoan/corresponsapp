@@ -2,8 +2,6 @@ package com.example.corresponsapp.interfacesgraficas.corresponsal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -18,17 +16,10 @@ import java.util.Hashtable;
 
 public class CorresponsalActivity extends AppCompatActivity implements IAbrirDialogo, IAbrirOpcCor {
 
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_corresponsal);
-
-        preferences = getSharedPreferences("sesion", Context.MODE_PRIVATE);
-        editor = preferences.edit();
-
     }
 
     /**

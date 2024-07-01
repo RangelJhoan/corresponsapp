@@ -6,8 +6,8 @@ import com.example.corresponsapp.entidades.PagoTarjeta;
 
 public class PagoTarjetaPresenterImpl implements PagoTarjetaMVP.Presenter{
 
-    private PagoTarjetaMVP.View view;
-    private PagoTarjetaMVP.Model model;
+    private final PagoTarjetaMVP.View view;
+    private final PagoTarjetaMVP.Model model;
 
     public PagoTarjetaPresenterImpl(PagoTarjetaMVP.View view) {
         this.view = view;

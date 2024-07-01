@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context=".interfacesgraficas.RegistroCuentaActivity">
 
@@ -43,10 +43,9 @@
                 android:id="@+id/textInputLayout1"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="50dp"
-                android:layout_weight="1"
                 android:hint="@string/nombre"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -56,7 +55,6 @@
                     android:id="@+id/etNombre"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingStart="30dp"
                     android:textAllCaps="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,10 +62,9 @@
                 android:id="@+id/textInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:hint="@string/apellido"
                 app:boxBackgroundMode="outline"
@@ -76,18 +73,16 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etClave"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingStart="30dp" />
+                    android:layout_height="match_parent" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout3"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_weight="1"
                 android:hint="@string/documento"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -96,18 +91,16 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etDocumento"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingStart="30dp" />
+                    android:layout_height="match_parent" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout4"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_weight="1"
                 android:hint="@string/pin"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -118,18 +111,16 @@
                     android:id="@+id/etPIN"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textPassword"
-                    android:paddingStart="30dp" />
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout5"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_weight="1"
                 android:hint="@string/saldo"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
@@ -139,16 +130,14 @@
                     android:id="@+id/etCorreo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textEmailAddress"
-                    android:paddingStart="30dp" />
+                    android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="20dp"
-                android:layout_weight="1"
                 android:backgroundTint="#0100C1"
                 android:text="@string/registrar_cuenta" />
 

@@ -7,8 +7,7 @@ import com.example.corresponsapp.entidades.Corresponsal;
 
 public class CorresponsalCambiarClaveModelImpl implements CorresponsalCambiarClaveMVP.Model{
 
-    private CorresponsalCambiarClaveMVP.Presenter presenter;
-    private BaseDatos baseDatos;
+    private final CorresponsalCambiarClaveMVP.Presenter presenter;
 
     public CorresponsalCambiarClaveModelImpl(CorresponsalCambiarClaveMVP.Presenter presenter) {
         this.presenter = presenter;
@@ -16,7 +15,7 @@ public class CorresponsalCambiarClaveModelImpl implements CorresponsalCambiarCla
 
     @Override
     public void cambiarClave(Context context, Corresponsal corresponsal) {
-        baseDatos = BaseDatos.getInstance(context);
+        BaseDatos baseDatos = BaseDatos.getInstance(context);
         //Se valida que el correo electrónico ingresado sea igual al correo del corresponsal que inició sesión
         if(baseDatos.consultarCorreoCorresponsal(corresponsal.getId()).equals(corresponsal.getCorreo())){
             long respuestaCambioClave =  baseDatos.cambiarClave(corresponsal.getId(), corresponsal.getClave());

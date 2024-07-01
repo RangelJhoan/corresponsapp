@@ -31,17 +31,12 @@ public class RetirarFragment extends Fragment implements RetirarMVP.View, Confir
     private RetirarMVP.Presenter presenter;
     private FragmentRetirarBinding binding;
     private NavController navController;
-    private Activity actividad;
     private IAbrirDialogo iAbrirDialogo;
 
     public RetirarFragment() {
 
     }
 
-    public static RetirarFragment newInstance(String param1, String param2) {
-        RetirarFragment fragment = new RetirarFragment();
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,9 +59,7 @@ public class RetirarFragment extends Fragment implements RetirarMVP.View, Confir
         binding.menuToolbar.ivPantalla.setImageResource(R.drawable.retirar_128);
         binding.menuToolbar.tvTitulo.setText(Constantes.RETIRAR);
 
-        binding.btnRetirar.setOnClickListener(v -> {
-            abrirDialogo();
-        });
+        binding.btnRetirar.setOnClickListener(v -> abrirDialogo());
 
     }
 
@@ -86,14 +79,14 @@ public class RetirarFragment extends Fragment implements RetirarMVP.View, Confir
                         //Valida que los PINES coincidan
                         if (binding.etPIN.getText().toString().equals(binding.etConfirmarPIN.getText().toString())) {
                             double monto = Double.parseDouble(binding.etMonto.getText().toString());
-                            if(monto > 2000){
+                            if (monto > 2000) {
                                 Hashtable<String, String> informacion = new Hashtable<>();
                                 informacion.put("accion", Constantes.RETIRAR);
                                 informacion.put("documentoAccion", binding.etDocumento.getText().toString());
                                 informacion.put("monto", binding.etMonto.getText().toString());
                                 informacion.put("comision", String.valueOf(Constantes.COMISION_RETIRAR));
                                 iAbrirDialogo.abrirDialogo(informacion, this);
-                            }else{
+                            } else {
                                 Toast.makeText(getContext(), "Monto mínimo a retirar 2000 pesos", Toast.LENGTH_LONG).show();
                             }
                         } else {
@@ -161,7 +154,7 @@ public class RetirarFragment extends Fragment implements RetirarMVP.View, Confir
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof Activity) {
-            this.actividad = (Activity) context;
+            Activity actividad = (Activity) context;
             iAbrirDialogo = (IAbrirDialogo) actividad;
         }
     }
